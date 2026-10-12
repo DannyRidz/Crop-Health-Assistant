@@ -1,7 +1,7 @@
 # Scope: Crop Health Assistant
 
 **Date:** 12 October 2026, Asia/Brunei
-**Approval:** Awaiting explicit approval. No implementation is authorised yet.
+**Approval:** Approved by you on 12 October 2026. M0 implementation is authorised; paid cloud setup still awaits the spending decision.
 
 A globally accessible coffee screening assistant lets coffee farmers worldwide upload leaf photos, answer a few questions, understand visible symptoms and download a report for a local agricultural officer. PNG farmers are the first validation group, not the only intended users. Validation is planned, not yet completed; worldwide agricultural validation is not claimed.
 
@@ -12,10 +12,10 @@ A globally accessible coffee screening assistant lets coffee farmers worldwide u
 
 | # | Feature | Phase | Status |
 |---|---|---|---|
-| 1 | Stack and architecture | Foundation | planned |
-| 2 | Project context and tooling | Foundation | planned |
+| 1 | Stack and architecture | Foundation | in-progress |
+| 2 | Project context and tooling | Foundation | done |
 | 3 | Assessment data and state | Foundation | planned |
-| 4 | Interface and language foundation | Foundation | planned |
+| 4 | Interface and language foundation | Foundation | in-progress |
 | 5 | One complete coffee journey | First milestone | planned |
 | 6 | Bounded questions and checked results | Broaden the journey | planned |
 | 7 | Reviewed guidance and translations | Content gate | planned |
@@ -24,23 +24,32 @@ A globally accessible coffee screening assistant lets coffee farmers worldwide u
 
 ## Foundations
 
-### 1. Stack and architecture, planned
+### 1. Stack and architecture, in-progress
 
 Keep one application with temporary processing and a narrow external AI integration.
 
 **Done when:** the approved stack boots, builds and can run on the selected cloud service.
 
-- [ ] Confirm the proposed decision (spec): `/architect stack and architecture`
+- [x] Confirm the approved decision (spec): `/architect stack and architecture`
+- [x] Build the local scaffold: `/develop M0`
+- [x] Verify local build and running health endpoint: `/check verify M0`
+- [ ] Prove cloud execution with the real journey in M1, AC-17
+
+Code: `package.json`, `next.config.ts`, `src/app/`.
 
 Spec: [technical design](../specs/0001-coffee-mvp/technical.md).
 
-### 2. Project context and tooling, planned
+### 2. Project context and tooling, done
 
 Capture conventions from the real scaffold after approval, then establish type checking, linting and a reproducible build.
 
 **Done when:** project instructions describe the actual stack and the required checks run successfully.
 
-- [ ] After approved scaffolding, capture project context: `/audit`
+- [x] Capture project context after scaffold: `/audit`
+- [x] Establish lint, typecheck and deterministic test commands: `/develop tooling`
+- [x] Run the required foundation checks: `/test M0`
+
+Code: `AGENTS.md`, `eslint.config.mjs`, `tsconfig.json`, language tests and `package-lock.json`.
 
 ### 3. Assessment data and state, planned
 
@@ -48,17 +57,23 @@ Keep one assessment in the open tab and remember only language preference on the
 
 **Done when:** edits invalidate old screening results as appropriate, country or region changes recheck guidance without losing observations, language changes preserve data and refresh behaviour is explained, including AC-19.
 
-- [ ] Confirm the proposed decision (spec): `/architect assessment data and state`
+- [x] Confirm the approved decision (spec): `/architect assessment data and state`
 
 Spec: [technical design](../specs/0001-coffee-mvp/technical.md).
 
-### 4. Interface and language foundation, planned
+### 4. Interface and language foundation, in-progress
 
 Use one coherent phone layout and a central collection of interface translations from the first build.
 
 **Done when:** both language modes cover the first journey, controls are accessible and review status is truthful.
 
-- [ ] Confirm the proposed decision (spec): `/architect interface and language foundation`
+- [x] Confirm the approved decision (spec): `/architect interface and language foundation`
+- [x] Build welcome page, tokens, central locale text and saved language preference, M0
+- [x] Verify both languages at 320, 360, 390 and 1280 px, keyboard toggle and reload
+- [ ] Build actual assessment screens and preserve assessment state during language changes, M1
+- [ ] Complete fluent translation review, AC-12
+
+Code: `src/components/welcome.tsx`, `src/content/`, `src/lib/language.ts`.
 
 Specs: [frontend](../specs/0001-coffee-mvp/design.md), [language and guidance](../specs/0001-coffee-mvp/language-guidance.md).
 
@@ -70,7 +85,7 @@ Upload one permitted coffee leaf photo, make real Gemini requests, answer starte
 
 **Done when:** a real photo completes this narrow journey in English and Tok Pisin mode through a public URL without an app country restriction, with regional guidance or a clear limitation and local officer referral. Pending translations are visibly marked in the internal demo, AC-17 and AC-19.
 
-- [ ] Confirm the proposed decision (spec): `/architect one complete coffee journey`
+- [x] Confirm the approved decision (spec): `/architect one complete coffee journey`
 
 Specs: [product journey](../specs/0001-coffee-mvp/product.md), [technical design](../specs/0001-coffee-mvp/technical.md).
 
@@ -82,7 +97,7 @@ Support two photos, four starter questions and one optional follow up round of a
 
 **Done when:** all four screening statuses, input edits, stale requests and retries satisfy AC-3 through AC-8.
 
-- [ ] Confirm the proposed decision (spec): `/architect bounded questions and checked results`
+- [x] Confirm the approved decision (spec): `/architect bounded questions and checked results`
 
 Spec: [technical design](../specs/0001-coffee-mvp/technical.md).
 
@@ -92,7 +107,7 @@ Enable one condition only after content, image permissions and evaluation gates 
 
 **Done when:** only guidance eligible for the farmer's stated region is shown, PNG review scope is clear and missing regional guidance or translations produce explicit fallback behaviour, AC-9 through AC-12 and AC-19.
 
-- [ ] Confirm the proposed decision (spec): `/architect reviewed guidance and translations`
+- [x] Confirm the approved decision (spec): `/architect reviewed guidance and translations`
 
 Spec: [language and guidance](../specs/0001-coffee-mvp/language-guidance.md).
 
@@ -102,7 +117,7 @@ Refine the complete journey for phone use, slower connections, long text and rep
 
 **Done when:** phone and desktop checks pass in both languages and reports preserve the checked evidence, AC-13 through AC-15.
 
-- [ ] Confirm the proposed decision (spec): `/architect phone experience and reports`
+- [x] Confirm the approved decision (spec): `/architect phone experience and reports`
 
 Specs: [frontend](../specs/0001-coffee-mvp/design.md), [verification](../specs/0001-coffee-mvp/verification-delivery.md).
 
@@ -112,7 +127,7 @@ Record actual outcomes, deploy the final prototype and prepare an honest submiss
 
 **Done when:** acceptance criteria pass, permissions and limitations are recorded, submitted links work and submission confirmation is retained, AC-16 through AC-18.
 
-- [ ] Confirm the proposed decision (spec): `/architect evaluation and submission`
+- [x] Confirm the approved decision (spec): `/architect evaluation and submission`
 
 Spec: [verification and delivery](../specs/0001-coffee-mvp/verification-delivery.md).
 
@@ -122,6 +137,6 @@ Sweet potato, taro, aibika and cassava screening. Coffee flowers, berries and st
 
 ## Legend and next action
 
-All rows remain planned because this package is proposed. Design boxes stay unticked until you approve it. Approval will link each row to its build milestones from the specification, then verification and testing. No feature is done merely because it has a plan.
+The design is approved. M0 local scaffold and project tooling are built and checked. Stack cloud execution and the full language enabled journey remain in progress or planned for later milestones. No full MVP acceptance criterion is claimed complete solely from scaffold tests.
 
-Your next action is to review [the proposal](../specs/0001-coffee-mvp/index.md). Implementation starts only after explicit approval.
+Next: M1, one real coffee journey. Google Cloud setup, Gemini access, permitted images and the spending decision remain external dependencies. The [approved specification](../specs/0001-coffee-mvp/index.md) governs implementation.

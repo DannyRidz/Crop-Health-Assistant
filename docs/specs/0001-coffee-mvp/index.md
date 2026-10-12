@@ -1,13 +1,13 @@
 # 0001. Coffee screening MVP proposal
 
 **Date:** 12 October 2026, Asia/Brunei
-**Status:** Proposed
+**Status:** In Progress
 
 ## Summary
 
 Build a globally accessible coffee screening assistant for coffee farmers worldwide, with PNG users as the first validation group. It uses photos and a few answers to describe visible symptoms, explain a possible supported issue and prepare a report for a local agricultural officer. English and Tok Pisin are included from the first build. Initial PNG validation is planned and remains pending; no worldwide agricultural validation is claimed.
 
-This is a planning package for your review. No application has been scaffolded, dependencies installed, cloud resources created or deployment performed.
+You approved this plan on 12 October 2026 and authorised M0. The local scaffold, bilingual welcome shell and development checks are implemented. No cloud resources have been created or deployment performed; paid setup awaits the spending decision.
 
 ## Structure
 
@@ -62,9 +62,9 @@ Refresh or closing the tab loses the current assessment. Internet access is requ
 
 You confirmed that the two person team is registered, no content resources are available yet, your teammate will gather them, and no Google Cloud project, billing or Gemini key is set up. Information still needed: permitted images and expected labels; resource and reviewer dates; individual eligibility verification; cloud setup; spending cap; exact submission cutoff, category field and language interpretation in the organiser dashboard.
 
-You can approve this proposal while those resources remain pending. Approval enables the technical first milestone, but it does not approve unreviewed guidance, public farmer release, a final condition claim or spending beyond the agreed budget.
+You approved this proposal on 12 October 2026 while those resources remain pending. Approval enables the technical first milestone, but it does not approve unreviewed guidance, public farmer release, a final condition claim or spending beyond the agreed budget.
 
-Please explicitly approve the plan or identify changes. Until then, work stops at planning.
+Approval has been recorded. Continue in the authorised milestone order, and keep content review and spending gates in force.
 
 ## Rationale
 

@@ -1,0 +1,44 @@
+:root {
+  color-scheme: light;
+  --sand: #e8dcc7;
+  --oat: #d4b895;
+  --earth: #283322;
+  --moss: #606c38;
+  --clay: #b08b6e;
+  --font-body: Arial, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --radius-control: 16px;
+  --radius-panel: 24px;
+  --font-small: 16px;
+  --font-body-size: 18px;
+  --font-subheading: 20px;
+  --font-heading: 28px;
+  --font-title: 32px;
+  --line-body: 1.5;
+  --line-heading: 1.2;
+  --measure: 1040px;
+  --touch-target: 48px;
+  --border: 1px solid var(--moss);
+  --focus-width: 3px;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--sand); color: var(--earth); }
+body { margin: 0; font-family: var(--font-body); font-size: var(--font-body-size); line-height: var(--line-body); }
+button { font: inherit; color: inherit; cursor: pointer; }
+a { color: inherit; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { line-height: var(--line-heading); }
+h1 { font-size: var(--font-title); }
+h2 { font-size: var(--font-heading); }
+h3 { font-size: var(--font-subheading); }
+:focus-visible { outline: var(--focus-width) solid var(--earth); outline-offset: var(--space-1); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+}

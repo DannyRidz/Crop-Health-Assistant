@@ -1,0 +1,29 @@
+{
+  "skipLink": "Skip to content",
+  "languageLabel": "Language",
+  "prototypeLabel": "Prototype in development",
+  "eyebrow": "For coffee farmers everywhere",
+  "title": "Understand the changes in your coffee leaves.",
+  "introduction": "A photo, a few answers, and a useful record for a local agricultural officer. Crop Health Assistant provides initial screening, not a confirmed diagnosis.",
+  "scopeLabel": "Coffee leaves only",
+  "validationLabel": "Starting with PNG users",
+  "availabilityTitle": "Photo screening is not available yet",
+  "availabilityText": "We are building the screening journey. Photos, AI results and report downloads will be added next.",
+  "journeyTitle": "How a check will work",
+  "journey": [
+    { "title": "Add leaf photos", "description": "Take a clear photo of one affected coffee leaf in natural light." },
+    { "title": "Share what you noticed", "description": "Answer a few short questions. You can choose Not sure." },
+    { "title": "Read the observations", "description": "See visible symptoms, uncertainty and guidance suitable for your region, when available." },
+    { "title": "Prepare a report", "description": "Download a record to share with a local agricultural officer yourself." }
+  ],
+  "beforeTitle": "What to know",
+  "uncertaintyTitle": "Screening has limits",
+  "uncertaintyText": "A photo cannot confirm a disease or show that a plant is healthy.",
+  "regionalTitle": "Advice depends on location",
+  "regionalText": "Guidance reviewed for PNG will not be assumed suitable everywhere. When local guidance is missing, we will explain that and suggest a local agricultural officer.",
+  "sessionTitle": "One check in the open tab",
+  "sessionText": "The planned screening needs an internet connection. Refreshing or closing the tab will clear your assessment. Only language preference is remembered on your device.",
+  "translationNotice": "Tok Pisin text is a draft and has not been reviewed by a fluent speaker.",
+  "footer": "Coffee is the only planned MVP crop. PNG users are the first validation group; validation is still pending.",
+  "screeningStatement": "Initial screening, not a confirmed diagnosis."
+}

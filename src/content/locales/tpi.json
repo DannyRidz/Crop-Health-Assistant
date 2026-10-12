@@ -1,0 +1,29 @@
+{
+  "skipLink": "Go stret long ol tok",
+  "languageLabel": "Tokples",
+  "prototypeLabel": "Mipela i wokim yet",
+  "eyebrow": "Bilong ol fama bilong kopi long olgeta hap",
+  "title": "Luksave long ol senis long lip bilong kopi.",
+  "introduction": "Wanpela poto, sampela bekim, na wanpela ripot bilong soim long ofisa bilong agrikalsa long ples bilong yu. Crop Health Assistant i helpim yu long luksave pastaim. Em i no inap tokaut stret long sik.",
+  "scopeLabel": "Lip bilong kopi tasol",
+  "validationLabel": "Mipela i stat wantaim ol manmeri long PNG",
+  "availabilityTitle": "Yu no inap sekim poto yet",
+  "availabilityText": "Mipela i wokim yet rot bilong sekim lip. Bai mipela i putim poto, ol bekim bilong AI na daunlod bilong ripot bihain.",
+  "journeyTitle": "Rot bilong sekim lip",
+  "journey": [
+    { "title": "Putim poto bilong lip", "description": "Kisim klia poto bilong wanpela lip bilong kopi long lait bilong san." },
+    { "title": "Tokim mipela long samting yu lukim", "description": "Bekim sampela sotpela askim. Yu inap makim Mi no save." },
+    { "title": "Ritim ol samting mipela i lukim", "description": "Lukim ol mak long lip, samting mipela i no save stret, na tok bilong helpim long ples bilong yu, sapos i gat." },
+    { "title": "Redim wanpela ripot", "description": "Daunlod ripot na yu yet soim long ofisa bilong agrikalsa long ples bilong yu." }
+  ],
+  "beforeTitle": "Ol samting yu mas save long en",
+  "uncertaintyTitle": "Sekim poto i gat mak bilong en",
+  "uncertaintyText": "Poto tasol i no inap tokaut stret long sik o tok olsem diwai i no gat sik.",
+  "regionalTitle": "Tok bilong helpim i mas stret long ples",
+  "regionalText": "Tok ol i bin sekim bilong PNG i no stret long olgeta ples. Sapos mipela i no gat tok bilong ples bilong yu, mipela bai tokaut na askim yu long kisim helpim long ofisa bilong agrikalsa long ples.",
+  "sessionTitle": "Wanpela sek long dispela tab",
+  "sessionText": "Yu bai nidim intenet long sekim poto. Sapos yu opim pes gen o pasim tab, ol samting bilong sek bai lus. Tokples yu makim tasol bai stap long divais bilong yu.",
+  "translationNotice": "Dispela Tok Pisin i draf tasol. Wanpela man o meri i save gut long Tok Pisin i no sekim yet.",
+  "footer": "Kopi tasol em i krop bilong dispela namba wan app. Mipela bai stat traim wantaim ol manmeri long PNG. Mipela i no pinisim yet.",
+  "screeningStatement": "Sekim pastaim tasol, em i no tokaut stret long sik."
+}

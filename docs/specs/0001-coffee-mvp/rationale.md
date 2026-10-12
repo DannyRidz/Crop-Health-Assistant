@@ -87,4 +87,4 @@ No source verifies this project's screening accuracy, image permissions, approve
 
 ## Follow up
 
-Approval is required by your brief before scaffolding or cloud changes. Content resource dates and spending cap remain unanswered, but do not prevent review of this proposal. They restrict real integration and farmer release as described in the build plan.
+You approved the current plan on 12 October 2026 and authorised M0 implementation. Content resource dates and spending cap remain unanswered. They restrict paid cloud setup, real integration and farmer release as described in the build plan.

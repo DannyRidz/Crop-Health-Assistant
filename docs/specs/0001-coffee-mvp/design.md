@@ -8,7 +8,7 @@ Use the Organic visual direction as a practical field guide. Sand surfaces, moss
 
 Audience: coffee farmers worldwide using phones, with PNG users as the first validation group and local officers reading reports later. Purpose: collect useful photos and answers, explain a bounded screening and regional guidance limitations, and prepare a portable record. Connectivity may be limited; successful analysis needs internet. Content density is low during collection and moderate at Result. Each surface has one clear primary task.
 
-This follows the installed frontend-design process: context, one anchor, one differentiator, a token system and layout planning. Design is proposed here; no components or image assets have been implemented.
+This follows the installed frontend-design process: context, one anchor, one differentiator, a token system and layout planning. The visual direction is approved. M0 implements the welcome shell and CSS tokens; the actual photo, questions, result and report surfaces below remain later milestone work. No photo or font assets are bundled.
 
 ## Decision and memorable feature
 

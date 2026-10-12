@@ -1,0 +1,16 @@
+# Dependencies and generated output
+/node_modules/
+/.next/
+/out/
+/build/
+/coverage/
+/output/playwright/
+*.tsbuildinfo
+next-env.d.ts
+
+# Local configuration and credentials
+.env*
+!.env.example
+*.pem
+.DS_Store
+npm-debug.log*

@@ -8,7 +8,7 @@ The deployed interface is public to coffee farmers worldwide without an applicat
 
 ## Proposed stack
 
-These are proposed technical choices, not installed packages. Official pages were checked on 12 October 2026. Exact package patch versions will be recorded in the lockfile after approval, rather than invented here.
+These are approved technical choices. M0 installs the framework, React, TypeScript, ESLint and Vitest foundation, with exact resolved versions in package-lock.json. Gemini, image processing and report packages remain for later milestones. Official pages and the framework registry were checked on 12 October 2026.
 
 | Layer | Recommendation | Reason and practical consequence |
 |---|---|---|
