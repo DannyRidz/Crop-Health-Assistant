@@ -1,0 +1,16 @@
+.gcloudignore
+.git
+.next
+node_modules
+.env*
+coverage
+output
+docs
+AGENTS.md
+README.md
+**/AGENTS.md
+**/*.test.ts
+**/test-fixtures.ts
+test-preferences.json
+vitest.config.mts
+*.tsbuildinfo
