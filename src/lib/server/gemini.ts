@@ -20,7 +20,13 @@ async function generate(input: Parameters<GoogleGenAI["interactions"]["create"]>
     return result.output_text;
   } catch (error) {
     if (error instanceof ApiError) throw error;
-    if (error instanceof Error && /timeout|abort/i.test(error.name)) throw new ApiError(504, "timeout", true);
+    const providerStatus = typeof error === "object" && error !== null && "status" in error &&
+      typeof error.status === "number" && Number.isInteger(error.status) && error.status >= 400 && error.status <= 599 ? error.status : undefined;
+    const timeout = error instanceof Error && /timeout|abort/i.test(`${error.name} ${error.message}`);
+    console.info(JSON.stringify({ requestId, model, promptVersion: PROMPT_VERSION, providerStatus,
+      failureKind: providerStatus === 429 ? "provider_quota" : timeout ? "timeout" : "provider_error" }));
+    if (providerStatus === 429) throw new ApiError(429, "quota", true, 60);
+    if (timeout) throw new ApiError(504, "timeout", true);
     throw new ApiError(503, "unavailable", true);
   }
 }

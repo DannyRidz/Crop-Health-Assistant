@@ -74,6 +74,29 @@ describe("M1 route integration with mocked SDK boundary, AC-3, AC-6 through AC-1
     createInteraction.mockResolvedValueOnce({ status: "completed", output_text: JSON.stringify({ ...modelFixture(), treatment: "unexpected" }) });
     expect((await assessRoute(request("preliminary", cookie, id))).status).toBe(502);
   });
+  it("preserves provider quota errors and logs only safe status metadata", async () => {
+    const cookie = await session(), id = crypto.randomUUID();
+    const log = vi.spyOn(console, "info");
+    createInteraction.mockRejectedValueOnce(Object.assign(new Error("private provider request and credential details"), { status: 429 }));
+    const response = await assessRoute(request("preliminary", cookie, id));
+    expect(response.status).toBe(429);
+    expect(response.headers.get("Retry-After")).toBe("60");
+    const body = await response.json();
+    expect(body.error.code).toBe("quota"); expect(body.error.retryable).toBe(true);
+    expect(body.result).toBeUndefined();
+    expect(log.mock.calls.some(([value]) => JSON.parse(String(value)).providerStatus === 429)).toBe(true);
+    expect(JSON.stringify(log.mock.calls)).not.toContain("private provider");
+    expect(JSON.stringify(body)).not.toContain("credential");
+  });
+  it("recognises SDK timeouts described in the message and retains a safe retry error", async () => {
+    const cookie = await session(), id = crypto.randomUUID();
+    createInteraction.mockRejectedValueOnce(new Error("Request timed out: TimeoutError: operation aborted"));
+    const response = await assessRoute(request("preliminary", cookie, id));
+    expect(response.status).toBe(504);
+    const body = await response.json();
+    expect(body.error.code).toBe("timeout"); expect(body.error.retryable).toBe(true);
+    expect(body.result).toBeUndefined();
+  });
   it("rejects missing sessions and foreign origins before making provider calls", async () => {
     expect((await assessRoute(request("preliminary", "", crypto.randomUUID()))).status).toBe(409);
     const response = await sessionRoute(new NextRequest(`${origin}/api/session`, { method: "POST", headers: { origin: "https://other.example" } }));
