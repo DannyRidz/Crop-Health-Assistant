@@ -1,0 +1,15 @@
+.git
+.next
+node_modules
+.env*
+!.env.example
+coverage
+output
+docs
+AGENTS.md
+README.md
+**/*.test.ts
+**/test-fixtures.ts
+test-preferences.json
+vitest.config.mts
+*.tsbuildinfo

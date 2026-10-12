@@ -2,11 +2,11 @@
 
 ## Product and current state
 
-Globally accessible coffee leaf screening assistant. PNG users are the first planned validation group, not the only audience. English and Tok Pisin are the only MVP languages. M0 is a local foundation; screening, reviewed guidance and report downloads are not implemented yet.
+Globally accessible coffee leaf screening assistant. PNG users are the first planned validation group, not the only audience. English and Tok Pisin are the only MVP languages. M1 local screens, server integration and PDF export are built; real Gemini evaluation and public deployment remain pending. Conditions are disabled, guidance is empty and all Tok Pisin text is draft.
 
 ## Stack
 
-Node.js 24, Next.js App Router, TypeScript with strict checks, React, CSS modules and Vitest. Use npm and the committed lockfile. Gemini and Google Cloud Run are planned for M1; no cloud resources or credentials are required for M0.
+Node.js 24, Next.js App Router, TypeScript with strict checks, React, CSS modules and Vitest. Use npm and the committed lockfile. M1 adds the official Gemini SDK, Zod, sharp, pdf-lib and its font helper. Google Cloud Run deployment remains pending; local photo preparation and incomplete reports need no credentials.
 
 ## Commands
 
@@ -19,6 +19,7 @@ Run `nvm use` if using that runtime manager, then `npm ci`.
 | `npm run typecheck` | Route types and TypeScript checks |
 | `npm test` | Deterministic Vitest tests |
 | `npm run build` | Production build |
+| `npm start` | Built standalone app, after the build has copied public and static assets |
 | `npm run check` | All required local checks |
 
 ## Build approach
@@ -43,6 +44,10 @@ integration: off. Preserve user edits. Do not commit, push or create a pull requ
 ## Agent skills
 
 Installed workflow skills are working instructions outside the project. Use develop for approved slices, frontend-design for UI, check verify for real app behaviour, test for meaningful checks, debug for failures and sync for durable context. Never copy skill contents into the repository.
+
+## Context files
+
+- [Server processing](src/lib/server/AGENTS.md): signing, Gemini calls, upload validation and temporary quotas.
 
 ## Framework documentation
 

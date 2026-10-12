@@ -1,7 +1,7 @@
 # Scope: Crop Health Assistant
 
 **Date:** 12 October 2026, Asia/Brunei
-**Approval:** Approved by you on 12 October 2026. M0 implementation is authorised; paid cloud setup still awaits the spending decision.
+**Approval:** Approved by you on 12 October 2026. M0 and M1 implementation are authorised; paid cloud setup still awaits the spending decision.
 
 A globally accessible coffee screening assistant lets coffee farmers worldwide upload leaf photos, answer a few questions, understand visible symptoms and download a report for a local agricultural officer. PNG farmers are the first validation group, not the only intended users. Validation is planned, not yet completed; worldwide agricultural validation is not claimed.
 
@@ -14,9 +14,9 @@ A globally accessible coffee screening assistant lets coffee farmers worldwide u
 |---|---|---|---|
 | 1 | Stack and architecture | Foundation | in-progress |
 | 2 | Project context and tooling | Foundation | done |
-| 3 | Assessment data and state | Foundation | planned |
+| 3 | Assessment data and state | Foundation | in-progress |
 | 4 | Interface and language foundation | Foundation | in-progress |
-| 5 | One complete coffee journey | First milestone | planned |
+| 5 | One complete coffee journey | First milestone | in-progress |
 | 6 | Bounded questions and checked results | Broaden the journey | planned |
 | 7 | Reviewed guidance and translations | Content gate | planned |
 | 8 | Phone experience and complete reports | Completion | planned |
@@ -51,7 +51,7 @@ Capture conventions from the real scaffold after approval, then establish type c
 
 Code: `AGENTS.md`, `eslint.config.mjs`, `tsconfig.json`, language tests and `package-lock.json`.
 
-### 3. Assessment data and state, planned
+### 3. Assessment data and state, in-progress
 
 Keep one assessment in the open tab and remember only language preference on the device.
 
@@ -70,16 +70,16 @@ Use one coherent phone layout and a central collection of interface translations
 - [x] Confirm the approved decision (spec): `/architect interface and language foundation`
 - [x] Build welcome page, tokens, central locale text and saved language preference, M0
 - [x] Verify both languages at 320, 360, 390 and 1280 px, keyboard toggle and reload
-- [ ] Build actual assessment screens and preserve assessment state during language changes, M1
+- [x] Build actual assessment screens and preserve assessment state during language changes, M1
 - [ ] Complete fluent translation review, AC-12
 
-Code: `src/components/welcome.tsx`, `src/content/`, `src/lib/language.ts`.
+Code: `src/components/screening.tsx`, `src/content/`, `src/lib/use-language.ts`.
 
 Specs: [frontend](../specs/0001-coffee-mvp/design.md), [language and guidance](../specs/0001-coffee-mvp/language-guidance.md).
 
 ## First milestone
 
-### 5. One complete coffee journey, planned
+### 5. One complete coffee journey, in-progress
 
 Upload one permitted coffee leaf photo, make real Gemini requests, answer starter questions, read a checked outcome and download a report from a Cloud Run prototype.
 
@@ -137,6 +137,6 @@ Sweet potato, taro, aibika and cassava screening. Coffee flowers, berries and st
 
 ## Legend and next action
 
-The design is approved. M0 local scaffold and project tooling are built and checked. Stack cloud execution and the full language enabled journey remain in progress or planned for later milestones. No full MVP acceptance criterion is claimed complete solely from scaffold tests.
+The design is approved. M0 is complete locally. M1 local screens, server integration, request controls, region selection and PDF export are built. On 12 October 2026, real API preliminary and final screening, PNG guidance selection and Tok Pisin translation completed with a synthetic green rectangle. A manual retry was needed after a temporary service error. The checked result was unable to assess, with no condition claim or approved guidance. English and draft Tok Pisin PDF contents verified geography and referral. This is provider and export evidence for an unsupported sample, not agricultural accuracy or a complete browser journey. A permitted coffee case and cloud execution remain unverified, so M1 is still in progress.
 
-Next: M1, one real coffee journey. Google Cloud setup, Gemini access, permitted images and the spending decision remain external dependencies. The [approved specification](../specs/0001-coffee-mvp/index.md) governs implementation.
+Next: finish the M1 real integration gate. Gemini access is configured locally on the free tier with billing disabled. Spending remains USD 0. Permitted images and public Google Cloud setup remain dependencies. A closed prior billing account is visible; no billing Starter Tier eligibility remains unconfirmed. Agricultural and fluent translation review are also pending. The [approved specification](../specs/0001-coffee-mvp/index.md) governs implementation.

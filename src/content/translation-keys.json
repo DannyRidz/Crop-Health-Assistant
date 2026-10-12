@@ -1,0 +1,758 @@
+{
+  "skipLink": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "languageLabel": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "prototypeLabel": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "eyebrow": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "title": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "introduction": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "scopeLabel": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "validationLabel": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "availabilityTitle": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "availabilityText": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "journeyTitle": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "journey.0.title": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "journey.0.description": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "journey.1.title": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "journey.1.description": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "journey.2.title": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "journey.2.description": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "journey.3.title": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "journey.3.description": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "beforeTitle": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "uncertaintyTitle": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "uncertaintyText": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "regionalTitle": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "regionalText": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "sessionTitle": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "sessionText": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "translationNotice": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "footer": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "screeningStatement": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.photos": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questions": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.result": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.report": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.step": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.of": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.prototype": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.intro": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.photoTitle": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.photoHelp": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.addPhoto": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.camera": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.photo": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.side": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.upper": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.underside": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.unknown": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.remove": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.replace": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.limits": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.privacy": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.temporary": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.demoPrivacy": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.paidPrivacy": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.permission": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.checkPhotos": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.checkingPhotos": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.checkingResult": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.slow": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.preliminary": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.noObservations": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.quality": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.usable": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.blurry": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.dark": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.incomplete": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.coffee": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.leaf": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.other": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.unclear": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.cropPart": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionTitle": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionHelp": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.detail": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.getResult": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.backPhotos": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.backResult": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.editAnswers": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.prepareReport": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.incompleteReport": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.retry": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.newCheck": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.confirmClear": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.countryTitle": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.countryHelp": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.locationChoice": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.notProvided": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.knownCountry": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.countrySearch": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.country": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chooseCountry": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.countryEnglish": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.noCountries": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.regionUpdating": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.regionRetry": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.regionStale": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.visible": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.meaning": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.uncertain": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.coverage": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.unsupported": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.initial": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.guidance": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.noRegional": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.unknownRegional": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.pngPending": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.pngReviewed": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.reviewGeography": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.source": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.missing": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.noMissing": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.status": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.unable_to_assess": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.more_information_needed": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.possible_supported_issue": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.no_clear_supported_signs": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.reportTitle": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.reportHelp": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.reportPreview": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.download": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.downloading": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.downloaded": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.print": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.exportError": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.reportHeading": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.reference": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.created": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.assessed": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.timezone": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.language": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.demonstration": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.processed": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.answers": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.noResult": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.noResultShort": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.share": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.emptyAnswer": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.automatic": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.translationLoading": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.translationUnavailable": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.showEnglish": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.englishFallback": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.fixedDraft": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.noTranslationExport": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.needPhoto": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.needPermission": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.needAnswers": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.needCountry": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.processing": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.condition": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.none": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.remaining": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.enableNote": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.countryValue": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.limitsHeading": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.errors.disabled": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.errors.unavailable": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.errors.timeout": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.errors.invalid_input": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.errors.invalid_image": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.errors.format": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.errors.too_large": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.errors.invalid_output": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.errors.expired": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.errors.busy": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.errors.quota": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.errors.origin": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.errors.demo_only": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.errors.translation_unavailable": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.errors.network": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.errors.photo_failed": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.onset.label": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.onset.options.today": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.onset.options.days_2_7": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.onset.options.over_week": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.onset.options.not_sure": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.spread.label": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.spread.options.one": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.spread.options.several": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.spread.options.not_sure": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.symptoms.label": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.symptoms.options.spots": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.symptoms.options.yellowing": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.symptoms.options.falling": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.symptoms.options.other": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.symptoms.options.not_sure": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.care_change.label": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.care_change.options.yes": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.care_change.options.no": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionBank.care_change.options.not_sure": {
+    "en": "authored",
+    "tpi": "draft"
+  }
+}
