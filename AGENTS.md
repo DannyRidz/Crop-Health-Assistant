@@ -64,3 +64,5 @@ Local image decoding failures map to invalid_image before any provider request. 
 The public app address is https://coffee-leaf-check.web.app. Hosting rewrites in deploy/preview-link route all paths to the existing Cloud Run service, scoped to Hosting target preview in the MVP project. Deploy only that target. Keep the signed __session cookie and exact PUBLIC_APP_ORIGIN configuration so sessions work through Hosting. Firebase Analytics is disabled.
 
 PDF exports use A4 pages, running headers and page footers. Keep photo captions with their images and section headings with their first content block. Generated report samples and rendered checks belong in ignored output/pdf and tmp/pdfs.
+
+During PDF export, keep language controls disabled and guard changeLocale so changing language cannot silently cancel a download. Preserve the stale export epoch check and restore controls after either success or failure.

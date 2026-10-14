@@ -94,6 +94,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
     finally { setTranslations(Object.fromEntries(translationCache.current)); setBusy(null); setSlow(false); }
   }
   function changeLocale(next: Locale) {
+    if (busy === "export") return;
     epoch.current++;
     localeMemory.current = next;
     selectLocale(next);
@@ -257,8 +258,8 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
     <header className={styles.header}>
       <p className={styles.wordmark}>Crop Health Assistant</p>
       <div className={styles.language} role="group" aria-label={text.languageLabel}>
-        <button aria-pressed={locale === "en"} onClick={() => changeLocale("en")} lang="en">English</button>
-        <button aria-pressed={locale === "tpi"} onClick={() => changeLocale("tpi")} lang="tpi">Tok Pisin</button>
+        <button disabled={busy === "export"} aria-pressed={locale === "en"} onClick={() => changeLocale("en")} lang="en">English</button>
+        <button disabled={busy === "export"} aria-pressed={locale === "tpi"} onClick={() => changeLocale("tpi")} lang="tpi">Tok Pisin</button>
       </div>
     </header>
     <main id="main" className={styles.main}>

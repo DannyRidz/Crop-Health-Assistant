@@ -27,7 +27,7 @@ Method: the existing Chrome tab and native Chrome zoom controls. No simulator, d
 | Reset confirmation | OK cleared the disposable test case, returned to Photos and focused its heading. No photos or checked answers remained. Session allowance was retained. |
 | Reduced motion | Source inspection found the existing reduced motion override and no authored animation or transition elsewhere. An operating system reduced motion setting was not toggled. |
 
-## Finding requiring follow up
+## Finding, subsequently resolved
 
 Switching language during PDF preparation cancels the pending download without a cancellation explanation. The language change increments epoch, exportReport deliberately rejects the stale export, and changeLocale skips translation while busy. This protects against exporting stale content but leaves an unclear recovery step. Reproduced during this run: no file appeared after the overlapping actions; a normal English export after preparation completed worked, followed by a normal draft Tok Pisin export.
 
@@ -43,6 +43,20 @@ Scratch screenshots: /private/tmp/coffee-access-en-200.png, coffee-access-tpi-20
 
 ## Acceptance status
 
-AC-7 recovery, AC-13 report consistency and AC-14 actual desktop zoom received additional real browser evidence. AC-15 keyboard, focus, labels, sampled contrast and targets received partial evidence. Do not mark the complete M2 or M4 milestone done: real phone camera, slow connection coverage, complete keyboard and assistive technology coverage, all state contrast checks, independent agricultural and Tok Pisin review and farmer comprehension remain pending. The download and language overlap finding also remains open.
+AC-7 recovery, AC-13 report consistency and AC-14 actual desktop zoom received additional real browser evidence. AC-15 keyboard, focus, labels, sampled contrast and targets received partial evidence. Do not mark the complete M2 or M4 milestone done: real phone camera, slow connection coverage, complete keyboard and assistive technology coverage, all state contrast checks, independent agricultural and Tok Pisin review and farmer comprehension remain pending. The download and language overlap finding was subsequently resolved as recorded below.
 
 The specialist and farmer guide and blank feedback template are prepared beside this record. No feedback or specialist approval is fabricated.
+
+## PDF language fix verified, 15 October 2026
+
+The user approved fixing this finding. Language buttons are now disabled only while PDF export is running, and changeLocale also refuses changes during export. The existing epoch check still rejects stale exports. Buttons return through the existing finally cleanup after both success and failure.
+
+Local lint, type checks and all 70 tests passed. Tests ran with maximum one worker at a time. The production build ran remotely on Google Cloud. Cloud Run revision coffee-health-demo-00013-j4v serves all traffic, from build 31bda350-616e-4162-af22-334b7f1ca4fa. The patched remote source hash matched the checked local component before deployment. A first remote patch command had a quoting error; its unnecessary build 28ff4bf7-3470-4f9e-a047-04d15220ec55 was cancelled and never deployed.
+
+Live regression case dbc01f35-0724-4e81-996d-44c128362317 used the permitted BRACOL 671 photo and four Not sure answers. An explicit software test detail containing characters unsupported by the report font caused the intended clear PDF error. Both language controls were observed disabled during preparation and enabled after failure. The photo, answers and result remained available.
+
+The test detail was removed, and a fresh final check completed. Normal English and draft Tok Pisin exports each showed both language buttons disabled during preparation and enabled when finished. Switching to Tok Pisin after the English export started and completed translation normally. Both three page PDF downloads contain the matching reference and exclude the removed test detail. No provider responses were mocked for this regression check. These are software checks, not agricultural validation.
+
+Proof screenshots: /private/tmp/coffee-pdf-failure-controls-restored.png, /private/tmp/coffee-pdf-language-fix-en.png and /private/tmp/coffee-pdf-language-fix-tpi.png. English and draft Tok Pisin files are coffee-screening-dbc01f35-en.pdf and coffee-screening-dbc01f35-tpi.pdf in Downloads. The app remains open in English at the report screen. Cloud Shell was closed after verification. No simulator, emulator or local production build was used.
+
+Service inspection confirmed maximum one instance, paid observation screening, the exact public app origin, TRUST_PROXY false and the two existing secret reference names. No new credit purchase, domain, service account or secret permission was introduced. Remaining phone, independent review and full accessibility gates are unchanged.
