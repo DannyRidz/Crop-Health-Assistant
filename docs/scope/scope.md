@@ -12,11 +12,11 @@ A globally accessible coffee screening assistant lets coffee farmers worldwide u
 
 | # | Feature | Phase | Status |
 |---|---|---|---|
-| 1 | Stack and architecture | Foundation | in-progress |
+| 1 | Stack and architecture | Foundation | done |
 | 2 | Project context and tooling | Foundation | done |
 | 3 | Assessment data and state | Foundation | in-progress |
 | 4 | Interface and language foundation | Foundation | in-progress |
-| 5 | One complete coffee journey | First milestone | in-progress |
+| 5 | One complete coffee journey | First milestone | done |
 | 6 | Bounded questions and checked results | Broaden the journey | planned |
 | 7 | Reviewed guidance and translations | Content gate | planned |
 | 8 | Phone experience and complete reports | Completion | planned |
@@ -24,7 +24,7 @@ A globally accessible coffee screening assistant lets coffee farmers worldwide u
 
 ## Foundations
 
-### 1. Stack and architecture, in-progress
+### 1. Stack and architecture, done
 
 Keep one application with temporary processing and a narrow external AI integration.
 
@@ -33,7 +33,7 @@ Keep one application with temporary processing and a narrow external AI integrat
 - [x] Confirm the approved decision (spec): `/architect stack and architecture`
 - [x] Build the local scaffold: `/develop M0`
 - [x] Verify local build and running health endpoint: `/check verify M0`
-- [ ] Prove cloud execution with the real journey in M1, AC-17
+- [x] Prove cloud execution with the real journey in M1, AC-17
 
 Code: `package.json`, `next.config.ts`, `src/app/`.
 
@@ -79,7 +79,7 @@ Specs: [frontend](../specs/0001-coffee-mvp/design.md), [language and guidance](.
 
 ## First milestone
 
-### 5. One complete coffee journey, in-progress
+### 5. One complete coffee journey, done
 
 Upload one permitted coffee leaf photo, make real Gemini requests, answer starter questions, read a checked outcome and download a report from a Cloud Run prototype.
 
@@ -142,3 +142,5 @@ The design is approved. M0 is complete locally. M1 local screens, server integra
 Next: finish the M1 real integration gate. Gemini access is configured locally; project cloud billing is enabled, but paid Gemini access has not been verified. The approved MVP allowance is USD 20 total; the initial USD 5 Gemini purchase is deferred until you make it later this week. Current Gemini quota, permitted images and cloud secret setup remain dependencies for live screening. A direct final request confirmed provider HTTP 429, and the rebuilt app now preserves that status instead of masking it as 503; all 58 tests and the build pass. You reopened the existing paid Cloud billing account, and the MVP project is now linked. A USD 20 monthly project alert budget is saved at 50, 90 and 100 percent. The payment warning cleared after you updated the card. The [public Cloud Run demonstration](https://coffee-health-demo-952364218688.asia-southeast1.run.app) is deployed as revision coffee-health-demo-00001-8wl with screening disabled and no cloud secrets. Public access, health HTTP 200, the expected disabled session response, local photo preparation, language switching and an incomplete PDF were verified. Not sure, PNG and Brunei region choices preserve access and show guidance limitations. This does not complete AC-17, which requires the real AI journey. Agricultural and fluent translation review are also pending. The [approved specification](../specs/0001-coffee-mvp/index.md) governs implementation.
 
 14 October update: USD 5 Gemini prepay and automatic reload off were verified. A real local Gemini test succeeded. The teammate supplied BRACOL candidates, recorded in [the source record](../data-sources/bracol.md). Two approved cloud secrets are configured with access scoped to the runtime account, and revision coffee-health-demo-00002-x6t passed health and disabled session checks. M1 remains in progress pending selected image provenance and the complete real public coffee journey; agricultural and Tok Pisin reviews are still pending.
+
+M1 completion, 14 October 2026: the exact original BRACOL 671.jpg match is verified, and assessment 78ca06f5-1a5f-432b-af01-d044cea864c3 completed the public Cloud Run journey with real preliminary and final Gemini output, four Not sure answers, Brazil context, missing regional guidance and English plus draft Tok Pisin PDF exports. An unknown region PDF and simulated PNG context were also checked without another screening request. The result is unable to assess because no supported condition has passed review. This completes the narrow M1 software demonstration and AC-17, not the later agricultural, translation review or release criteria. Cloud revision coffee-health-demo-00003-sdk has screening enabled, paid provider mode and maximum one instance. Next is M2 boundary verification, while agricultural and fluent language resources remain pending.

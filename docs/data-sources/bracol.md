@@ -1,6 +1,6 @@
 # BRACOL sample source record
 
-Checked on 14 October 2026. The teammate supplied a shared collection identified as BRACOL. This is a candidate source for the M1 coffee image journey and later evaluation. No Gemini request using these files has been made during this source check. No image is bundled in the public app.
+Checked on 14 October 2026. The teammate supplied a shared collection identified as BRACOL. This is a candidate source for the M1 coffee image journey and later evaluation. The selected image provenance was subsequently verified and used for a completed public M1 journey, assessment 78ca06f5-1a5f-432b-af01-d044cea864c3. No image is bundled in the public app.
 
 ## Original source and attribution
 
@@ -41,3 +41,17 @@ Use as a permitted demonstration candidate with attribution after source provena
 Official FAQ checked: https://aibuildercup.com/Faqs.html
 
 The FAQ requires a fresh project built during the hackathon, a working deployed prototype on Google Cloud, a public source repository, a video under three minutes and a deck. The inspected FAQ does not explicitly prohibit external datasets, but it does not explicitly approve BRACOL either. Dataset licensing and organiser acceptance are separate matters. No likelihood of judge acceptance is claimed; any additional dashboard declarations or terms still apply.
+
+## M1 sample provenance verified, 14 October 2026
+
+The original archive download URL was observed on the publisher page: https://data.mendeley.com/public-files/datasets/yy2k5y8mxg/files/c16b08ee-3ca6-4bf0-8f4e-4285a53a4a24/file_downloaded
+
+The downloaded archive was truncated and lacked a readable central directory. No whole archive integrity or full dataset inventory is claimed. Local entries for the leaf CSV and 671.jpg were complete, extracted directly and verified against their stored CRC values.
+
+Original member: coffee-datasets/coffee-datasets/leaf/images/671.jpg. Original and shared file size: 141487 bytes. Both files have SHA-256 e6fcae3942c4e3cef73fa270afb0f9bb77fa217f6c299c7bf2e7a1a308a804f2, confirming an exact match. This settles the selected image provenance and CC BY 4.0 source for the M1 demonstration.
+
+The original leaf CSV records id 671, predominant_stress 5, miner 0, rust 0, phoma 0, cercospora 0 and severity 0. The numeric category mapping and original split were not established, so these are retained as raw source labels, not interpreted as a diagnosis or scored accuracy result.
+
+The app prepares a resized JPEG copy and removes metadata on the server. Attribution: BRACOL, Renato A. Krohling, Guilherme J. M. Esgario and José A. Ventura, version 1, DOI 10.17632/yy2k5y8mxg.1, CC BY 4.0. Image changes: resized and reencoded for screening and report embedding. Source authors do not endorse this app. Retain this attribution with any shared demonstration report.
+
+The completed journey produced English and draft Tok Pisin Brazil reports and an English unknown region report. Three provider requests used 4030 total tokens. Dataset labels were not supplied to Gemini or used to claim accuracy. The ignored output/m1-verification directory retains report copies with ATTRIBUTION.md; retain that notice whenever these sample reports are shared.

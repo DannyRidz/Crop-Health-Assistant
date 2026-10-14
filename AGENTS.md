@@ -2,11 +2,11 @@
 
 ## Product and current state
 
-Globally accessible coffee leaf screening assistant. PNG users are the first planned validation group, not the only audience. English and Tok Pisin are the only MVP languages. M1 local screens, server integration and PDF export are built; real Gemini evaluation and a complete public screening journey remain pending. A public Cloud Run demo is deployed with screening disabled and two scoped Secret Manager references. Funded Gemini access is verified locally; the complete public coffee journey remains pending. Conditions are disabled, guidance is empty and all Tok Pisin text is draft.
+Globally accessible coffee leaf screening assistant. PNG users are the first planned validation group, not the only audience. English and Tok Pisin are the only MVP languages. M1 narrow public journey is complete with a permitted BRACOL image, real Gemini preliminary and final requests, regional limitations and English plus draft Tok Pisin PDFs. Cloud Run screening is enabled in paid mode with two scoped Secret Manager references and maximum one instance. Conditions remain disabled, guidance remains empty and all Tok Pisin text is draft. Agricultural accuracy and farmer release validation remain pending.
 
 ## Stack
 
-Node.js 24, Next.js App Router, TypeScript with strict checks, React, CSS modules and Vitest. Use npm and the committed lockfile. M1 adds the official Gemini SDK, Zod, sharp, pdf-lib and its font helper. The initial Google Cloud Run demo is deployed with screening disabled; local photo preparation and incomplete reports need no credentials.
+Node.js 24, Next.js App Router, TypeScript with strict checks, React, CSS modules and Vitest. Use npm and the committed lockfile. M1 adds the official Gemini SDK, Zod, sharp, pdf-lib and its font helper. The Google Cloud Run demonstration is deployed with paid observation screening enabled; local photo preparation and incomplete reports need no credentials.
 
 ## Commands
 
@@ -45,7 +45,7 @@ integration: off. Preserve user edits. Do not commit, push or create a pull requ
 
 Installed workflow skills are working instructions outside the project. Use develop for approved slices, frontend-design for UI, check verify for real app behaviour, test for meaningful checks, debug for failures and sync for durable context. Never copy skill contents into the repository.
 
-Cloud source uploads use `.gcloudignore` to exclude secrets and generated files. `scripts/deploy-demo.sh` prepares the initial public demo with screening disabled and no cloud secrets; it deployed the initial revision in asia-southeast1. Cloud billing is enabled, public demo checks passed, funded Gemini access is verified locally, and cloud secrets are configured. Screening stays disabled until the selected sample provenance and demonstration verification gates are settled. Do not enable screening or purchase credits without the remaining access and data gates.
+Cloud source uploads use `.gcloudignore` to exclude secrets and generated files. `scripts/deploy-demo.sh` prepares the initial public demo with screening disabled and no cloud secrets; it deployed the initial revision in asia-southeast1. Cloud billing is enabled, public demo checks passed, funded Gemini access is verified locally, and cloud secrets are configured. The selected BRACOL sample provenance and real M1 journey are verified, so observation screening is enabled. Do not enable a disease condition or guidance before review and evaluation; do not purchase further credits without authorization.
 
 ## Context files
 
