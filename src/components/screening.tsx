@@ -263,7 +263,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
     </header>
     <main id="main" className={styles.main}>
       {state.stage === "photos" && <div className={styles.intro}><p>{t.introShort}</p>
-        <div className={styles.tags}><span>{text.scopeLabel}</span><span>{t.prototype}</span></div>
+        <div className={styles.tags}><span>{text.scopeLabel}</span></div>
       </div>}
       {locale === "tpi" && <p className={styles.small}>{t.draftShort}</p>}
       <ol className={styles.progress} aria-label={text.journeyTitle}>{steps.map((step, index) => <li key={step} aria-current={state.stage === step ? "step" : undefined}><span>{index + 1}</span>{t[step]}</li>)}</ol>

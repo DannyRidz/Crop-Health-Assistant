@@ -38,6 +38,7 @@ Tracer Bullet: prove one real complete journey before adding breadth. The approv
    Supporting details may use native disclosures. Keep sharing consent and screening uncertainty visible; automatically expand preliminary photo details when quality or crop and part checks flag a limitation. A collapsed report preview must not omit content from PDF export.
    Focus the heading on assessment step changes, not on initial page load. Preserve visible keyboard focus and error focus.
    Offer incomplete reports after service or session failures, not local photo, consent, answer or country validation errors. Clear the relevant consent or country error when that input changes.
+   Use farmer task wording instead of repeated development labels. Keep disease coverage, independent review status, language drafts and regional limits truthful in the interface and reports.
 8. Run checks appropriate to the milestone and exercise the real app. Record mocked checks separately from real Gemini requests. Do not test exact generated prose.
 
 ## Git
