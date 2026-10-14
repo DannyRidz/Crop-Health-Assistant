@@ -1,0 +1,31 @@
+{
+  "hosting": {
+    "target": "preview",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-store"
+          }
+        ]
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "run": {
+          "serviceId": "coffee-health-demo",
+          "region": "asia-southeast1"
+        }
+      }
+    ]
+  }
+}

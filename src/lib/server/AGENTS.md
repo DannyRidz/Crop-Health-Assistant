@@ -2,7 +2,7 @@
 
 This area implements the [technical design](../../../docs/specs/0001-coffee-mvp/technical.md). The route handlers in `src/app/api/` call these modules. Run the root `npm run check` before changing their contracts.
 
-- `http.ts` checks origin against the actual incoming host and scheme, caps streamed body bytes and returns translated error keys without raw errors.
+- `http.ts` checks origin against the actual incoming host and scheme or the exact configured HTTPS PUBLIC_APP_ORIGIN. It rejects foreign or missing origins and cross site requests, caps streamed body bytes and returns translated error keys without raw errors. Do not trust arbitrary forwarded host values.
 - `session.ts` signs expiring, purpose and session bound envelopes. Quotas contain metadata only and live in process memory. They reset on restart and cannot guarantee a global spending cap.
 - `images.ts` independently decodes, validates and reencodes submitted photos. Never trust filenames or MIME headers, fetch photo URLs, write photos to disk or log farmer content.
 - `gemini.ts` uses the official SDK with `store: false`, no retained conversation and no automatic retry. Region is excluded from screening and translation prompts. Logs contain request metadata, token totals, numeric provider status and fixed failure categories only. Provider quota returns 429, SDK timeouts return 504, and raw provider messages never enter logs or responses.
@@ -11,3 +11,5 @@ This area implements the [technical design](../../../docs/specs/0001-coffee-mvp/
 - Screening prompt version coffee-observations-2 asks for short sentences and everyday farmer wording, including leaf surface, leaf veins and leaf edge. It preserves the disabled condition and treatment policy.
 
 Drafted by sync from the introducing change, worth a quick human pass.
+
+The signed temporary session cookie is __session, required for Firebase Hosting to forward it to Cloud Run. Keep HttpOnly, Secure in production and SameSite strict.

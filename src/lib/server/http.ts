@@ -14,7 +14,10 @@ export function assertOrigin(request: Request) {
   const host = request.headers.get("host") ?? target.host;
   let source: URL;
   try { source = new URL(origin ?? ""); } catch { throw new ApiError(400, "origin"); }
-  if (source.origin !== origin || source.host !== host || source.protocol !== target.protocol || request.headers.get("sec-fetch-site") === "cross-site") throw new ApiError(400, "origin");
+  const configuredOrigin = process.env.PUBLIC_APP_ORIGIN;
+  const hostingOrigin = configuredOrigin === source.origin && source.protocol === "https:";
+  const incomingOrigin = source.host === host && source.protocol === target.protocol;
+  if (source.origin !== origin || (!hostingOrigin && !incomingOrigin) || request.headers.get("sec-fetch-site") === "cross-site") throw new ApiError(400, "origin");
 }
 
 export async function limitedBody(request: Request, limit: number): Promise<Uint8Array> {

@@ -2,7 +2,7 @@ import { createHash, createHmac, randomUUID, timingSafeEqual } from "node:crypto
 import type { NextRequest } from "next/server";
 import { ApiError } from "./http";
 
-export const COOKIE_NAME = "crop_session";
+export const COOKIE_NAME = "__session";
 export const SESSION_MS = 60 * 60 * 1000;
 export const ENVELOPE_MS = 30 * 60 * 1000;
 type Kind = "session" | "preliminary" | "result" | "guidance";

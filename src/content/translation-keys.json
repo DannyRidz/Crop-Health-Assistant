@@ -842,5 +842,9 @@
   "assessment.photoCheckComplete": {
     "en": "authored",
     "tpi": "draft"
+  },
+  "assessment.skipLocation": {
+    "en": "authored",
+    "tpi": "draft"
   }
 }

@@ -60,3 +60,7 @@ Cloud source uploads use `.gcloudignore` to exclude secrets and generated files.
 Read the relevant installed guide in `node_modules/next/dist/docs/` before changing framework behaviour. APIs and conventions may differ from earlier versions. Automatic instruction generation is disabled so this curated file remains stable.
 
 Local image decoding failures map to invalid_image before any provider request. Preserve existing photos when a replacement cannot be decoded. Controlled HTTP fixtures are software test evidence only, never agricultural or real provider evidence.
+
+The public app address is https://coffee-leaf-check.web.app. Hosting rewrites in deploy/preview-link route all paths to the existing Cloud Run service, scoped to Hosting target preview in the MVP project. Deploy only that target. Keep the signed __session cookie and exact PUBLIC_APP_ORIGIN configuration so sessions work through Hosting. Firebase Analytics is disabled.
+
+PDF exports use A4 pages, running headers and page footers. Keep photo captions with their images and section headings with their first content block. Generated report samples and rendered checks belong in ignored output/pdf and tmp/pdfs.

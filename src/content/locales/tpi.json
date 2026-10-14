@@ -121,7 +121,7 @@
     "missing": "Ol data i no stap",
     "noMissing": "I no gat narapela data i lus long lis. Ol limit bilong sekim i stap yet.",
     "status": "Risalt bilong sekim",
-    "unable_to_assess": "Mipela i no inap skelim",
+    "unable_to_assess": "Mipela i no save as bilong dispela senis",
     "more_information_needed": "Nidim moa save",
     "possible_supported_issue": "Inap i gat sik mipela i sapotim",
     "no_clear_supported_signs": "I no gat klia sain bilong sik mipela i sapotim",
@@ -240,6 +240,7 @@
     "noRegionalShort": "Riviu bilong gaid long dispela rijon i no pinis. Askim ofisa bilong agrikalsa long ples long lukim ol samting i luk olsem.",
     "unknownRegionalShort": "Mipela i no save rijon bilong yu. Askim ofisa bilong agrikalsa long ples long lukim ol samting i luk olsem.",
     "resultTitle": "Sekim bilong lip bilong yu",
-    "photoCheckComplete": "App i sekim poto bilong yu pinis. Em i no inap makim sik yet."
+    "photoCheckComplete": "App i sekim poto bilong yu pinis. Em i no inap makim sik yet.",
+    "skipLocation": "Larim pastaim"
   }
 }

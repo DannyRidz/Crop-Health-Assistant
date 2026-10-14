@@ -5,6 +5,8 @@
 /build/
 /coverage/
 /output/playwright/
+/output/pdf/
+/tmp/pdfs/
 *.tsbuildinfo
 next-env.d.ts
 

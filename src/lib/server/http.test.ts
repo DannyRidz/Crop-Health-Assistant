@@ -2,6 +2,21 @@ import { describe, expect, it } from "vitest";
 import { assertOrigin, limitedBody, readJson } from "./http";
 
 describe("request boundary, AC-8 and AC-16", () => {
+  it("accepts only the exact configured HTTPS Hosting origin without trusting forwarded hosts", () => {
+    const previous = process.env.PUBLIC_APP_ORIGIN;
+    process.env.PUBLIC_APP_ORIGIN = "https://coffee-leaf-check.web.app";
+    try {
+      const request = (origin: string, extra = {}) => new Request("https://backend.run.app/api/session", { headers: { origin, host: "backend.run.app", ...extra } });
+      expect(() => assertOrigin(request("https://coffee-leaf-check.web.app"))).not.toThrow();
+      for (const origin of ["http://coffee-leaf-check.web.app", "https://coffee-leaf-check.web.app.evil.example", "https://another.web.app", "https://coffee-leaf-check.web.app/"]) {
+        expect(() => assertOrigin(request(origin, { "x-forwarded-host": "coffee-leaf-check.web.app" }))).toThrow("origin");
+      }
+      expect(() => assertOrigin(request("https://coffee-leaf-check.web.app", { "sec-fetch-site": "cross-site" }))).toThrow("origin");
+    } finally {
+      if (previous === undefined) delete process.env.PUBLIC_APP_ORIGIN;
+      else process.env.PUBLIC_APP_ORIGIN = previous;
+    }
+  });
   it("rejects cross origin and missing origin mutations", () => {
     for (const origin of [null, "https://another.example"]) expect(() => assertOrigin(new Request("http://localhost:3000/api/assess", { headers: origin ? { origin } : {} }))).toThrow("origin");
     expect(() => assertOrigin(new Request("http://localhost:3000/api/assess", { headers: { origin: "http://localhost:3000" } }))).not.toThrow();

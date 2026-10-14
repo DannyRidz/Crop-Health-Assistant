@@ -1,0 +1,8 @@
+{
+  "projects": { "default": "gen-lang-client-0276450924" },
+  "targets": {
+    "gen-lang-client-0276450924": {
+      "hosting": { "preview": ["coffee-leaf-check"] }
+    }
+  }
+}

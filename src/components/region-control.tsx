@@ -16,7 +16,7 @@ export function RegionControl({ value, text: t, locale, disabled, onChange }: Pr
     <legend>{t.countryTitle}</legend><p id="country-help">{t.countryHelp}</p>
     <label>{t.locationChoice}
       <select aria-describedby="country-help" value={value.response} onChange={(event) => onChange({ response: event.target.value as RegionContext["response"], countryCode: null, regionId: null })}>
-        <option value="not_provided">{t.notProvided}</option><option value="not_sure">{t.unknown}</option><option value="known">{t.knownCountry}</option>
+        <option value="not_provided">{t.skipLocation}</option><option value="not_sure">{t.unknown}</option><option value="known">{t.knownCountry}</option>
       </select>
     </label>
     {value.response === "known" && <>

@@ -1,5 +1,5 @@
 import { readFile, writeFile } from "node:fs/promises";
-import { PDFDocument } from "pdf-lib";
+import { PDFDict, PDFDocument, PDFName } from "pdf-lib";
 import sharp from "sharp";
 import { describe, expect, it } from "vitest";
 import { createPdf } from "./pdf";
@@ -24,5 +24,14 @@ describe("real PDF export, AC-13", () => {
   it("fails clearly instead of silently replacing unsupported farmer characters", async () => {
     const font = await readFile(new URL("../../public/fonts/NotoSans-Regular.ttf", import.meta.url));
     await expect(createPdf({ reference: "test", title: "Test", sections: [{ title: "Farmer answer", lines: ["漢字"] }], photos: [], photoLabel: "Photo", filename: "test.pdf" }, font)).rejects.toThrow("unsupported_font_character");
+  });
+  it("keeps both full-size photo references together on one printed page", async () => {
+    const state = withResult(assessmentFixture());
+    const jpeg = await sharp({ create: { width: 1200, height: 900, channels: 3, background: "green" } }).jpeg().toBuffer();
+    state.photos[0].blob = new Blob([jpeg]);
+    state.photos.push({ ...state.photos[0], id: "7a3bdb4f-46a2-4704-ad91-6d41ce951eb2" });
+    const font = await readFile(new URL("../../public/fonts/NotoSans-Regular.ttf", import.meta.url));
+    const document = await PDFDocument.load(await createPdf(makeReport(state, "en", undefined, false), font));
+    expect(document.getPages().some((page) => (page.node.Resources()?.lookupMaybe(PDFName.of("XObject"), PDFDict)?.keys().length ?? 0) === 2)).toBe(true);
   });
 });
