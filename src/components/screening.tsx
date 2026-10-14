@@ -37,10 +37,16 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
   const translationCache = useRef(new Map<string, TranslationState>());
   const [acceptedEnglish, setAcceptedEnglish] = useState<Record<string, boolean>>({});
   const heading = useRef<HTMLHeadingElement>(null);
+  const previousStage = useRef(state.stage);
   const errorPanel = useRef<HTMLDivElement>(null);
+  const reportDisclosure = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => { localeMemory.current = locale; }, [locale]);
-  useEffect(() => { heading.current?.focus(); }, [state.stage]);
+  useEffect(() => {
+    if (previousStage.current === state.stage) return;
+    previousStage.current = state.stage;
+    heading.current?.focus();
+  }, [state.stage]);
   useEffect(() => { if (error) errorPanel.current?.focus(); }, [error]);
   useEffect(() => {
     if (!busy) return;
@@ -198,8 +204,9 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
     finally { setBusy(null); }
   }
   const steps: Stage[] = ["photos", "questions", "result", "report"];
-  const titles = { photos: t.photoTitle, questions: t.questionTitle, result: state.result ? t[state.result.data.status] : t.noResultShort, report: t.reportTitle };
+  const titles = { photos: t.photoTitle, questions: t.questionTitle, result: state.result ? t.resultTitle : t.noResultShort, report: t.reportTitle };
   const errorMessage = error ? (t.errors as Record<string, string>)[error.code] ?? (t as Record<string, unknown>)[error.code] as string ?? t.errors.unavailable : null;
+  const canPrepareIncompleteReport = !!error && ["disabled", "unavailable", "network", "timeout", "invalid_output", "expired", "busy", "quota"].includes(error.code);
 
   function photoPanel(photo: LocalPhoto, index: number, editable: boolean) {
     return <figure className={styles.photoPanel} key={photo.id} id={`photo-${photo.id}`} tabIndex={-1}>
@@ -224,7 +231,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
     {englishAllowed && !variant && <p>{t.englishFallback}</p>}
   </aside>;
   const observationPanel = activeText && <section className={styles.section}>
-    <h2>{state.stage === "questions" ? t.preliminary : t.visible}</h2>
+    <h2>{state.stage === "questions" ? t.preliminary : t.visibleShort}</h2>
     {canShowGenerated && <div className={styles.observations} lang={generatedLocale}>
       {activeText.observations.length ? activeText.observations.map((observation) => <article key={observation.id}>
         <div className={styles.photoLinks}>{observation.photoIds.map((id) => <button key={id} onClick={() => { const target = document.getElementById(`photo-${id}`); target?.focus(); target?.scrollIntoView({ block: "nearest", behavior: "auto" }); }}>{t.photo} {state.photos.findIndex((photo) => photo.id === id) + 1}</button>)}</div>
@@ -239,8 +246,9 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
     </>}
   </section>;
   const guidancePanel = <section className={styles.note}>
-    <h2>{t.guidance}</h2>
-    <p>{state.region.response === "known" ? t.noRegional : t.unknownRegional}</p><p>{t.pngPending}</p>
+    <h2>{t.nextShort}</h2>
+    <p>{state.region.response === "known" ? t.noRegionalShort : t.unknownRegionalShort}</p>
+    <details className={styles.disclosure}><summary>{t.reviewDetails}</summary><p>{t.pngPending}</p><p>{t.initial}</p></details>
     {state.result && !reportCurrent(state) && <><p>{t.regionStale}</p><button disabled={!!busy || !regionSchema.safeParse(state.region).success} onClick={() => void updateGuidance(state.region, false)}>{t.regionRetry}</button></>}
   </section>;
 
@@ -254,37 +262,38 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
       </div>
     </header>
     <main id="main" className={styles.main}>
-      {state.stage === "photos" && <div className={styles.intro}><p className={styles.eyebrow}>{text.eyebrow}</p><p>{t.intro}</p>
+      {state.stage === "photos" && <div className={styles.intro}><p>{t.introShort}</p>
         <div className={styles.tags}><span>{text.scopeLabel}</span><span>{t.prototype}</span></div>
       </div>}
-      {locale === "tpi" && <aside className={styles.note}><p lang="en">{english.translationNotice}</p><p>{t.fixedDraft}</p></aside>}
+      {locale === "tpi" && <p className={styles.small}>{t.draftShort}</p>}
       <ol className={styles.progress} aria-label={text.journeyTitle}>{steps.map((step, index) => <li key={step} aria-current={state.stage === step ? "step" : undefined}><span>{index + 1}</span>{t[step]}</li>)}</ol>
       <div className={styles.title}><p>{t.step} {steps.indexOf(state.stage) + 1} {t.of} 4</p><h1 ref={heading} tabIndex={-1}>{titles[state.stage]}</h1></div>
       {error && <div id="assessment-error" className={styles.error} role="alert" ref={errorPanel} tabIndex={-1}><p>{errorMessage}</p>{error.requestId && <p className={styles.small}>{t.reference}: {error.requestId}</p>}{cooldown > 0 && <p>{cooldown}s</p>}</div>}
       {busy && <div className={styles.note} role="status"><p>{busy === "photos" ? t.checkingPhotos : busy === "result" ? t.checkingResult : busy === "guidance" ? t.regionUpdating : busy === "translation" ? t.translationLoading : busy === "export" ? t.downloading : t.processing}</p>{slow && <p>{t.slow}</p>}</div>}
       {state.stage === "photos" && <div className={styles.collection}>
         <section className={styles.section}>
-          <p>{t.photoHelp}</p><div className={styles.photoGrid}>{state.photos.map((photo, index) => photoPanel(photo, index, true))}</div>
+          <p>{t.photoHelpShort}</p><div className={styles.photoGrid}>{state.photos.map((photo, index) => photoPanel(photo, index, true))}</div>
           {state.photos.length < 2 && <div className={styles.upload}>
             <label className={styles.fileButton} aria-disabled={!!busy}>{t.addPhoto}<input disabled={!!busy} type="file" accept="image/jpeg,image/png,image/webp" aria-label={t.addPhoto} onChange={(event) => { void addPhoto(event.target.files?.[0]); event.target.value = ""; }} /></label>
             <label className={styles.fileButton} aria-disabled={!!busy}>{t.camera}<input disabled={!!busy} type="file" accept="image/jpeg,image/png,image/webp" capture="environment" aria-label={t.camera} onChange={(event) => { void addPhoto(event.target.files?.[0]); event.target.value = ""; }} /></label>
           </div>}
-          <p className={styles.small}>{t.limits}</p>
-          <p className={styles.small}>{serviceTier === "paid" ? t.paidPrivacy : t.demoPrivacy}</p>
-          <p className={styles.small}>{t.privacy}</p>
-          <label className={styles.permission}><input type="checkbox" checked={permission} disabled={!!busy} aria-invalid={error?.code === "needPermission"} aria-describedby={error?.code === "needPermission" ? "assessment-error" : undefined} onChange={(event) => setPermission(event.target.checked)} />{t.permission}</label>
+          <p className={styles.small}>{t.fileHint}</p>
+          <p className={styles.small}>{t.privacyShort}</p><p className={styles.small}>{t.coverageShort}</p>
+          {serviceTier === "demo" && <p className={styles.note}>{t.demoPrivacy}</p>}
+          <details className={styles.disclosure}><summary>{t.privacyDetails}</summary><p>{t.limits}</p><p>{serviceTier === "paid" ? t.paidPrivacy : t.demoPrivacy}</p><p>{t.privacy}</p></details>
+          <label className={styles.permission}><input type="checkbox" checked={permission} disabled={!!busy} aria-invalid={error?.code === "needPermission"} aria-describedby={error?.code === "needPermission" ? "assessment-error" : undefined} onChange={(event) => { setPermission(event.target.checked); if (error?.code === "needPermission") setError(null); }} />{t.permission}</label>
           <div className={styles.actions}><button className={styles.primary} disabled={!!busy || cooldown > 0} onClick={() => void assess("preliminary")}>{t.checkPhotos}</button>
             {state.preliminary && <button disabled={!!busy} onClick={() => apply({ type: "stage", stage: "questions" })}>{t.questions}</button>}
-            {error && state.photos.length > 0 && <button disabled={!!busy} onClick={() => { clearMessage(); apply({ type: "stage", stage: "report" }); }}>{t.incompleteReport}</button>}
+            {canPrepareIncompleteReport && state.photos.length > 0 && <button disabled={!!busy} onClick={() => { clearMessage(); apply({ type: "stage", stage: "report" }); }}>{t.incompleteReport}</button>}
           </div>
         </section>
-        <aside className={styles.context}><h2>{text.beforeTitle}</h2><p>{t.initial}</p><p>{t.coverage}</p><p>{t.temporary}</p>{!screeningAvailable && <p className={styles.note}>{t.enableNote}</p>}</aside>
+        <aside className={styles.context}><h2>{text.beforeTitle}</h2><p>{t.initialShort}</p><details className={styles.disclosure}><summary>{t.prototypeDetails}</summary><p>{t.intro}</p><p>{t.pngPending}</p><p>{t.coverage}</p></details>{!screeningAvailable && <p className={styles.note}>{t.enableNote}</p>}</aside>
       </div>}
       {state.stage === "questions" && <>
-        <div className={styles.photoGrid}>{state.photos.map((photo, index) => photoPanel(photo, index, false))}</div>
-        {translationPanel}{observationPanel}
-        <section className={styles.section}><h2>{t.questions}</h2><p>{t.questionHelp}</p>
-          {state.preliminary && <ul className={styles.quality}>{state.preliminary.data.photoChecks.map((check) => <li key={check.photoId}>{t.photo} {state.photos.findIndex((photo) => photo.id === check.photoId) + 1}: {t.quality}, {t[check.quality]}; {t.cropPart}, {t[check.crop]}, {t[check.part]}</li>)}</ul>}
+        <div className={`${styles.photoGrid} ${styles.questionPhotos}`}>{state.photos.map((photo, index) => photoPanel(photo, index, false))}</div>
+        {translationPanel}<details className={styles.disclosure} open={state.preliminary?.data.photoChecks.some((check) => check.quality !== "usable" || check.crop !== "coffee" || check.part !== "leaf")}><summary>{t.photoDetails}</summary>{observationPanel}
+          {state.preliminary && <ul className={styles.quality}>{state.preliminary.data.photoChecks.map((check) => <li key={check.photoId}>{t.photo} {state.photos.findIndex((photo) => photo.id === check.photoId) + 1}: {t.quality}, {t[check.quality]}; {t.cropPart}, {t[check.crop]}, {t[check.part]}</li>)}</ul>}</details>
+        <section className={styles.section}><h2>{t.questions}</h2><p>{t.questionsShort}</p>
           {STARTER_IDS.map((id, index) => {
             const question = t.questionBank[id], selected = state.answers.find((item) => item.questionId === id);
             return <fieldset className={styles.question} key={id} disabled={!!busy} aria-invalid={error?.code === "needAnswers" && !selected?.optionIds.length} aria-describedby={error?.code === "needAnswers" && !selected?.optionIds.length ? "assessment-error" : undefined}><legend>{index + 1}. {question.label}</legend>
@@ -294,28 +303,27 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
               {id === "care_change" && <label>{t.detail}<textarea maxLength={300} value={selected?.detail ?? ""} onChange={(event) => { epoch.current++; apply({ type: "answer", answer: { questionId: id, optionIds: selected?.optionIds ?? ["not_sure"], detail: event.target.value } }); }} /></label>}
             </fieldset>;
           })}
-          <RegionControl value={state.region} text={t} locale={locale} disabled={!!busy} onChange={(region) => { epoch.current++; apply({ type: "region", region }); }} />
-          <div className={styles.actions}><button className={styles.primary} disabled={!!busy || cooldown > 0} onClick={() => void assess("final")}>{t.getResult}</button><button disabled={!!busy} onClick={() => { clearMessage(); apply({ type: "stage", stage: "photos" }); }}>{t.backPhotos}</button>{error && <button disabled={!!busy} onClick={() => { clearMessage(); apply({ type: "stage", stage: "report" }); }}>{t.incompleteReport}</button>}</div>
+          <RegionControl value={state.region} text={t} locale={locale} disabled={!!busy} onChange={(region) => { epoch.current++; if (error?.code === "needCountry") setError(null); apply({ type: "region", region }); }} />
+          <div className={styles.actions}><button className={styles.primary} disabled={!!busy || cooldown > 0} onClick={() => void assess("final")}>{t.getResult}</button><button disabled={!!busy} onClick={() => { clearMessage(); apply({ type: "stage", stage: "photos" }); }}>{t.backPhotos}</button>{canPrepareIncompleteReport && <button disabled={!!busy} onClick={() => { clearMessage(); apply({ type: "stage", stage: "report" }); }}>{t.incompleteReport}</button>}</div>
         </section>
       </>}
       {state.stage === "result" && state.result && <>
-        <p className={styles.status}>{t.initial}</p>{translationPanel}
+        <div className={styles.status}><strong>{t[state.result.data.status]}</strong>{state.result.data.coverageUnavailable && <p>{t.photoCheckComplete}</p>}<p>{t.initialShort}</p></div>{translationPanel}
         <div className={styles.resultGrid}><div className={styles.photoGrid}>{state.photos.map((photo, index) => photoPanel(photo, index, false))}</div>{observationPanel}</div>
-        <section className={styles.section}><h2>{t.meaning}</h2><p>{t.coverage}</p>{state.result.data.unsupported && <p>{t.unsupported}</p>}</section>
-        <section className={styles.section}><h2>{t.uncertain}</h2><p>{t.initial}</p>{canShowGenerated && state.result.data.limitations.map((value, index) => <p key={index} lang={generatedLocale}>{generated(`limitation:${index}`, value)}</p>)}<h3>{t.missing}</h3>{canShowGenerated && (state.result.data.missingInfo.length ? state.result.data.missingInfo.map((value, index) => <p key={index} lang={generatedLocale}>{generated(`missing:${index}`, value)}</p>) : <p>{t.noMissing}</p>)}</section>
+        <section className={styles.section}><h2>{t.uncertainShort}</h2><p>{t.coverageShort}</p>{state.result.data.unsupported && <p>{t.unsupported}</p>}{canShowGenerated && state.result.data.limitations.map((value, index) => <p key={index} lang={generatedLocale}>{generated(`limitation:${index}`, value)}</p>)}{canShowGenerated && state.result.data.missingInfo.length > 0 && <><h3>{t.missing}</h3>{state.result.data.missingInfo.map((value, index) => <p key={index} lang={generatedLocale}>{generated(`missing:${index}`, value)}</p>)}</>}</section>
         <RegionControl value={state.region} text={t} locale={locale} disabled={!!busy} onChange={(region) => void updateGuidance(region)} />{guidancePanel}
         <div className={styles.actions}><button className={styles.primary} disabled={!!busy || !reportCurrent(state)} onClick={() => apply({ type: "stage", stage: "report" })}>{t.prepareReport}</button><button disabled={!!busy} onClick={() => apply({ type: "stage", stage: "questions" })}>{t.editAnswers}</button><button disabled={!!busy} onClick={() => apply({ type: "stage", stage: "photos" })}>{t.backPhotos}</button></div>
       </>}
       {state.stage === "report" && <>
-        <p>{t.reportHelp}</p>{!state.result && <p className={styles.note}>{t.noResult}</p>}{translationPanel}
+        <p>{t.reportShort}</p><p className={styles.small}>{t.reportSummary}</p>{!state.result && <p className={styles.note}>{t.noResult}</p>}{translationPanel}
         <RegionControl value={state.region} text={t} locale={locale} disabled={!!busy} onChange={(region) => void updateGuidance(region)} />{guidancePanel}
         {!report && state.result && locale === "tpi" && !variant && !englishAllowed && <p>{t.noTranslationExport}</p>}
-        {report && <details className={styles.preview} open><summary>{t.reportPreview}</summary><ReportPreview report={report} /></details>}
-        <div className={styles.actions}><button className={styles.primary} disabled={!!busy || !report} onClick={() => void exportReport()}>{t.download}</button><button disabled={!!busy || !report} onClick={() => window.print()}>{t.print}</button><button disabled={!!busy} onClick={() => apply({ type: "stage", stage: state.result ? "result" : state.preliminary ? "questions" : "photos" })}>{state.result ? t.backResult : state.preliminary ? t.questions : t.backPhotos}</button></div>
+        {report && <details className={styles.preview} ref={reportDisclosure}><summary>{t.reportPreview}</summary><ReportPreview report={report} /></details>}
+        <div className={styles.actions}><button className={styles.primary} disabled={!!busy || !report} onClick={() => void exportReport()}>{t.download}</button><button disabled={!!busy || !report} onClick={() => { if (reportDisclosure.current) reportDisclosure.current.open = true; window.print(); }}>{t.print}</button><button disabled={!!busy} onClick={() => apply({ type: "stage", stage: state.result ? "result" : state.preliminary ? "questions" : "photos" })}>{state.result ? t.backResult : state.preliminary ? t.questions : t.backPhotos}</button></div>
         {notice && <p role="status" className={styles.note}>{(t as Record<string, unknown>)[notice] as string}</p>}
       </>}
       {remaining !== null && <p className={styles.small}>{t.remaining}: {remaining}</p>}
       {state.photos.length > 0 && <button className={styles.newCheck} disabled={!!busy} onClick={newCheck}>{t.newCheck}</button>}
-    </main><footer className={styles.footer}><p>{t.temporary}</p><p>{text.footer}</p></footer>
+    </main><footer className={styles.footer}><p>{t.sessionShort}</p></footer>
   </div>;
 }

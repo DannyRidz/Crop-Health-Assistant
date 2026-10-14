@@ -8,5 +8,6 @@ This area implements the [technical design](../../../docs/specs/0001-coffee-mvp/
 - `gemini.ts` uses the official SDK with `store: false`, no retained conversation and no automatic retry. Region is excluded from screening and translation prompts. Logs contain request metadata, token totals, numeric provider status and fixed failure categories only. Provider quota returns 429, SDK timeouts return 504, and raw provider messages never enter logs or responses.
 - `policy.ts` validates references and applies the disabled coverage rule. No condition can be claimed in this milestone. Enabling a registry flag later also requires reviewed feature rules, policy updates and evaluation.
 - Tests mock the Gemini SDK boundary. A passing synthetic case is not proof of provider integration or agricultural accuracy.
+- Screening prompt version coffee-observations-2 asks for short sentences and everyday farmer wording, including leaf surface, leaf veins and leaf edge. It preserves the disabled condition and treatment policy.
 
 Drafted by sync from the introducing change, worth a quick human pass.

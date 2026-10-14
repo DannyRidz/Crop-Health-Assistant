@@ -2,7 +2,7 @@ import { z } from "zod";
 import { COUNTRY_CODES } from "./countries";
 
 export const REGISTRY_VERSION = "coffee-pending-1";
-export const PROMPT_VERSION = "coffee-observations-1";
+export const PROMPT_VERSION = "coffee-observations-2";
 export const GLOSSARY_VERSION = "draft-1";
 export const STARTER_IDS = ["onset", "spread", "symptoms", "care_change"] as const;
 export const ANSWER_OPTIONS = {

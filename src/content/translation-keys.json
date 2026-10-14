@@ -754,5 +754,93 @@
   "assessment.questionBank.care_change.options.not_sure": {
     "en": "authored",
     "tpi": "draft"
+  },
+  "assessment.introShort": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.photoHelpShort": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.fileHint": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.privacyShort": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.privacyDetails": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.prototypeDetails": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.coverageShort": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.initialShort": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.sessionShort": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.draftShort": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.questionsShort": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.photoDetails": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.visibleShort": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.uncertainShort": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.nextShort": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.reportShort": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.reportSummary": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.reviewDetails": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.noRegionalShort": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.unknownRegionalShort": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.resultTitle": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.photoCheckComplete": {
+    "en": "authored",
+    "tpi": "draft"
   }
 }

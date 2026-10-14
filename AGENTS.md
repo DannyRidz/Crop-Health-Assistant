@@ -35,6 +35,9 @@ Tracer Bullet: prove one real complete journey before adding breadth. The approv
 5. Fixed UI text lives in `src/content/locales/`. Draft Tok Pisin is labelled and requires fluent review. Language changes never change screening evidence.
 6. Keep a small functional structure: routes in `src/app`, UI in `src/components`, pure shared logic in `src/lib`. Use named exports except framework required route exports.
 7. Use the [frontend specification](docs/specs/0001-coffee-mvp/design.md). Tokens live in `src/app/globals.css`. Use semantic HTML, visible focus, 48 px targets and wrapping text.
+   Supporting details may use native disclosures. Keep sharing consent and screening uncertainty visible; automatically expand preliminary photo details when quality or crop and part checks flag a limitation. A collapsed report preview must not omit content from PDF export.
+   Focus the heading on assessment step changes, not on initial page load. Preserve visible keyboard focus and error focus.
+   Offer incomplete reports after service or session failures, not local photo, consent, answer or country validation errors. Clear the relevant consent or country error when that input changes.
 8. Run checks appropriate to the milestone and exercise the real app. Record mocked checks separately from real Gemini requests. Do not test exact generated prose.
 
 ## Git

@@ -45,7 +45,7 @@
     "report": "Ripoti",
     "step": "Step",
     "of": "long",
-    "prototype": "Demo bilong tim, ol riviu i no pinis yet",
+    "prototype": "Demo",
     "intro": "Ol fama bilong kopi long olgeta ples i welkam. Mipela i statim wok bilong traim wantaim ol yusa long PNG. Riviu bilong agrikalsa na tokples i no pinis yet.",
     "photoTitle": "Stat wantaim klia poto bilong lip bilong kopi.",
     "photoHelp": "Yusim lait bilong san na soim olgeta hap bilong lip i gat senis. Sapos inap, putim poto bilong aninit bilong lip tu. No putim pes, pepa o samting i soim husat yu.",
@@ -93,7 +93,7 @@
     "newCheck": "Statim nupela sekim",
     "confirmClear": "Rausim dispela keis? Ol poto, bekim na risalt bai lus long dispela tab.",
     "countryTitle": "Kopi bilong yu i gro long wanem kantri o rijon?",
-    "countryHelp": "Ol gutpela rot bilong helpim inap senis long ples. Yu no mas bekim. Dispela i no pasim rot bilong yusim app. Mipela i no nidim stretpela adres.",
+    "countryHelp": "Yu no mas bekim. Ol gutpela rot bilong helpim inap senis long kantri. Makim Mi no save o larim i stap nating. Mipela i no nidim stretpela adres.",
     "locationChoice": "Makim ples",
     "notProvided": "Yu no givim",
     "knownCountry": "Makim kantri",
@@ -154,7 +154,7 @@
     "fixedDraft": "Tok Pisin bilong app na ripoti em draft, i wet long riviu bilong man o meri i save gut long tokples.",
     "noTranslationExport": "Makim Inglis bilong ol tok pastaim long daunlodim ripoti.",
     "needPhoto": "Putim wanpela gutpela poto o moa.",
-    "needPermission": "Givim tok orait pastaim long salim sample data.",
+    "needPermission": "Putim tik long bokis bilong tok orait pastaim long salim ol dispela poto na bekim.",
     "needAnswers": "Makim bekim long olgeta foapela askim. Yu inap makim Mi no save.",
     "needCountry": "Makim kantri, Mi no save o Yu no givim.",
     "processing": "Redim poto long dispela divais",
@@ -218,6 +218,28 @@
           "not_sure": "Mi no save"
         }
       }
-    }
+    },
+    "introShort": "Ol samting i luk olsem long lip bilong kopi, bilong ol fama long olgeta hap.",
+    "photoHelpShort": "Kisim poto bilong olgeta lip long lait bilong san. Yu inap putim narapela poto bilong aninit bilong lip.",
+    "fileHint": "Tupela poto tasol. JPEG, PNG o WebP, 10 MiB long wanwan.",
+    "privacyShort": "Taim yu sekim poto, ol poto na bekim i go long app na Google. No putim pes o praivet tok.",
+    "privacyDetails": "Ol limit bilong poto na praivet data",
+    "prototypeDetails": "Tok bilong dispela demo",
+    "coverageShort": "Ol samting i luk olsem tasol. Riviu bilong makim sik i no pinis yet.",
+    "initialShort": "Poto i no inap konfemim sik o tok diwai i helti.",
+    "sessionShort": "No pasim dispela tab. Refresh bai rausim dispela sekim. Yu nidim intanet.",
+    "draftShort": "Tok Pisin em draft, i wet long riviu.",
+    "questionsShort": "Bekim 4 askim. Makim Mi no save sapos yu no save.",
+    "photoDetails": "Ol sekim na samting i luk olsem long poto",
+    "visibleShort": "Samting mipela i lukim",
+    "uncertainShort": "Samting mipela i no inap konfemim",
+    "nextShort": "Wanem samting yu ken mekim nau",
+    "reportShort": "Daunlod ripoti bilong serim wantaim ofisa bilong agrikalsa long ples. Yu makim husat i kisim.",
+    "reportSummary": "Ripoti i gat ol poto, bekim, samting i luk olsem na ol limit bilong rijon.",
+    "reviewDetails": "Riviu na ol limit bilong sekim",
+    "noRegionalShort": "Riviu bilong gaid long dispela rijon i no pinis. Askim ofisa bilong agrikalsa long ples long lukim ol samting i luk olsem.",
+    "unknownRegionalShort": "Mipela i no save rijon bilong yu. Askim ofisa bilong agrikalsa long ples long lukim ol samting i luk olsem.",
+    "resultTitle": "Sekim bilong lip bilong yu",
+    "photoCheckComplete": "App i sekim poto bilong yu pinis. Dispela demo i no inap makim sik yet."
   }
 }

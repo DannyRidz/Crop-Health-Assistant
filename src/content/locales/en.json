@@ -45,7 +45,7 @@
     "report": "Report",
     "step": "Step",
     "of": "of",
-    "prototype": "Internal demonstration, reviews pending",
+    "prototype": "Prototype",
     "intro": "Coffee farmers everywhere are welcome. We are starting validation with PNG users. Agricultural and language review are still pending.",
     "photoTitle": "Start with a clear coffee leaf photo.",
     "photoHelp": "Use natural light and include the whole affected leaf. Add an underside photo when useful. Avoid faces, documents and identifying details.",
@@ -93,7 +93,7 @@
     "newCheck": "Start new check",
     "confirmClear": "Clear this assessment? Photos, answers and results will be removed from this tab.",
     "countryTitle": "Which country or region is your coffee grown in?",
-    "countryHelp": "Advice can differ by location. This is optional guidance context, not an access restriction. No precise location is needed.",
+    "countryHelp": "Optional. Advice can differ by country. Choose Not sure or leave this blank. No exact location is needed.",
     "locationChoice": "Location choice",
     "notProvided": "Not provided",
     "knownCountry": "Choose a country",
@@ -154,7 +154,7 @@
     "fixedDraft": "Tok Pisin interface and report text is a draft awaiting fluent review.",
     "noTranslationExport": "Choose the English observation fallback before exporting this report.",
     "needPhoto": "Add at least one valid photo.",
-    "needPermission": "Please confirm permission before sending sample data.",
+    "needPermission": "Tick the permission box before sending these photos and answers.",
     "needAnswers": "Choose an answer for all four questions. You can select Not sure.",
     "needCountry": "Choose a country, Not sure or Not provided.",
     "processing": "Preparing the photo on this device",
@@ -218,6 +218,28 @@
           "not_sure": "Not sure"
         }
       }
-    }
+    },
+    "introShort": "Coffee leaf observations for farmers everywhere.",
+    "photoHelpShort": "Photograph the whole leaf in natural light. You can add a second photo of the underside.",
+    "fileHint": "Up to 2 photos. JPEG, PNG or WebP, 10 MiB each.",
+    "privacyShort": "When you check photos, your photos and answers go to this app and Google. Avoid faces and personal details.",
+    "privacyDetails": "Photo limits and privacy",
+    "prototypeDetails": "About this prototype",
+    "coverageShort": "Observations only. Disease identification is awaiting review.",
+    "initialShort": "A photo cannot confirm disease or plant health.",
+    "sessionShort": "Keep this tab open. Refreshing clears your check. Internet is required.",
+    "draftShort": "Tok Pisin is a draft awaiting fluent review.",
+    "questionsShort": "Answer 4 questions. Choose Not sure whenever you need to.",
+    "photoDetails": "Photo checks and observations",
+    "visibleShort": "What we see",
+    "uncertainShort": "What we can’t confirm",
+    "nextShort": "What to do next",
+    "reportShort": "Download a report to share with a local agricultural officer. You choose who receives it.",
+    "reportSummary": "Your report includes photos, answers, observations and regional limitations.",
+    "reviewDetails": "Review status and screening limits",
+    "noRegionalShort": "No reviewed guidance is available for this region. Ask a local agricultural officer to review the observations.",
+    "unknownRegionalShort": "Your region is unknown. Ask a local agricultural officer to review the observations.",
+    "resultTitle": "Your leaf check",
+    "photoCheckComplete": "Your photo was checked. This prototype cannot identify diseases yet."
   }
 }

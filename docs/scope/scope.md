@@ -19,7 +19,7 @@ A globally accessible coffee screening assistant lets coffee farmers worldwide u
 | 5 | One complete coffee journey | First milestone | done |
 | 6 | Bounded questions and checked results | Broaden the journey | in-progress |
 | 7 | Reviewed guidance and translations | Content gate | planned |
-| 8 | Phone experience and complete reports | Completion | planned |
+| 8 | Phone experience and complete reports | Completion | in-progress |
 | 9 | Evaluation and submission | Delivery | planned |
 
 ## Foundations
@@ -111,7 +111,7 @@ Enable one condition only after content, image permissions and evaluation gates 
 
 Spec: [language and guidance](../specs/0001-coffee-mvp/language-guidance.md).
 
-### 8. Phone experience and complete reports, planned
+### 8. Phone experience and complete reports, in-progress
 
 Refine the complete journey for phone use, slower connections, long text and report downloads.
 
