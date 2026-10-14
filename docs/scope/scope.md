@@ -17,7 +17,7 @@ A globally accessible coffee screening assistant lets coffee farmers worldwide u
 | 3 | Assessment data and state | Foundation | in-progress |
 | 4 | Interface and language foundation | Foundation | in-progress |
 | 5 | One complete coffee journey | First milestone | done |
-| 6 | Bounded questions and checked results | Broaden the journey | planned |
+| 6 | Bounded questions and checked results | Broaden the journey | in-progress |
 | 7 | Reviewed guidance and translations | Content gate | planned |
 | 8 | Phone experience and complete reports | Completion | planned |
 | 9 | Evaluation and submission | Delivery | planned |
@@ -91,7 +91,7 @@ Specs: [product journey](../specs/0001-coffee-mvp/product.md), [technical design
 
 ## Broaden and complete
 
-### 6. Bounded questions and checked results, planned
+### 6. Bounded questions and checked results, in-progress
 
 Support two photos, four starter questions and one optional follow up round of at most two questions, with clear failure and uncertainty handling.
 
@@ -144,3 +144,5 @@ Next: finish the M1 real integration gate. Gemini access is configured locally; 
 14 October update: USD 5 Gemini prepay and automatic reload off were verified. A real local Gemini test succeeded. The teammate supplied BRACOL candidates, recorded in [the source record](../data-sources/bracol.md). Two approved cloud secrets are configured with access scoped to the runtime account, and revision coffee-health-demo-00002-x6t passed health and disabled session checks. M1 remains in progress pending selected image provenance and the complete real public coffee journey; agricultural and Tok Pisin reviews are still pending.
 
 M1 completion, 14 October 2026: the exact original BRACOL 671.jpg match is verified, and assessment 78ca06f5-1a5f-432b-af01-d044cea864c3 completed the public Cloud Run journey with real preliminary and final Gemini output, four Not sure answers, Brazil context, missing regional guidance and English plus draft Tok Pisin PDF exports. An unknown region PDF and simulated PNG context were also checked without another screening request. The result is unable to assess because no supported condition has passed review. This completes the narrow M1 software demonstration and AC-17, not the later agricultural, translation review or release criteria. Cloud revision coffee-health-demo-00003-sdk has screening enabled, paid provider mode and maximum one instance. Next is M2 boundary verification, while agricultural and fluent language resources remain pending.
+
+M2 progress, 14 October 2026: 68 tests and all local checks passed. The corrupt local photo error was fixed and deployed in revision coffee-health-demo-00004-gz8. Public corrupt and oversized upload checks and a real two photo preliminary request passed. Controlled browser retry retained photos and answers, and translation failure produced explicit English fallback. Served local API checks proved upload rejection and exhausted quota without provider calls. Four status headings were exercised only with synthetic responses. Feature 6 remains in progress: reviewed condition rules, live supported status selection and reviewed bilingual follow up questions still depend on the content gate. Do not mark M2 complete from these synthetic checks. Next dependency is agricultural review of the narrow condition and question bank, while fluent Tok Pisin review remains pending.

@@ -34,3 +34,25 @@ describe("anonymous request allowance, AC-8 and AC-16", () => {
     expect(() => acquire(request, sid, "guidance")).toThrow("quota");
   });
 });
+
+
+describe("M2 capacity boundaries, AC-8", () => {
+  it("limits model work across sessions without charging rejected concurrency", () => {
+    const request = new NextRequest("http://localhost:3000/api/session");
+    const sessions = [issueSession(request), issueSession(request), issueSession(request)];
+    const first = acquire(request, sessions[0].sid, "assess");
+    const second = acquire(request, sessions[1].sid, "translate");
+    expect(() => acquire(request, sessions[2].sid, "assess")).toThrow("busy");
+    first.release();
+    const admitted = acquire(request, sessions[2].sid, "assess");
+    expect(admitted.remaining).toBe(5);
+    admitted.release(); second.release();
+  });
+  it("limits new session issuance and permits it after the address window", () => {
+    const request = new NextRequest("http://localhost:3000/api/session");
+    for (let index = 0; index < 10; index++) issueSession(request);
+    expect(() => issueSession(request)).toThrow("quota");
+    vi.advanceTimersByTime(600001);
+    expect(issueSession(request).remaining).toBe(6);
+  });
+});

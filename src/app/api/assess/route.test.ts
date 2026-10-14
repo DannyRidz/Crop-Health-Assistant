@@ -122,3 +122,57 @@ describe("M1 route integration with mocked SDK boundary, AC-3, AC-6 through AC-1
     expect(invalid.status).toBe(422);
   });
 });
+
+
+describe("M2 route boundaries with mocked SDK, AC-2, AC-3, AC-7 and AC-8", () => {
+  it("processes both photos and rejects an incomplete model photo check", async () => {
+    const cookie = await session(), id = crypto.randomUUID(), secondId = crypto.randomUUID();
+    const base = request("preliminary", cookie, id);
+    const form = await base.formData();
+    const metadata = JSON.parse(String(form.get("metadata")));
+    metadata.photos.push({ id: secondId, side: "underside" });
+    form.set("metadata", JSON.stringify(metadata));
+    form.append("photos", new Blob([new Uint8Array(jpeg)]), "second.jpg");
+    const makeRequest = () => new NextRequest(`${origin}/api/assess`, { method: "POST", headers: { origin, cookie }, body: form });
+    const incomplete = await assessRoute(makeRequest());
+    expect(incomplete.status).toBe(502);
+    const output = modelFixture();
+    output.photoChecks.push({ photoId: secondId, quality: "usable", crop: "coffee", part: "leaf" });
+    output.observations[0].photoIds.push(secondId);
+    createInteraction.mockResolvedValueOnce({ status: "completed", output_text: JSON.stringify(output) });
+    const response = await assessRoute(makeRequest());
+    expect(response.status).toBe(200);
+    expect((await response.json()).preliminary.data.photoChecks).toHaveLength(2);
+    expect(createInteraction.mock.calls[1][0].input.filter((part: { type: string }) => part.type === "image")).toHaveLength(2);
+  });
+  it("counts rejected dispatches and returns quota without another provider request", async () => {
+    const cookie = await session(), id = crypto.randomUUID();
+    for (let index = 0; index < 6; index++) {
+      const response = await assessRoute(request("preliminary", cookie, id, null, { unexpected: true }));
+      expect(response.status).toBe(422);
+    }
+    const exhausted = await assessRoute(request("preliminary", cookie, id));
+    expect(exhausted.status).toBe(429);
+    expect(Number(exhausted.headers.get("Retry-After"))).toBeGreaterThan(0);
+    expect((await exhausted.json()).error.code).toBe("quota");
+    expect(createInteraction).not.toHaveBeenCalled();
+  });
+  it("rejects changed leaf side and another session using a preliminary envelope", async () => {
+    const cookie = await session(), id = crypto.randomUUID();
+    const preliminary = await (await assessRoute(request("preliminary", cookie, id))).json();
+    const sideChanged = await assessRoute(request("final", cookie, id, preliminary.preliminary.envelope, { photos: [{ id: PHOTO_ID, side: "upper" }] }));
+    expect(sideChanged.status).toBe(409);
+    const otherCookie = await session();
+    expect((await assessRoute(request("final", otherCookie, id, preliminary.preliminary.envelope))).status).toBe(409);
+    expect(createInteraction).toHaveBeenCalledTimes(1);
+  });
+  it("allows retry after a provider failure with the same preserved input", async () => {
+    const cookie = await session(), id = crypto.randomUUID();
+    createInteraction.mockRejectedValueOnce(new Error("temporary provider failure"));
+    expect((await assessRoute(request("preliminary", cookie, id))).status).toBe(503);
+    const retry = await assessRoute(request("preliminary", cookie, id));
+    expect(retry.status).toBe(200);
+    expect((await retry.json()).remaining).toBe(4);
+    expect(createInteraction).toHaveBeenCalledTimes(2);
+  });
+});

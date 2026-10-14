@@ -2,7 +2,7 @@
 
 ## Product and current state
 
-Globally accessible coffee leaf screening assistant. PNG users are the first planned validation group, not the only audience. English and Tok Pisin are the only MVP languages. M1 narrow public journey is complete with a permitted BRACOL image, real Gemini preliminary and final requests, regional limitations and English plus draft Tok Pisin PDFs. Cloud Run screening is enabled in paid mode with two scoped Secret Manager references and maximum one instance. Conditions remain disabled, guidance remains empty and all Tok Pisin text is draft. Agricultural accuracy and farmer release validation remain pending.
+Globally accessible coffee leaf screening assistant. PNG users are the first planned validation group, not the only audience. English and Tok Pisin are the only MVP languages. M1 narrow public journey is complete with a permitted BRACOL image, real Gemini preliminary and final requests, regional limitations and English plus draft Tok Pisin PDFs. Cloud Run screening is enabled in paid mode with two scoped Secret Manager references and maximum one instance. Conditions remain disabled, guidance remains empty and all Tok Pisin text is draft. M2 core boundary checks pass, but live reviewed condition status selection and the follow up bank remain pending. Agricultural accuracy and farmer release validation remain pending.
 
 ## Stack
 
@@ -54,3 +54,5 @@ Cloud source uploads use `.gcloudignore` to exclude secrets and generated files.
 ## Framework documentation
 
 Read the relevant installed guide in `node_modules/next/dist/docs/` before changing framework behaviour. APIs and conventions may differ from earlier versions. Automatic instruction generation is disabled so this curated file remains stable.
+
+Local image decoding failures map to invalid_image before any provider request. Preserve existing photos when a replacement cannot be decoded. Controlled HTTP fixtures are software test evidence only, never agricultural or real provider evidence.

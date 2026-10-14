@@ -44,7 +44,9 @@ export async function preparePhoto(file: File, previous?: PhotoMeta): Promise<Lo
   if (!file.size || file.size > 10 * 1024 * 1024) throw new Error("too_large");
   const original = dimensions(new Uint8Array(await file.arrayBuffer()));
   if (original.width <= 0 || original.height <= 0 || original.width * original.height > 40000000) throw new Error("too_large");
-  const bitmap = await createImageBitmap(file, { imageOrientation: "from-image" });
+  let bitmap: ImageBitmap;
+  try { bitmap = await createImageBitmap(file, { imageOrientation: "from-image" }); }
+  catch { throw new Error("invalid_image"); }
   try {
     const ratio = Math.min(1, 1600 / Math.max(bitmap.width, bitmap.height));
     const canvas = document.createElement("canvas");
