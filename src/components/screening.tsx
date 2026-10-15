@@ -350,6 +350,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
         {state.result.data.collectionPrompts.length > 0 && <section className={styles.collectionNotes}><h2>{t.nextInformation}</h2>
           <ul>{state.result.data.collectionPrompts.map((prompt) => <li key={prompt.id}>{t.collection[prompt.id]}{prompt.photoIds.length > 0 && <span> ({prompt.photoIds.map((id) => `${t.photo} ${state.photos.findIndex((photo) => photo.id === id) + 1}`).join(", ")})</span>}</li>)}</ul>
           <p className={styles.small}>{t.collectionHelp}</p>
+          <p className={styles.small}>{t.officerPhotoNote}</p>
         </section>}
         <details className={styles.disclosure} open={state.result.data.excludedPhotoIds.length > 0 || state.result.data.visualFinding === "insufficient_evidence" || state.result.data.contradictions.length > 0}>
           <summary>{t.officerDetails}</summary>

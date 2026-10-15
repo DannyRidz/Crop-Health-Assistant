@@ -58,7 +58,7 @@
     "unknown": "Not sure",
     "remove": "Remove",
     "replace": "Replace",
-    "limits": "Choose JPEG, PNG or WebP photos. Each can be up to 10 MiB (about 10 MB) and 40 megapixels. The app sends smaller copies, up to 1600 pixels on the longest side and 2 MiB each. If a photo is HEIC, save it as JPEG first.",
+    "limits": "Choose JPEG, PNG or WebP photos, about 10 MB each and up to 40 megapixels. The app sends smaller copies, up to 1600 pixels on the longest side and about 2 MB each. If a photo is HEIC, save it as JPEG first.",
     "privacy": "Your photos and answers are sent to this app and Google when you choose Check photos or See result. The app does not keep a permanent copy. Google's rules on using and keeping data still apply. Only your language choice is saved on this device.",
     "temporary": "Refreshing or closing this tab clears your photos, answers and results. Downloads remain on your device until you delete them. Screening requires internet.",
     "demoPrivacy": "This service uses the free Gemini tier. Submit only sample data you have permission to share under Google's terms. Do not submit private farmer data.",
@@ -264,6 +264,7 @@
     "farmerRecord": "What the farmer reported",
     "reportVersions": "Check versions",
     "nextInformation": "What you can do next",
+    "officerPhotoNote": "For a local officer, you can also take a photo of the whole tree to show where leaves are affected. Keep it to share separately; upload only leaf photos here.",
     "collectionHelp": "These notes are optional. A new photo needs a new check.",
     "noCollection": "No additional collection request is listed. The check limits still apply.",
     "collection": {

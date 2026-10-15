@@ -13,6 +13,20 @@ describe("honest report snapshots, AC-10, AC-11, AC-13 and AC-19", () => {
     expect(text).toContain("Brunei"); expect(text).toContain("My own wording: café, 12 pots."); expect(text).toContain("local agricultural officer");
     expect(text).toContain(english.assessment.findings.changes_visible); expect(text).toContain(english.assessment.noCauseStatus); expect(text).toContain(state.result!.data.causeAssessmentEn); expect(text).not.toContain("confirmed healthy");
   });
+  it("separates the country record from the result and its limits in both languages", () => {
+    for (const locale of ["en", "tpi"] as const) {
+      const t = (locale === "en" ? english : tokPisin).assessment;
+      const base = { ...assessmentFixture(), region: { response: "known" as const, countryCode: "BN", regionId: null } };
+      for (const state of [base, withResult(base)]) {
+        const report = makeReport(state, locale, undefined, true);
+        const summary = report.sections.find((section) => section.title === t.caseSummary)!;
+        expect(summary.lines.at(-1)).toBe(`${t.countryValue}: Brunei (BN)`);
+        const result = report.sections.find((section) => section.title === t.result)!;
+        expect(result.lines).toContain(state.result ? t.visualCaveat : t.noResult);
+        expect(summary.lines).not.toContain(result.lines[0]);
+      }
+    }
+  });
   it("distinguishes skipped region from Not sure", () => {
     expect(JSON.stringify(makeReport(assessmentFixture(), "en", undefined, false))).toContain(`${english.assessment.countryValue}: ${english.assessment.notProvided}`);
     expect(JSON.stringify(makeReport({ ...assessmentFixture(), region: { response: "not_sure", countryCode: null, regionId: null } }, "en", undefined, false))).toContain(`${english.assessment.countryValue}: ${english.assessment.unknown}`);
@@ -37,8 +51,8 @@ describe("honest report snapshots, AC-10, AC-11, AC-13 and AC-19", () => {
     result.contradictions = [{ textEn: "Synthetic uncertainty", observationIds: ["item_1"] }];
     const report = makeReport(state, "en", undefined, false), text = JSON.stringify(report);
     expect(report.sections[0].title).toBe(english.assessment.caseSummary);
-    expect(report.sections[1].lines.join(" ")).toContain("Synthetic visible detail 0");
-    expect(report.sections[1].lines.join(" ")).not.toContain("Synthetic visible detail 3");
+    expect(report.sections.find((section) => section.title === english.assessment.keyFindings)!.lines.join(" ")).toContain("Synthetic visible detail 0");
+    expect(report.sections.find((section) => section.title === english.assessment.keyFindings)!.lines.join(" ")).not.toContain("Synthetic visible detail 3");
     for (let i = 0; i < 6; i++) expect(text).toContain(`Synthetic visible detail ${i}`);
     expect(text).toContain("Synthetic uncertainty"); expect(text).toContain(english.assessment.usable);
     expect(report.sections.filter((item) => item.includePhotos)).toHaveLength(1);

@@ -71,10 +71,12 @@ Schema 2 retains final photo checks and separates visual findings, AI hypotheses
 
 During PDF export, keep language controls disabled and guard changeLocale so changing language cannot silently cancel a download. Preserve the stale export epoch check and restore controls after either success or failure.
 
-Report previews and PDF exports share section layout and label metadata. Preserve real bold headings, hanging bullet points, separate farmer answers, compact record details and section titles on continuation pages. PDF export needs both bundled Noto Sans Regular and Bold fonts; keep their licence notices.
+Report previews and PDF exports share section layout and label metadata. Keep the country record separate from the Result section, including incomplete reports. Preserve real bold headings, hanging bullet points, separate farmer answers, compact record details and section titles on continuation pages. PDF export needs both bundled Noto Sans Regular and Bold fonts; keep their licence notices.
 
 Observation panels group displayed findings into one card per input photo, with one photo heading and a bullet list. Preserve all selected observation links; findings linked to both photos belong under both. Keep the photo button working as a focus and scroll link.
 
 Cause cards keep their explanation and uncertainty visible, highlight next observation checks with the oat token and collapse only supporting source details. Preserve full source scopes and the overall AI explanation in supporting detail and PDF exports. When no cause is available, keep its specific explanation visible.
+
+Whole tree photo suggestions are optional context to share separately with a local officer. Keep both app upload slots for leaf photos.
 
 Country entry uses one optional native selector with explicit Skip for now and Not sure options. Result and Report show a compact country summary with Change. Preserve keyboard focus on edit and return it after a guidance update. Country edits update report context and regional guidance without rerunning or changing the AI findings.
