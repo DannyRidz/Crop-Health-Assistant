@@ -65,4 +65,8 @@ The public app address is https://coffee-leaf-check.web.app. Hosting rewrites in
 
 PDF exports use A4 pages, running headers and page footers. Keep photo captions with their images and section headings with their first content block. Generated report samples and rendered checks belong in ignored output/pdf and tmp/pdfs.
 
+The user authorised [useful reports and AI led explanations](docs/specs/0003-useful-screening-reports.md) on 15 October 2026. Final screening may now name up to three tentative AI possible causes without an external agricultural reviewer prerequisite. Each explanation needs usable coffee leaf evidence, uncertainty and a concrete next observation check. Keep these hypotheses separate from independently evaluated registry conditions and regionally approved treatment guidance, which remain disabled. Do not restore the old blanket disease name ban or describe AI hypotheses as confirmed diagnoses or completed agricultural validation.
+
+Schema 2 retains final photo checks and separates visual findings, AI hypotheses and regional guidance. Photo revisions change only with photo or stated side edits; answer edits preserve the bound preliminary photo check. Report sections explicitly mark includePhotos; do not hardcode photo placement to a section index. Keep every cause explanation, source scope and uncertainty in both language exports. Diagnostic source links open in another tab to preserve temporary assessment data.
+
 During PDF export, keep language controls disabled and guard changeLocale so changing language cannot silently cancel a download. Preserve the stale export epoch check and restore controls after either success or failure.

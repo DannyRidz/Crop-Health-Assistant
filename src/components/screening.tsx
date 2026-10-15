@@ -4,12 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import english from "@/content/locales/en.json";
 import tokPisin from "@/content/locales/tpi.json";
 import { assessmentReducer, newAssessment, reportCurrent, type AssessmentAction, type Stage } from "@/lib/assessment";
-import { ANSWER_OPTIONS, STARTER_IDS, regionSchema, type AssessInput, type AssessResponse, type LocalPhoto, type RegionContext, type Signed, type GuidanceSnapshot, type TextVariant, type Preliminary, type CheckedResult, type StarterAnswer } from "@/lib/contracts";
+import { ANSWER_OPTIONS, STARTER_IDS, SCHEMA_VERSION, GLOSSARY_VERSION, regionSchema, type AssessInput, type AssessResponse, type LocalPhoto, type RegionContext, type Signed, type GuidanceSnapshot, type TextVariant, type Preliminary, type CheckedResult, type StarterAnswer } from "@/lib/contracts";
 import { api, RequestFailure } from "@/lib/client-api";
 import { preparePhoto } from "@/lib/client-photos";
 import { selectLocale, useLanguage } from "@/lib/use-language";
 import type { Locale } from "@/lib/language";
 import { makeReport, type ReportData } from "@/lib/report";
+import { findingHeadline } from "@/lib/result-copy";
+import { diagnosticReferences } from "@/content/diagnostic-references";
 import { RegionControl } from "./region-control";
 import { ReportPreview } from "./report-preview";
 import styles from "./screening.module.css";
@@ -67,6 +69,9 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
   }
   function fail(error: unknown) {
     const failure = error instanceof RequestFailure ? error : new RequestFailure(error instanceof Error ? error.message : "unavailable", true);
+    if (failure.code === "assessment_version_changed") {
+      epoch.current++; apply({ type: "incompatible" }); translationCache.current.clear(); setTranslations({}); setAcceptedEnglish({});
+    }
     setError({ code: failure.code, requestId: failure.requestId });
     setCooldown(failure.retryAfter);
   }
@@ -82,15 +87,20 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
     setTranslations(Object.fromEntries(translationCache.current));
     setBusy("translation");
     try {
-      const variant = await api<TextVariant>("/api/translate", JSON.stringify({ schemaVersion: 1, envelope: value.envelope, kind, target: "tpi", textHash: hash }), true);
+      const variant = await api<TextVariant>("/api/translate", JSON.stringify({ schemaVersion: SCHEMA_VERSION, envelope: value.envelope, kind, target: "tpi", textHash: hash }), true);
       const expected = [
         ...value.data.observations.map((item) => `observation:${item.id}`),
         ...value.data.limitations.map((_, index) => `limitation:${index}`),
         ...value.data.missingInfo.map((_, index) => `missing:${index}`),
+        ...value.data.contradictions.map((_, index) => `conflict:${index}`),
+        ...("causeAssessmentEn" in value.data ? ["causeAssessment", ...value.data.possibleCauses.flatMap((_, index) => ["nameEn", "whyEn", "uncertaintyEn", "nextCheckEn"].map((key) => `cause:${index}:${key}`))] : []),
       ];
-      if (variant.hash !== hash || Object.keys(variant.values).length !== expected.length || expected.some((key) => typeof variant.values[key] !== "string" || !variant.values[key].trim())) throw new Error("translation_unavailable");
+      if (variant.glossaryVersion !== GLOSSARY_VERSION || variant.hash !== hash || Object.keys(variant.values).length !== expected.length || expected.some((key) => typeof variant.values[key] !== "string" || !variant.values[key].trim())) throw new Error("translation_unavailable");
       translationCache.current.set(hash, { status: "ready", variant });
-    } catch { translationCache.current.set(hash, { status: "failed" }); }
+    } catch (error) {
+      if (error instanceof RequestFailure && error.code === "assessment_version_changed") fail(error);
+      else translationCache.current.set(hash, { status: "failed" });
+    }
     finally { setTranslations(Object.fromEntries(translationCache.current)); setBusy(null); setSlow(false); }
   }
   function changeLocale(next: Locale) {
@@ -140,7 +150,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
     setBusy(phase === "preliminary" ? "photos" : "result");
     try {
       await api("/api/session");
-      const metadata: AssessInput = { schemaVersion: 1, assessmentId: captured.id, inputRevision: captured.inputRevision,
+      const metadata: AssessInput = { schemaVersion: SCHEMA_VERSION, assessmentId: captured.id, inputRevision: captured.inputRevision, photoRevision: captured.photoRevision,
         contextRevision: captured.contextRevision, phase, photos: captured.photos.map(({ id, side }) => ({ id, side })),
         starterAnswers: phase === "final" ? captured.answers : [], followUpAnswers: [],
         preliminaryEnvelope: phase === "final" ? captured.preliminary!.envelope : null, region: captured.region, isDemo: captured.isDemo };
@@ -166,7 +176,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
     if (!captured.result || !regionSchema.safeParse(region).success) return;
     clearMessage(); setBusy("guidance");
     try {
-      const guidance = await api<Signed<GuidanceSnapshot>>("/api/guidance", JSON.stringify({ schemaVersion: 1, resultEnvelope: captured.result.envelope, contextRevision: captured.contextRevision, region }), true);
+      const guidance = await api<Signed<GuidanceSnapshot>>("/api/guidance", JSON.stringify({ schemaVersion: SCHEMA_VERSION, resultEnvelope: captured.result.envelope, contextRevision: captured.contextRevision, region }), true);
       apply({ type: "guidance", guidance });
     } catch (error) { fail(error); }
     finally { setBusy(null); setSlow(false); }
@@ -207,7 +217,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
   const steps: Stage[] = ["photos", "questions", "result", "report"];
   const titles = { photos: t.photoTitle, questions: t.questionTitle, result: state.result ? t.resultTitle : t.noResultShort, report: t.reportTitle };
   const errorMessage = error ? (t.errors as Record<string, string>)[error.code] ?? (t as Record<string, unknown>)[error.code] as string ?? t.errors.unavailable : null;
-  const canPrepareIncompleteReport = !!error && ["disabled", "unavailable", "network", "timeout", "invalid_output", "expired", "busy", "quota"].includes(error.code);
+  const canPrepareIncompleteReport = !!error && ["disabled", "unavailable", "network", "timeout", "invalid_output", "expired", "busy", "quota", "assessment_version_changed"].includes(error.code);
 
   function photoPanel(photo: LocalPhoto, index: number, editable: boolean) {
     return <figure className={styles.photoPanel} key={photo.id} id={`photo-${photo.id}`} tabIndex={-1}>
@@ -231,12 +241,13 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
     </>}
     {englishAllowed && !variant && <p>{t.englishFallback}</p>}
   </aside>;
-  const observationPanel = activeText && <section className={styles.section}>
-    <h2>{state.stage === "questions" ? t.preliminary : t.visibleShort}</h2>
+  function observationPanel(items = activeText?.observations ?? [], title = state.stage === "questions" ? t.preliminary : t.aiObservations) { return activeText && <section className={styles.section}>
+    <h2>{title}</h2>
     {canShowGenerated && <div className={styles.observations} lang={generatedLocale}>
-      {activeText.observations.length ? activeText.observations.map((observation) => <article key={observation.id}>
+      {items.length ? items.map((observation) => <article key={observation.id}>
         <div className={styles.photoLinks}>{observation.photoIds.map((id) => <button key={id} onClick={() => { const target = document.getElementById(`photo-${id}`); target?.focus(); target?.scrollIntoView({ block: "nearest", behavior: "auto" }); }}>{t.photo} {state.photos.findIndex((photo) => photo.id === id) + 1}</button>)}</div>
         <p>{generated(`observation:${observation.id}`, observation.textEn)}</p>
+        {state.result && observation.photoIds.some((id) => state.result!.data.excludedPhotoIds.includes(id)) && <p lang={locale}>{t.excludedPhoto}</p>}
       </article>) : <p lang={locale}>{t.noObservations}</p>}
     </div>}
     {state.stage === "questions" && canShowGenerated && activeText.limitations.length > 0 && <>
@@ -245,7 +256,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
     {state.stage === "questions" && canShowGenerated && activeText.missingInfo.length > 0 && <>
       <h3>{t.missing}</h3>{activeText.missingInfo.map((value, index) => <p key={index} lang={generatedLocale}>{generated(`missing:${index}`, value)}</p>)}
     </>}
-  </section>;
+  </section>; }
   const guidancePanel = <section className={styles.note}>
     <h2>{t.nextShort}</h2>
     <p>{state.region.response === "known" ? t.noRegionalShort : t.unknownRegionalShort}</p>
@@ -292,7 +303,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
       </div>}
       {state.stage === "questions" && <>
         <div className={`${styles.photoGrid} ${styles.questionPhotos}`}>{state.photos.map((photo, index) => photoPanel(photo, index, false))}</div>
-        {translationPanel}<details className={styles.disclosure} open={state.preliminary?.data.photoChecks.some((check) => check.quality !== "usable" || check.crop !== "coffee" || check.part !== "leaf")}><summary>{t.photoDetails}</summary>{observationPanel}
+        {translationPanel}<details className={styles.disclosure} open={state.preliminary?.data.photoChecks.some((check) => check.quality !== "usable" || check.crop !== "coffee" || check.part !== "leaf")}><summary>{t.photoDetails}</summary>{observationPanel()}
           {state.preliminary && <ul className={styles.quality}>{state.preliminary.data.photoChecks.map((check) => <li key={check.photoId}>{t.photo} {state.photos.findIndex((photo) => photo.id === check.photoId) + 1}: {t.quality}, {t[check.quality]}; {t.cropPart}, {t[check.crop]}, {t[check.part]}</li>)}</ul>}</details>
         <section className={styles.section}><h2>{t.questions}</h2><p>{t.questionsShort}</p>
           {STARTER_IDS.map((id, index) => {
@@ -309,9 +320,40 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
         </section>
       </>}
       {state.stage === "result" && state.result && <>
-        <div className={styles.status}><strong>{t[state.result.data.status]}</strong>{state.result.data.coverageUnavailable && <p>{t.photoCheckComplete}</p>}<p>{t.initialShort}</p></div>{translationPanel}
-        <div className={styles.resultGrid}><div className={styles.photoGrid}>{state.photos.map((photo, index) => photoPanel(photo, index, false))}</div>{observationPanel}</div>
-        <section className={styles.section}><h2>{t.uncertainShort}</h2><p>{t.coverageShort}</p>{state.result.data.unsupported && <p>{t.unsupported}</p>}{canShowGenerated && state.result.data.limitations.map((value, index) => <p key={index} lang={generatedLocale}>{generated(`limitation:${index}`, value)}</p>)}{canShowGenerated && state.result.data.missingInfo.length > 0 && <><h3>{t.missing}</h3>{state.result.data.missingInfo.map((value, index) => <p key={index} lang={generatedLocale}>{generated(`missing:${index}`, value)}</p>)}</>}</section>
+        <section className={styles.status} aria-label={t.caseSummary}>
+          <h2>{findingHeadline(state.result.data, t)}</h2>
+          <p>{state.result.data.visualFinding === "no_clear_changes" ? t.healthCaveat : t.visualCaveat}</p>
+        </section>{translationPanel}
+        <div className={styles.resultGrid}><div className={styles.photoGrid}>{state.photos.map((photo, index) => photoPanel(photo, index, false))}</div>
+          {observationPanel(state.result.data.observations.filter((item) => state.result!.data.keyObservationIds.includes(item.id)), t.keyFindings)}</div>
+        <section className={styles.section}><h2>{t.causeTitle}</h2>
+          <p>{t.causeIntro}</p><p><strong>{t.screeningStatus}: {state.result.data.possibleCauses.length ? t.possibleCauseStatus : t.noCauseStatus}</strong></p>
+          {canShowGenerated && <p lang={generatedLocale}>{generated("causeAssessment", state.result.data.causeAssessmentEn)}</p>}
+          {canShowGenerated && state.result.data.possibleCauses.map((cause, index) => <article className={styles.causeCard} key={index}>
+            <h3 lang={generatedLocale}>{generated(`cause:${index}:nameEn`, cause.nameEn)}</h3>
+            <p><strong>{t.whyFits}: </strong><span lang={generatedLocale}>{generated(`cause:${index}:whyEn`, cause.whyEn)}</span></p>
+            <p>{cause.observationIds.flatMap((id) => state.result!.data.observations.find((item) => item.id === id)?.photoIds ?? []).filter((id, i, ids) => ids.indexOf(id) === i).map((id) => `${t.photo} ${state.photos.findIndex((photo) => photo.id === id) + 1}`).join(", ")}</p>
+            <p><strong>{t.causeUncertainty}: </strong><span lang={generatedLocale}>{generated(`cause:${index}:uncertaintyEn`, cause.uncertaintyEn)}</span></p>
+            <p><strong>{t.nextCheck}: </strong><span lang={generatedLocale}>{generated(`cause:${index}:nextCheckEn`, cause.nextCheckEn)}</span></p>
+            {cause.sourceIds.length ? <p>{t.source}: {cause.sourceIds.map((id) => <a key={id} href={diagnosticReferences[id].url} target="_blank" rel="noopener noreferrer" lang="en">{diagnosticReferences[id].title}</a>)}</p> : <p className={styles.small}>{t.modelKnowledge}</p>}
+          </article>)}
+          {state.result.data.unsupported && <p>{t.unsupported}</p>}
+          {state.result.data.possibleCauses.some((cause) => cause.sourceIds.length > 0) && <details className={styles.disclosure}><summary>{t.diagnosticSources}</summary><p>{t.sourcesLimit}</p>{[...new Set(state.result.data.possibleCauses.flatMap((cause) => cause.sourceIds))].map((id) => <p key={id} lang="en">{diagnosticReferences[id].title}. {diagnosticReferences[id].section}. {diagnosticReferences[id].geography}.</p>)}</details>}
+        </section>
+        {state.result.data.collectionPrompts.length > 0 && <section className={styles.collectionNotes}><h2>{t.nextInformation}</h2>
+          <ul>{state.result.data.collectionPrompts.map((prompt) => <li key={prompt.id}>{t.collection[prompt.id]}{prompt.photoIds.length > 0 && <span> ({prompt.photoIds.map((id) => `${t.photo} ${state.photos.findIndex((photo) => photo.id === id) + 1}`).join(", ")})</span>}</li>)}</ul>
+          <p className={styles.small}>{t.collectionHelp}</p>
+        </section>}
+        <details className={styles.disclosure} open={state.result.data.excludedPhotoIds.length > 0 || state.result.data.visualFinding === "insufficient_evidence" || state.result.data.contradictions.length > 0}>
+          <summary>{t.officerDetails}</summary>
+          {observationPanel()}
+          <ul className={styles.quality}>{state.result.data.photoChecks.map((check) => <li key={check.photoId}>{t.photo} {state.photos.findIndex((photo) => photo.id === check.photoId) + 1}: {t.quality}, {t[check.quality]}; {t.cropPart}, {t[check.crop]}, {t[check.part]}</li>)}</ul>
+          <section className={styles.section}><h2>{t.uncertainShort}</h2>
+            {canShowGenerated && state.result.data.limitations.map((value, index) => <p key={index} lang={generatedLocale}>{generated(`limitation:${index}`, value)}</p>)}
+            {canShowGenerated && state.result.data.contradictions.length > 0 && <><h3>{t.aiUncertainty}</h3>{state.result.data.contradictions.map((item, index) => <p key={index} lang={generatedLocale}>{generated(`conflict:${index}`, item.textEn)}</p>)}</>}
+            {canShowGenerated && state.result.data.missingInfo.length > 0 && <><h3>{t.missing}</h3>{state.result.data.missingInfo.map((value, index) => <p key={index} lang={generatedLocale}>{generated(`missing:${index}`, value)}</p>)}</>}
+          </section>
+        </details>
         <RegionControl value={state.region} text={t} locale={locale} disabled={!!busy} onChange={(region) => void updateGuidance(region)} />{guidancePanel}
         <div className={styles.actions}><button className={styles.primary} disabled={!!busy || !reportCurrent(state)} onClick={() => apply({ type: "stage", stage: "report" })}>{t.prepareReport}</button><button disabled={!!busy} onClick={() => apply({ type: "stage", stage: "questions" })}>{t.editAnswers}</button><button disabled={!!busy} onClick={() => apply({ type: "stage", stage: "photos" })}>{t.backPhotos}</button></div>
       </>}

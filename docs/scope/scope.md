@@ -99,7 +99,15 @@ Support two photos, four starter questions and one optional follow up round of a
 
 - [x] Confirm the approved decision (spec): `/architect bounded questions and checked results`
 
-Spec: [technical design](../specs/0001-coffee-mvp/technical.md).
+Specs: [technical design](../specs/0001-coffee-mvp/technical.md), [approved useful screening enhancement](../specs/0003-useful-screening-reports.md).
+
+- [ ] Build useful checked results: `/develop useful screening reports`
+  - [x] Version 2 evidence and visual finding policy, UR-1, UR-2, UR-6 and UR-10
+  - [x] Bounded collection notes and real photo comparison, UR-4 and UR-11
+  - [x] AI possible cause explanations and evidence, authorised without an external review prerequisite, UR-12 and UR-13
+  - [ ] Reviewed question and condition capability, disabled until content gates pass, UR-5 and UR-7
+- [ ] Verify enhanced results: `/check verify useful screening reports`
+- [x] Test enhanced policy and contracts: `/test useful screening reports`
 
 ### 7. Reviewed guidance and translations, planned
 
@@ -119,7 +127,15 @@ Refine the complete journey for phone use, slower connections, long text and rep
 
 - [x] Confirm the approved decision (spec): `/architect phone experience and reports`
 
-Specs: [frontend](../specs/0001-coffee-mvp/design.md), [verification](../specs/0001-coffee-mvp/verification-delivery.md).
+Specs: [frontend](../specs/0001-coffee-mvp/design.md), [verification](../specs/0001-coffee-mvp/verification-delivery.md), [approved useful report enhancement](../specs/0003-useful-screening-reports.md).
+
+- [x] Build useful report surfaces: `/develop useful screening reports`
+  - [x] Farmer summary and complete officer evidence record, UR-2, UR-3 and UR-9
+  - [x] Both language exports and regional limitations, UR-8, UR-9 and UR-10
+- [ ] Verify enhanced report journey: `/check verify useful screening reports`
+- [x] Test enhanced report content: `/test useful screening reports`
+
+15 October verification: [real public report checks](../validation/useful-reports-2026-10-15.md) passed for both supplied photos, English and draft Tok Pisin exports and native Chrome reflow. Physical phone validation, fluent review and the remaining reviewed screening work are still pending, so feature 8 and the broad milestones remain in progress.
 
 ### 9. Evaluation and submission, planned
 

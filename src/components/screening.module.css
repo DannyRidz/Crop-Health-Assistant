@@ -38,6 +38,12 @@
 .note, .error, .status { display: grid; gap: var(--space-3); border: 2px solid var(--earth); border-radius: var(--radius-control); padding: var(--space-4); }
 .error { border-color: var(--terracotta); }
 .status { border-color: var(--clay); }
+.status h2 { font-size: var(--font-heading); }
+.collectionNotes { display: grid; gap: var(--space-4); padding: var(--space-6); border-radius: var(--radius-panel); background: var(--oat); }
+.collectionNotes h2 { font-size: var(--font-subheading); }
+.collectionNotes ul { display: grid; gap: var(--space-3); margin: 0; padding-inline-start: var(--space-6); }
+.causeCard { display: grid; gap: var(--space-3); padding: var(--space-6); border: var(--border); border-radius: var(--radius-panel); }
+.causeCard a { display: inline-block; min-height: var(--touch-target); padding-block: var(--space-2); margin-inline-end: var(--space-3); overflow-wrap: anywhere; }
 .note h2 { font-size: var(--font-subheading); }
 .observations { display: grid; gap: var(--space-4); }
 .observations article { display: grid; gap: var(--space-3); padding: var(--space-4); border: var(--border); border-radius: var(--radius-panel); }

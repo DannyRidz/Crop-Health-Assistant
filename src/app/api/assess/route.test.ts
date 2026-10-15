@@ -6,7 +6,7 @@ import { POST as assessRoute } from "./route";
 import { POST as guidanceRoute } from "../guidance/route";
 import { POST as translationRoute } from "../translate/route";
 import { modelFixture, PHOTO_ID } from "@/lib/test-fixtures";
-import { UNKNOWN_REGION, type AssessResponse } from "@/lib/contracts";
+import { UNKNOWN_REGION, SCHEMA_VERSION, type AssessResponse } from "@/lib/contracts";
 
 const { createInteraction } = vi.hoisted(() => ({ createInteraction: vi.fn() }));
 vi.mock("@google/genai", () => ({ GoogleGenAI: class { interactions = { create: createInteraction }; } }));
@@ -27,7 +27,7 @@ async function session(): Promise<string> {
 }
 function request(phase: "preliminary" | "final", cookie: string, id: string, preliminaryEnvelope: string | null = null, extra: Record<string, unknown> = {}) {
   const form = new FormData();
-  form.append("metadata", JSON.stringify({ schemaVersion: 1, assessmentId: id, inputRevision: phase === "final" ? 5 : 1, contextRevision: 1, phase,
+  form.append("metadata", JSON.stringify({ schemaVersion: SCHEMA_VERSION, assessmentId: id, inputRevision: phase === "final" ? 5 : 1, contextRevision: 1, photoRevision: 1, phase,
     photos: [{ id: PHOTO_ID, side: "unknown" }], starterAnswers: phase === "final" ? ["onset", "spread", "symptoms", "care_change"].map((questionId) => ({ questionId, optionIds: ["not_sure"], detail: "" })) : [], followUpAnswers: [], preliminaryEnvelope, region: UNKNOWN_REGION, isDemo: true, ...extra }));
   form.append("photos", new Blob([new Uint8Array(jpeg)]), "synthetic.jpg");
   return new NextRequest(`${origin}/api/assess`, { method: "POST", headers: { origin, cookie }, body: form });
@@ -45,12 +45,12 @@ describe("M1 route integration with mocked SDK boundary, AC-3, AC-6 through AC-1
     const final = await finalResponse.json() as Extract<AssessResponse, { phase: "final" }>;
     expect(final.result.data.status).toBe("unable_to_assess"); expect(final.result.data.conditionId).toBeNull();
     expect(final.guidance.data.guidanceAvailability).toBe("region_unknown");
-    const changed = await guidanceRoute(jsonRequest("/api/guidance", cookie, { schemaVersion: 1, resultEnvelope: final.result.envelope, contextRevision: 2, region: { response: "known", countryCode: "BN", regionId: null } }));
+    const changed = await guidanceRoute(jsonRequest("/api/guidance", cookie, { schemaVersion: SCHEMA_VERSION, resultEnvelope: final.result.envelope, contextRevision: 2, region: { response: "known", countryCode: "BN", regionId: null } }));
     expect(changed.status).toBe(200); expect((await changed.json()).data.entries).toEqual([]); expect(createInteraction).toHaveBeenCalledTimes(2);
     const providerInput = createInteraction.mock.calls[1][0];
     expect(providerInput.store).toBe(false); expect(providerInput.previous_interaction_id).toBeUndefined();
     expect(JSON.stringify(providerInput.input)).not.toContain("countryCode");
-    expect(providerInput.generation_config.max_output_tokens).toBe(2048);
+    expect(providerInput.generation_config.max_output_tokens).toBe(3072);
   });
   it("rejects final requests without a valid sequence or with replaced photos", async () => {
     const cookie = await session(), id = crypto.randomUUID();
@@ -113,18 +113,27 @@ describe("M1 route integration with mocked SDK boundary, AC-3, AC-6 through AC-1
     const cookie = await session(), id = crypto.randomUUID();
     const preliminary = await (await assessRoute(request("preliminary", cookie, id))).json();
     createInteraction.mockResolvedValueOnce({ status: "completed", output_text: JSON.stringify({ "observation:visible_1": "Synthetic translated observation", "limitation:0": "Synthetic translated limitation" }) });
-    const translated = await translationRoute(jsonRequest("/api/translate", cookie, { schemaVersion: 1, envelope: preliminary.preliminary.envelope, kind: "preliminary", target: "tpi", textHash: preliminary.preliminary.data.textHash }));
+    const translated = await translationRoute(jsonRequest("/api/translate", cookie, { schemaVersion: SCHEMA_VERSION, envelope: preliminary.preliminary.envelope, kind: "preliminary", target: "tpi", textHash: preliminary.preliminary.data.textHash }));
     expect(translated.status).toBe(200);
     const translationInput = JSON.parse(createInteraction.mock.calls[1][0].input);
     expect(Object.keys(translationInput)).toEqual(["observation:visible_1", "limitation:0"]);
     expect(translationInput.photos).toBeUndefined(); expect(translationInput.guidance).toBeUndefined();
-    const invalid = await translationRoute(jsonRequest("/api/translate", cookie, { schemaVersion: 1, envelope: preliminary.preliminary.envelope, kind: "preliminary", target: "tpi", textHash: preliminary.preliminary.data.textHash, text: "user supplied advice" }));
+    const invalid = await translationRoute(jsonRequest("/api/translate", cookie, { schemaVersion: SCHEMA_VERSION, envelope: preliminary.preliminary.envelope, kind: "preliminary", target: "tpi", textHash: preliminary.preliminary.data.textHash, text: "user supplied advice" }));
     expect(invalid.status).toBe(422);
   });
 });
 
 
 describe("M2 route boundaries with mocked SDK, AC-2, AC-3, AC-7 and AC-8", () => {
+  it("rejects legacy schemas without an AI request and binds the photo revision, UR-10", async () => {
+    const cookie = await session(), id = crypto.randomUUID();
+    const legacy = await assessRoute(request("preliminary", cookie, id, null, { schemaVersion: 1 }));
+    expect(legacy.status).toBe(409); expect((await legacy.json()).error.code).toBe("assessment_version_changed");
+    expect(createInteraction).not.toHaveBeenCalled();
+    const preliminary = await (await assessRoute(request("preliminary", cookie, id))).json();
+    const changed = await assessRoute(request("final", cookie, id, preliminary.preliminary.envelope, { photoRevision: 2 }));
+    expect(changed.status).toBe(409); expect(createInteraction).toHaveBeenCalledTimes(1);
+  });
   it("processes both photos and rejects an incomplete model photo check", async () => {
     const cookie = await session(), id = crypto.randomUUID(), secondId = crypto.randomUUID();
     const base = request("preliminary", cookie, id);

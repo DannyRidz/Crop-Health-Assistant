@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { assessmentReducer, reportCurrent } from "./assessment";
 import { selectGuidance } from "./guidance";
-import { withResult, assessmentFixture, modelFixture } from "./test-fixtures";
+import { withResult, assessmentFixture, preliminaryFixture } from "./test-fixtures";
 
 describe("temporary assessment revisions, AC-5, AC-10, AC-13 and AC-19", () => {
   it("preserves evidence and answers while region changes invalidate the report", () => {
@@ -32,11 +32,26 @@ describe("temporary assessment revisions, AC-5, AC-10, AC-13 and AC-19", () => {
   });
   it("accepts only the current preliminary revision", () => {
     const state = assessmentFixture();
-    const preliminary = { data: { ...modelFixture(), assessmentId: state.id, inputRevision: state.inputRevision, textHash: "test" }, envelope: "test" };
+    const preliminary = { data: preliminaryFixture(state), envelope: "test" };
     expect(assessmentReducer(state, { type: "preliminary", assessmentId: state.id, revision: state.inputRevision + 1, preliminary })).toBe(state);
     expect(assessmentReducer(state, { type: "preliminary", assessmentId: state.id, revision: state.inputRevision, preliminary }).stage).toBe("questions");
   });
   it("withholds export when a chosen country is incomplete", () => {
     expect(reportCurrent({ ...assessmentFixture(), region: { response: "known", countryCode: null, regionId: null } })).toBe(false);
+  });
+  it("preserves inputs on compatibility failure and keeps photo revision stable through answers, UR-10", () => {
+    const state = withResult();
+    const answered = assessmentReducer(state, { type: "answer", answer: { questionId: "onset", optionIds: ["today"], detail: "" } });
+    expect(answered.photoRevision).toBe(state.photoRevision);
+    const edited = assessmentReducer(answered, { type: "photos", photos: state.photos });
+    expect(edited.photoRevision).toBe(state.photoRevision + 1);
+    const incompatible = assessmentReducer(state, { type: "incompatible" });
+    expect(incompatible.photos).toBe(state.photos); expect(incompatible.answers).toBe(state.answers);
+    expect(incompatible.result).toBeNull(); expect(incompatible.preliminary).toBeNull(); expect(incompatible.stage).toBe("photos");
+  });
+  it("withholds outdated screening versions but permits a current incomplete record, UR-10", () => {
+    const state = withResult(); state.result!.data.policyVersion = "older-policy";
+    expect(reportCurrent(state)).toBe(false);
+    expect(reportCurrent(assessmentReducer(state, { type: "incompatible" }))).toBe(true);
   });
 });

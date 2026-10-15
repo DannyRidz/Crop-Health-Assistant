@@ -846,5 +846,157 @@
   "assessment.skipLocation": {
     "en": "authored",
     "tpi": "draft"
+  },
+  "assessment.errors.assessment_version_changed": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.findings.changes_visible": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.findings.no_clear_changes": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.findings.unsupported": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.findings.unclear_subject": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.findings.quality": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.findings.unclear_observations": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.visualCaveat": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.healthCaveat": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.causeTitle": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.causeUnavailable": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.keyFindings": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.officerDetails": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.aiObservations": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.aiUncertainty": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.excludedPhoto": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.caseSummary": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.farmerRecord": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.reportVersions": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.nextInformation": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.collectionHelp": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.noCollection": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.collection.replace_unclear_photos": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.collection.add_upper": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.collection.add_underside": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.collection.identify_sides": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.collection.record_onset": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.collection.record_spread": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.causeIntro": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.whyFits": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.causeUncertainty": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.nextCheck": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.modelKnowledge": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.diagnosticSources": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.sourcesLimit": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.screeningStatus": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.possibleCauseStatus": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.noCauseStatus": {
+    "en": "authored",
+    "tpi": "draft"
   }
 }

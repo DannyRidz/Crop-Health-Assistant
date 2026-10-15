@@ -9,7 +9,7 @@ describe("honest report snapshots, AC-10, AC-11, AC-13 and AC-19", () => {
     const state = withResult({ ...assessmentFixture(), region: { response: "known", countryCode: "BN", regionId: null }, answers: [{ questionId: "care_change", optionIds: ["yes"], detail: "My own wording: café, 12 pots." }] });
     const text = JSON.stringify(makeReport(state, "en", undefined, false));
     expect(text).toContain("Brunei"); expect(text).toContain("My own wording: café, 12 pots."); expect(text).toContain("local agricultural officer");
-    expect(text).toContain(english.assessment.unable_to_assess); expect(text).toContain(english.assessment.coverage); expect(text).not.toContain("confirmed healthy");
+    expect(text).toContain(english.assessment.findings.changes_visible); expect(text).toContain(english.assessment.noCauseStatus); expect(text).toContain(state.result!.data.causeAssessmentEn); expect(text).not.toContain("confirmed healthy");
   });
   it("distinguishes skipped region from Not sure", () => {
     expect(JSON.stringify(makeReport(assessmentFixture(), "en", undefined, false))).toContain(`${english.assessment.countryValue}: ${english.assessment.notProvided}`);
@@ -25,5 +25,26 @@ describe("honest report snapshots, AC-10, AC-11, AC-13 and AC-19", () => {
     const report = makeReport(assessmentFixture(), "en", undefined, false);
     expect(JSON.stringify(report)).toContain("No screening result was produced");
     expect(JSON.stringify(report)).not.toContain("A pale patch");
+  });
+  it("puts specific findings before the officer record and includes all evidence, UR-2, UR-3 and UR-9", () => {
+    const state = withResult(), result = state.result!.data;
+    result.observations = Array.from({ length: 6 }, (_, i) => ({ ...result.observations[0], id: `item_${i}`, textEn: `Synthetic visible detail ${i}` }));
+    result.keyObservationIds = ["item_0", "item_1", "item_2"];
+    result.contradictions = [{ textEn: "Synthetic uncertainty", observationIds: ["item_1"] }];
+    const report = makeReport(state, "en", undefined, false), text = JSON.stringify(report);
+    expect(report.sections[0].title).toBe(english.assessment.caseSummary);
+    expect(report.sections[1].lines.join(" ")).toContain("Synthetic visible detail 0");
+    expect(report.sections[1].lines.join(" ")).not.toContain("Synthetic visible detail 3");
+    for (let i = 0; i < 6; i++) expect(text).toContain(`Synthetic visible detail ${i}`);
+    expect(text).toContain("Synthetic uncertainty"); expect(text).toContain(english.assessment.usable);
+    expect(report.sections.filter((item) => item.includePhotos)).toHaveLength(1);
+    expect(report.photoCaptions![0]).toContain(english.assessment.unknown);
+  });
+  it("includes the tentative cause, evidence, next check and source scope without inventing reviewed guidance", () => {
+    const state = withResult();
+    state.result!.data.possibleCauses = [{ nameEn: "Synthetic tentative cause", whyEn: "Synthetic visible pattern", uncertaintyEn: "Synthetic uncertainty", nextCheckEn: "Inspect the underside.", observationIds: ["visible_1"], sourceIds: ["hawaii_leaf_identification"] }];
+    const text = JSON.stringify(makeReport(state, "en", undefined, false));
+    for (const expected of ["Synthetic tentative cause", "Synthetic visible pattern", "Inspect the underside.", "Photo 1", "Hawaii diagnostic publication", english.assessment.causeIntro]) expect(text).toContain(expected);
+    expect(state.guidance!.data.entries).toEqual([]);
   });
 });

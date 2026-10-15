@@ -1,15 +1,15 @@
 import type { CheckedResult, GuidanceSnapshot, LocalPhoto, Preliminary, RegionContext, Signed, StarterAnswer } from "./contracts";
-import { REGISTRY_VERSION, UNKNOWN_REGION, regionSchema } from "./contracts";
+import { GUIDANCE_VERSION, REGISTRY_VERSION, UNKNOWN_REGION, currentContent, regionSchema } from "./contracts";
 
 export type Stage = "photos" | "questions" | "result" | "report";
 export type Assessment = {
-  id: string; createdAt: string; timezone: string; isDemo: boolean; inputRevision: number; contextRevision: number;
+  id: string; createdAt: string; timezone: string; isDemo: boolean; inputRevision: number; photoRevision: number; contextRevision: number;
   photos: LocalPhoto[]; answers: StarterAnswer[]; region: RegionContext; stage: Stage;
   preliminary: Signed<Preliminary> | null; result: Signed<CheckedResult> | null; guidance: Signed<GuidanceSnapshot> | null;
 };
 export function newAssessment(): Assessment {
   return { id: crypto.randomUUID(), createdAt: new Date().toISOString(), timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC",
-    isDemo: true, inputRevision: 1, contextRevision: 1, photos: [], answers: [], region: { ...UNKNOWN_REGION }, stage: "photos", preliminary: null, result: null, guidance: null };
+    isDemo: true, inputRevision: 1, photoRevision: 1, contextRevision: 1, photos: [], answers: [], region: { ...UNKNOWN_REGION }, stage: "photos", preliminary: null, result: null, guidance: null };
 }
 export type AssessmentAction =
   | { type: "photos"; photos: LocalPhoto[] }
@@ -18,10 +18,12 @@ export type AssessmentAction =
   | { type: "stage"; stage: Stage }
   | { type: "preliminary"; assessmentId: string; revision: number; preliminary: Signed<Preliminary> }
   | { type: "result"; assessmentId: string; revision: number; result: Signed<CheckedResult>; guidance: Signed<GuidanceSnapshot> }
-  | { type: "guidance"; guidance: Signed<GuidanceSnapshot> };
+  | { type: "guidance"; guidance: Signed<GuidanceSnapshot> }
+  | { type: "incompatible" };
 export function assessmentReducer(state: Assessment, action: AssessmentAction): Assessment {
   switch (action.type) {
-    case "photos": return { ...state, photos: action.photos, inputRevision: state.inputRevision + 1, preliminary: null, result: null, guidance: null, stage: "photos" };
+    case "incompatible": return { ...state, preliminary: null, result: null, guidance: null, stage: "photos" };
+    case "photos": return { ...state, photos: action.photos, inputRevision: state.inputRevision + 1, photoRevision: state.photoRevision + 1, preliminary: null, result: null, guidance: null, stage: "photos" };
     case "answer": return { ...state, answers: [...state.answers.filter((answer) => answer.questionId !== action.answer.questionId), action.answer], inputRevision: state.inputRevision + 1, result: null, guidance: null, stage: "questions" };
     case "region": return { ...state, region: action.region, contextRevision: state.contextRevision + 1, guidance: null };
     case "stage":
@@ -35,7 +37,7 @@ export function assessmentReducer(state: Assessment, action: AssessmentAction): 
   }
 }
 export function reportCurrent(state: Assessment): boolean {
-  return regionSchema.safeParse(state.region).success && (!state.result || (state.result.data.inputRevision === state.inputRevision &&
+  return regionSchema.safeParse(state.region).success && (!state.result || (currentContent(state.result.data) && state.result.data.inputRevision === state.inputRevision &&
     state.guidance?.data.resultId === state.result.data.id && state.guidance.data.contextRevision === state.contextRevision &&
-    state.guidance.data.registryVersion === REGISTRY_VERSION && JSON.stringify(state.guidance.data.region) === JSON.stringify(state.region)));
+    state.guidance.data.registryVersion === REGISTRY_VERSION && state.guidance.data.guidanceVersion === GUIDANCE_VERSION && JSON.stringify(state.guidance.data.region) === JSON.stringify(state.region)));
 }

@@ -108,7 +108,7 @@
     "visible": "What is visible",
     "meaning": "What this may mean",
     "uncertain": "What remains uncertain",
-    "coverage": "This app shows what can be seen in your leaf photos. Disease checks still need expert review and testing. It cannot confirm a disease or that a plant is healthy.",
+    "coverage": "The AI analyses visible changes and suggests possible causes. Its suggestions can be wrong. Independent agricultural evaluation is still pending.",
     "unsupported": "We can check coffee leaves only. Ask a local agricultural officer to review these photos.",
     "initial": "This is an automatic leaf check. It cannot confirm a disease or that a plant is healthy.",
     "guidance": "Advice for your area",
@@ -180,7 +180,8 @@
       "demo_only": "This service accepts only permitted sample data.",
       "translation_unavailable": "Tok Pisin translation is unavailable. You can choose English observations.",
       "network": "We could not connect. Check your internet connection and try again.",
-      "photo_failed": "We could not prepare this photo. Choose a different JPEG, PNG or WebP photo."
+      "photo_failed": "We could not prepare this photo. Choose a different JPEG, PNG or WebP photo.",
+      "assessment_version_changed": "The app has been updated. Your photos and answers are still here. Start a new photo check to use the update, or download an incomplete record first."
     },
     "questionBank": {
       "onset": {
@@ -225,7 +226,7 @@
     "privacyShort": "When you check photos, your photos and answers go to this app and Google. Avoid faces and personal details.",
     "privacyDetails": "Photo limits and privacy",
     "prototypeDetails": "About leaf checks",
-    "coverageShort": "Photo notes only. Disease checks still need expert review.",
+    "coverageShort": "AI suggests possible causes. A photo cannot confirm a diagnosis.",
     "initialShort": "A photo cannot confirm a disease or that a plant is healthy.",
     "sessionShort": "Keep this tab open. Refreshing clears your check. Internet is required.",
     "draftShort": "Tok Pisin is a draft. It still needs review by someone who speaks it well.",
@@ -233,7 +234,7 @@
     "photoDetails": "Photo quality and what we see",
     "visibleShort": "What we see",
     "uncertainShort": "What we can’t confirm",
-    "nextShort": "What to do next",
+    "nextShort": "Advice for your area",
     "reportShort": "Download a report to share with a local agricultural officer. You choose who receives it.",
     "reportSummary": "Your report includes photos, answers, what we see and limits on advice for your area.",
     "reviewDetails": "Expert review and check limits",
@@ -241,6 +242,47 @@
     "unknownRegionalShort": "You have not chosen a country. Ask a local agricultural officer to review your photos.",
     "resultTitle": "Your leaf check",
     "photoCheckComplete": "Your photos were checked. This app cannot name a disease yet.",
-    "skipLocation": "Skip for now"
+    "skipLocation": "Skip for now",
+    "findings": {
+      "changes_visible": "Changes are visible on this leaf.",
+      "no_clear_changes": "No clear changes were identified in these photos.",
+      "unsupported": "This check supports coffee leaf photos.",
+      "unclear_subject": "The app could not identify a coffee leaf clearly.",
+      "quality": "These photos do not give a clear view of the leaf.",
+      "unclear_observations": "The app could not describe the visible changes clearly."
+    },
+    "visualCaveat": "These are AI observations, not a diagnosis or a measure of how serious the problem is.",
+    "healthCaveat": "A photo cannot confirm that the plant is healthy.",
+    "causeTitle": "Possible causes",
+    "causeUnavailable": "No useful possible cause was identified. See the specific explanation and missing information below.",
+    "keyFindings": "Main photo findings",
+    "officerDetails": "All photo notes and limits",
+    "aiObservations": "AI observations",
+    "aiUncertainty": "Uncertainty reported by the AI",
+    "excludedPhoto": "Not used for the main finding",
+    "caseSummary": "Leaf check summary",
+    "farmerRecord": "What the farmer reported",
+    "reportVersions": "Check versions",
+    "nextInformation": "Information to collect next",
+    "collectionHelp": "These notes are optional. Keep what you can to compare changes later or share if needed. Adding or replacing a photo needs a new check when you choose to submit it.",
+    "noCollection": "No additional collection request is listed. The check limits still apply.",
+    "collection": {
+      "replace_unclear_photos": "If possible, replace the unclear photos in natural light. Include the whole leaf.",
+      "add_upper": "If possible, collect a clear photo of the top of the leaf.",
+      "add_underside": "If possible, collect a clear photo of the bottom of the leaf.",
+      "identify_sides": "If possible, identify which side the photos show, or collect top and bottom views for a later check.",
+      "record_onset": "If known, record when you first noticed the leaf changes.",
+      "record_spread": "If known, record whether one or several plants are affected."
+    },
+    "causeIntro": "These are AI explanations based on your photos and answers. They may be wrong and are not a confirmed diagnosis.",
+    "whyFits": "Why it may fit",
+    "causeUncertainty": "What is still uncertain",
+    "nextCheck": "What to check next",
+    "modelKnowledge": "AI explanation without a supplied reference.",
+    "diagnosticSources": "Diagnostic background sources",
+    "sourcesLimit": "These sources describe symptoms. They have not reviewed your case or approved a treatment for your area. Source titles and scope are shown in English.",
+    "screeningStatus": "AI screening status",
+    "possibleCauseStatus": "Possible causes identified",
+    "noCauseStatus": "The cause could not be narrowed down"
   }
 }

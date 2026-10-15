@@ -108,7 +108,7 @@
     "visible": "Samting i luk olsem",
     "meaning": "Dispela inap minim wanem",
     "uncertain": "Samting mipela i no save yet",
-    "coverage": "Riviu bilong agrikalsa na wok bilong traim makim sik i no pinis. Dispela sevis i soim ol senis i luk olsem tasol. Em i no inap konfemim sik o tok diwai i helti.",
+    "coverage": "AI i skelim ol senis na tok long ol as i ken kamap. Tok bilong en inap rong. Riviu bilong agrikalsa i stap yet.",
     "unsupported": "Ol poto inap i no soim lip bilong kopi. Askim ofisa bilong agrikalsa long ples bilong yu long lukim.",
     "initial": "Dispela em sekim bilong masin tasol. Em i no konfemim sik o tok diwai i helti.",
     "guidance": "Gaid bilong rijon",
@@ -180,7 +180,8 @@
       "demo_only": "Dispela sevis i kisim sample data we yu gat tok orait long yusim tasol.",
       "translation_unavailable": "Tok Pisin i no stap. Yu inap makim Inglis.",
       "network": "Askim i no inap go long seva. Sekim intanet.",
-      "photo_failed": "Poto i no inap redi. Sekim kain, sais na dimensen na makim narapela poto."
+      "photo_failed": "Poto i no inap redi. Sekim kain, sais na dimensen na makim narapela poto.",
+      "assessment_version_changed": "App i gat nupela vesin. Ol poto na bekim bilong yu i stap yet. Statim nupela sek bilong poto, o daunlod ripoti bilong sek i no pinis pastaim."
     },
     "questionBank": {
       "onset": {
@@ -225,7 +226,7 @@
     "privacyShort": "Taim yu sekim poto, ol poto na bekim i go long app na Google. No putim pes o praivet tok.",
     "privacyDetails": "Ol limit bilong poto na praivet data",
     "prototypeDetails": "Tok bilong sekim lip",
-    "coverageShort": "Ol samting i luk olsem tasol. Riviu bilong makim sik i no pinis yet.",
+    "coverageShort": "AI i tok long ol as i ken kamap. Poto i no inap konfemim sik.",
     "initialShort": "Poto i no inap konfemim sik o tok diwai i helti.",
     "sessionShort": "No pasim dispela tab. Refresh bai rausim dispela sekim. Yu nidim intanet.",
     "draftShort": "Tok Pisin em draft, i wet long riviu.",
@@ -233,7 +234,7 @@
     "photoDetails": "Ol sekim na samting i luk olsem long poto",
     "visibleShort": "Samting mipela i lukim",
     "uncertainShort": "Samting mipela i no inap konfemim",
-    "nextShort": "Wanem samting yu ken mekim nau",
+    "nextShort": "Gaid bilong ples bilong yu",
     "reportShort": "Daunlod ripoti bilong serim wantaim ofisa bilong agrikalsa long ples. Yu makim husat i kisim.",
     "reportSummary": "Ripoti i gat ol poto, bekim, samting i luk olsem na ol limit bilong rijon.",
     "reviewDetails": "Riviu na ol limit bilong sekim",
@@ -241,6 +242,47 @@
     "unknownRegionalShort": "Mipela i no save rijon bilong yu. Askim ofisa bilong agrikalsa long ples long lukim ol samting i luk olsem.",
     "resultTitle": "Sekim bilong lip bilong yu",
     "photoCheckComplete": "App i sekim poto bilong yu pinis. Em i no inap makim sik yet.",
-    "skipLocation": "Larim pastaim"
+    "skipLocation": "Larim pastaim",
+    "findings": {
+      "changes_visible": "I gat sampela senis i stap long dispela lip.",
+      "no_clear_changes": "Mipela i no lukim klia senis long ol dispela poto.",
+      "unsupported": "Dispela sek i bilong ol poto bilong lip kopi tasol.",
+      "unclear_subject": "App i no inap luksave klia long lip kopi.",
+      "quality": "Ol dispela poto i no soim lip klia.",
+      "unclear_observations": "App i no inap tok klia long ol senis i stap long lip."
+    },
+    "visualCaveat": "Dispela em ol samting AI i lukim tasol. Em i no tokaut klia long sik o hamas hevi i stap.",
+    "healthCaveat": "Poto i no inap strongim tok olsem diwai i helti.",
+    "causeTitle": "Ol as bilong senis i ken kamap",
+    "causeUnavailable": "AI i no painim wanpela as i klia inap. Lukim tok bilong en na infomesen i no stap daunbilo.",
+    "keyFindings": "Ol bikpela samting long poto",
+    "officerDetails": "Olgeta not bilong poto na ol mak bilong sek",
+    "aiObservations": "Ol samting AI i lukim",
+    "aiUncertainty": "Ol samting AI i no klia long en",
+    "excludedPhoto": "Mipela i no yusim long bikpela tok bilong sek",
+    "caseSummary": "Sotpela tok bilong sek bilong lip",
+    "farmerRecord": "Tok bilong fama",
+    "reportVersions": "Ol vesin bilong sek",
+    "nextInformation": "Ol infomesen yu ken bungim",
+    "collectionHelp": "Yu no mas mekim olgeta dispela samting. Holim ol not bilong skelim senis bihain o serim sapos yu laik. Sapos yu senisim poto, yu mas makim long mekim nupela sek.",
+    "noCollection": "I no gat narapela askim bilong bungim infomesen. Ol mak bilong sek i stap yet.",
+    "collection": {
+      "replace_unclear_photos": "Sapos yu inap, kisim ol nupela poto long lait bilong san. Soim lip olgeta.",
+      "add_upper": "Sapos yu inap, kisim klia poto bilong antap bilong lip.",
+      "add_underside": "Sapos yu inap, kisim klia poto bilong aninit bilong lip.",
+      "identify_sides": "Sapos yu inap, tok dispela poto i soim wanem sait, o kisim antap na aninit bilong lip bilong sekim bihain.",
+      "record_onset": "Sapos yu save, raitim taim yu bin lukim ol senis long lip pastaim.",
+      "record_spread": "Sapos yu save, raitim sapos wanpela diwai o planti diwai i gat dispela senis."
+    },
+    "causeIntro": "Dispela em ol tok AI i givim long ol poto na bekim bilong yu. Ol inap rong na i no konfemim sik.",
+    "whyFits": "Bilong wanem em i ken stret",
+    "causeUncertainty": "Wanem samting i no klia yet",
+    "nextCheck": "Wanem samting yu ken sekim",
+    "modelKnowledge": "Tok bilong AI we i no gat wanpela buk bilong sapotim i kam wantaim.",
+    "diagnosticSources": "Ol buk bilong helpim luksave long mak bilong sik",
+    "sourcesLimit": "Ol dispela buk i tok long mak bilong sik. Ol i no riviuim keis bilong yu o tok orait long marasin bilong ples bilong yu. Ol nem na hap bilong ol buk i stap long Inglis.",
+    "screeningStatus": "Tok bilong sek bilong AI",
+    "possibleCauseStatus": "AI i painim sampela as i ken kamap",
+    "noCauseStatus": "AI i no inap makim klia as bilong senis"
   }
 }

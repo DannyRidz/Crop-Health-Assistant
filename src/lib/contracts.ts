@@ -2,7 +2,11 @@ import { z } from "zod";
 import { COUNTRY_CODES } from "./countries";
 
 export const REGISTRY_VERSION = "coffee-pending-1";
-export const PROMPT_VERSION = "coffee-observations-2";
+export const SCHEMA_VERSION = 2;
+export const POLICY_VERSION = "coffee-analysis-3";
+export const GUIDANCE_VERSION = "coffee-guidance-empty-1";
+export const QUESTION_BANK_VERSION = "coffee-questions-empty-1";
+export const PROMPT_VERSION = "coffee-analysis-4";
 export const GLOSSARY_VERSION = "draft-1";
 export const STARTER_IDS = ["onset", "spread", "symptoms", "care_change"] as const;
 export const ANSWER_OPTIONS = {
@@ -46,7 +50,7 @@ export type StarterAnswer = z.infer<typeof answerSchema>;
 export const photoMetaSchema = z.strictObject({ id: z.uuid(), side: z.enum(["upper", "underside", "unknown"]) });
 export type PhotoMeta = z.infer<typeof photoMetaSchema>;
 export const assessInputSchema = z.strictObject({
-  schemaVersion: z.literal(1), assessmentId: z.uuid(), inputRevision: z.number().int().positive(),
+  schemaVersion: z.literal(SCHEMA_VERSION), assessmentId: z.uuid(), inputRevision: z.number().int().positive(), photoRevision: z.number().int().positive(),
   contextRevision: z.number().int().positive(), phase: z.enum(["preliminary", "final"]),
   photos: z.array(photoMetaSchema).min(1).max(2),
   starterAnswers: z.array(answerSchema).max(4),
@@ -61,25 +65,44 @@ export const assessInputSchema = z.strictObject({
 });
 export type AssessInput = z.infer<typeof assessInputSchema>;
 
-export const observationSchema = z.strictObject({ id: plainText(40), photoIds: z.array(z.uuid()).min(1).max(2), textEn: plainText(240) });
+export const observationSchema = z.strictObject({ id: plainText(40), photoIds: z.array(z.uuid()).min(1).max(2), textEn: plainText(240),
+  feature: z.enum(["discolouration", "spots_or_patches", "surface_material", "edge_damage", "shape_change", "no_distinct_change", "unclear"]) });
+export const conflictSchema = z.strictObject({ textEn: plainText(240), observationIds: z.array(plainText(40)).max(6) });
+export const causeSchema = z.strictObject({
+  nameEn: plainText(80), whyEn: plainText(240), uncertaintyEn: plainText(240), nextCheckEn: plainText(240),
+  observationIds: z.array(plainText(40)).min(1).max(6),
+  sourceIds: z.array(z.enum(["aps_coffee_rust", "hawaii_leaf_identification"])).max(2),
+});
 export const modelSchema = z.strictObject({
-  schemaVersion: z.literal(1),
+  schemaVersion: z.literal(SCHEMA_VERSION),
   photoChecks: z.array(z.strictObject({ photoId: z.uuid(), quality: z.enum(["usable", "blurry", "dark", "incomplete"]), crop: z.enum(["coffee", "other", "unclear"]), part: z.enum(["leaf", "other", "unclear"]) })).min(1).max(2),
   observations: z.array(observationSchema).max(6),
   candidateStatus: z.enum(["more_information_needed", "unable_to_assess", "no_clear_supported_signs"]),
   candidateConditionId: z.null(), evidenceObservationIds: z.array(plainText(40)).max(6),
   limitations: z.array(plainText(240)).max(4), missingInfo: z.array(plainText(240)).max(3),
-  followUpQuestionIds: z.array(z.string()).max(0), contradictions: z.array(plainText(240)).max(3),
+  followUpQuestionIds: z.array(z.string()).max(0), contradictions: z.array(conflictSchema).max(3),
+  possibleCauses: z.array(causeSchema).max(3), causeAssessmentEn: plainText(300),
 });
 export type ModelOutput = z.infer<typeof modelSchema>;
 export type Observation = z.infer<typeof observationSchema>;
 export type ScreeningStatus = "possible_supported_issue" | "more_information_needed" | "unable_to_assess" | "no_clear_supported_signs";
-export type Preliminary = { assessmentId: string; inputRevision: number; photoChecks: ModelOutput["photoChecks"]; observations: Observation[]; limitations: string[]; missingInfo: string[]; followUpQuestionIds: string[]; textHash: string };
+export type ContentVersions = { schemaVersion: number; promptVersion: string; policyVersion: string; registryVersion: string };
+export function currentContent(value: Partial<ContentVersions>): boolean {
+  return value.schemaVersion === SCHEMA_VERSION && value.promptVersion === PROMPT_VERSION && value.policyVersion === POLICY_VERSION && value.registryVersion === REGISTRY_VERSION;
+}
+export type Preliminary = ContentVersions & { assessmentId: string; inputRevision: number; photoRevision: number; questionBankVersion: string; photoChecks: ModelOutput["photoChecks"]; observations: Observation[]; limitations: string[]; missingInfo: string[]; contradictions: ModelOutput["contradictions"]; followUpQuestionIds: string[]; textHash: string };
+export type VisualFinding = "changes_visible" | "no_clear_changes" | "insufficient_evidence";
+export type VisualReason = "changes" | "no_changes" | "unsupported" | "unclear_subject" | "quality" | "unclear_observations";
+export type CollectionPrompt = { id: "replace_unclear_photos" | "add_upper" | "add_underside" | "identify_sides" | "record_onset" | "record_spread"; photoIds: string[]; questionId: "onset" | "spread" | null };
 export type CheckedResult = {
   id: string; assessmentId: string; assessedAt: string; inputRevision: number; status: ScreeningStatus;
   conditionId: string | null; observations: Observation[]; evidenceIds: string[]; limitations: string[];
   missingInfo: string[]; coverageUnavailable: boolean; unsupported: boolean; registryVersion: string;
-  promptVersion: string; modelId: string; textHash: string;
+  schemaVersion: number; policyVersion: string; promptVersion: string; modelId: string; textHash: string;
+  photoChecks: ModelOutput["photoChecks"]; contradictions: ModelOutput["contradictions"];
+  visualFinding: VisualFinding; visualReason: VisualReason; keyObservationIds: string[]; excludedPhotoIds: string[];
+  coverageReason: "not_available"; collectionPrompts: CollectionPrompt[];
+  possibleCauses: ModelOutput["possibleCauses"]; causeAssessmentEn: string;
 };
 export type GuidanceEntry = {
   id: string; version: string; crop: "coffee"; plantPart: "leaf"; conditionId: string;
@@ -97,7 +120,7 @@ export type GuidanceEntry = {
 export type GuidanceSnapshot = {
   resultId: string; contextRevision: number; region: RegionContext; guidanceIds: string[];
   guidanceAvailability: "available" | "region_unknown" | "no_regional_match" | "no_approved_content";
-  guidanceLimitations: string[]; entries: GuidanceEntry[]; registryVersion: string;
+  guidanceLimitations: string[]; entries: GuidanceEntry[]; registryVersion: string; guidanceVersion: string;
 };
 export type Signed<T> = { data: T; envelope: string };
 export type AssessResponse = { phase: "preliminary"; preliminary: Signed<Preliminary>; remaining: number } |

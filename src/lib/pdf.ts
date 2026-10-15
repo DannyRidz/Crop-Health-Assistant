@@ -77,22 +77,22 @@ export async function createPdf(report: ReportData, fontBytes: Uint8Array): Prom
     return { width: image.width * ratio, height: image.height * ratio };
   });
   const rowHeight = images.length ? Math.max(...sizes.map((size) => size.height)) : 0;
-  for (const [index, section] of report.sections.entries()) {
+  for (const section of report.sections) {
     const headingHeight = blockHeight(section.title, 14) + 8;
     const firstHeight = section.lines.length ? blockHeight(section.lines[0], 12) : 0;
     const keepHeight = headingHeight + firstHeight;
-    const sectionHeight = headingHeight + section.lines.reduce((height, text) => height + blockHeight(text, 12), 0) + (index === 1 && images.length ? rowHeight + 42 : 0);
-    if ((sectionHeight <= 240 || index === 1) && sectionHeight <= contentTop - margin - 24) room(sectionHeight);
+    const sectionHeight = headingHeight + section.lines.reduce((height, text) => height + blockHeight(text, 12), 0) + (section.includePhotos && images.length ? rowHeight + 42 : 0);
+    if ((sectionHeight <= 240 || section.includePhotos) && sectionHeight <= contentTop - margin - 24) room(sectionHeight);
     else room(keepHeight <= contentTop - margin - 24 ? keepHeight : headingHeight + 36);
     y -= 8; draw(section.title, 14);
     for (const text of section.lines) draw(text);
-    if (index === 1) {
+    if (section.includePhotos) {
       if (images.length) {
         room(rowHeight + 42);
         const labelY = y - 17;
         for (const [photoIndex, image] of images.entries()) {
           const x = margin + photoIndex * (columnWidth + 16);
-          page.drawText(checkText(`${report.photoLabel} ${photoIndex + 1}`), { x, y: labelY, size: 11.5, font, color: earth });
+          page.drawText(checkText(report.photoCaptions?.[photoIndex] ?? `${report.photoLabel} ${photoIndex + 1}`), { x, y: labelY, size: 11.5, font, color: earth });
           const imageY = labelY - 8 - sizes[photoIndex].height;
           page.drawImage(image, { x, y: imageY, width: sizes[photoIndex].width, height: sizes[photoIndex].height });
           page.drawRectangle({ x, y: imageY, width: sizes[photoIndex].width, height: sizes[photoIndex].height, borderColor: rule, borderWidth: .5 });
