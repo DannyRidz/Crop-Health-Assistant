@@ -998,5 +998,21 @@
   "assessment.noCauseStatus": {
     "en": "authored",
     "tpi": "draft"
+  },
+  "assessment.possibleCauseLabel": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.reportReady": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.reportContents": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.reportUse": {
+    "en": "authored",
+    "tpi": "draft"
   }
 }

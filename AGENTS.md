@@ -70,3 +70,5 @@ The user authorised [useful reports and AI led explanations](docs/specs/0003-use
 Schema 2 retains final photo checks and separates visual findings, AI hypotheses and regional guidance. Photo revisions change only with photo or stated side edits; answer edits preserve the bound preliminary photo check. Report sections explicitly mark includePhotos; do not hardcode photo placement to a section index. Keep every cause explanation, source scope and uncertainty in both language exports. Diagnostic source links open in another tab to preserve temporary assessment data.
 
 During PDF export, keep language controls disabled and guard changeLocale so changing language cannot silently cancel a download. Preserve the stale export epoch check and restore controls after either success or failure.
+
+Report previews and PDF exports share section layout and label metadata. Preserve real bold headings, hanging bullet points, separate farmer answers, compact record details and section titles on continuation pages. PDF export needs both bundled Noto Sans Regular and Bold fonts; keep their licence notices.

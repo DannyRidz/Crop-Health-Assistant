@@ -135,7 +135,7 @@ Specs: [frontend](../specs/0001-coffee-mvp/design.md), [verification](../specs/0
 - [ ] Verify enhanced report journey: `/check verify useful screening reports`
 - [x] Test enhanced report content: `/test useful screening reports`
 
-15 October verification: [real public report checks](../validation/useful-reports-2026-10-15.md) passed for both supplied photos, English and draft Tok Pisin exports and native Chrome reflow. Physical phone validation, fluent review and the remaining reviewed screening work are still pending, so feature 8 and the broad milestones remain in progress.
+15 October verification: [real public report checks](../validation/useful-reports-2026-10-15.md) passed for both supplied photos, English and draft Tok Pisin exports and native Chrome reflow. Physical phone validation, fluent review and the remaining reviewed screening work are still pending, so feature 8 and the broad milestones remain in progress. The [plain English and PDF refinement checks](../validation/plain-report-checks-2026-10-15.md) also passed on revision coffee-health-demo-00016-ltz, including both language exports with actual bold headings and bullet points.
 
 ### 9. Evaluation and submission, planned
 

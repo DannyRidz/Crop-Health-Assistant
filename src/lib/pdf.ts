@@ -1,12 +1,13 @@
-import { PDFDocument, PDFName, PDFString, rgb } from "pdf-lib";
+import { PDFDocument, PDFName, PDFString, rgb, type PDFFont } from "pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
 import type { ReportData } from "./report";
 
-export async function createPdf(report: ReportData, fontBytes: Uint8Array): Promise<Uint8Array> {
+export async function createPdf(report: ReportData, fontBytes: Uint8Array, boldFontBytes: Uint8Array): Promise<Uint8Array> {
   const pdf = await PDFDocument.create();
   pdf.setTitle(report.title); pdf.setAuthor("Crop Health Assistant"); pdf.setSubject("Initial coffee leaf screening, not a confirmed diagnosis");
   pdf.registerFontkit(fontkit);
   const font = await pdf.embedFont(fontBytes, { subset: true });
+  const bold = await pdf.embedFont(boldFontBytes, { subset: true });
   const characters = new Set(font.getCharacterSet());
   const checkText = (text: string) => {
     for (const char of text) if (char !== "\n" && char !== "\t" && !characters.has(char.codePointAt(0)!)) throw new Error("unsupported_font_character");
@@ -15,16 +16,16 @@ export async function createPdf(report: ReportData, fontBytes: Uint8Array): Prom
   const margin = 48, pageWidth = 595.28, pageHeight = 841.89, width = pageWidth - margin * 2;
   const earth = rgb(40 / 255, 51 / 255, 34 / 255);
   const rule = rgb(139 / 255, 157 / 255, 131 / 255);
-  function wrap(text: string, size: number): string[] {
+  function wrap(text: string, size: number, face: PDFFont = font, available = width): string[] {
     const lines: string[] = [];
     for (const paragraph of checkText(text).split("\n")) {
       let line = "";
       for (const word of paragraph.split(" ")) {
         const candidate = line ? `${line} ${word}` : word;
-        if (font.widthOfTextAtSize(candidate, size) <= width) { line = candidate; continue; }
+        if (face.widthOfTextAtSize(candidate, size) <= available) { line = candidate; continue; }
         if (line) { lines.push(line); line = ""; }
         for (const character of word) {
-          if (font.widthOfTextAtSize(line + character, size) > width && line) { lines.push(line); line = ""; }
+          if (face.widthOfTextAtSize(line + character, size) > available && line) { lines.push(line); line = ""; }
           line += character;
         }
       }
@@ -35,15 +36,23 @@ export async function createPdf(report: ReportData, fontBytes: Uint8Array): Prom
   let page = pdf.addPage([pageWidth, pageHeight]);
   let y = pageHeight - margin;
   let contentTop = y;
+  let continuationTitle: string | null = null;
   function pageHeader(first: boolean) {
     const size = first ? 18 : 10.5;
-    for (const line of wrap(report.title, size)) {
+    for (const line of wrap(report.title, size, bold)) {
       y -= size * 1.4;
-      page.drawText(line, { x: margin, y, size, font, color: earth });
+      page.drawText(line, { x: margin, y, size, font: bold, color: earth });
     }
     y -= 12;
     page.drawLine({ start: { x: margin, y }, end: { x: pageWidth - margin, y }, thickness: first ? 2 : 1, color: earth });
     y -= 18;
+    if (!first && continuationTitle) {
+      for (const line of wrap(continuationTitle, 11, bold)) {
+        y -= 16;
+        page.drawText(line, { x: margin, y, size: 11, font: bold, color: earth });
+      }
+      y -= 8;
+    }
     contentTop = y;
   }
   pageHeader(true);
@@ -52,23 +61,37 @@ export async function createPdf(report: ReportData, fontBytes: Uint8Array): Prom
       page = pdf.addPage([pageWidth, pageHeight]); y = pageHeight - margin; pageHeader(false);
     }
   };
-  const blockHeight = (text: string, size: number) => wrap(text, size).length * size * 1.45 + 6;
-  function draw(text: string, size = 12) {
-    const lineHeight = size * 1.45;
+  type TextBlock = { text: string; size: number; face: PDFFont; bullet?: boolean };
+  const blockHeight = (block: TextBlock) => wrap(block.text, block.size, block.face, width - (block.bullet ? 16 : 0)).length * block.size * 1.45 + 6;
+  function draw(block: TextBlock) {
+    const { text, size, face, bullet } = block;
+    const lineHeight = size * 1.45, x = margin + (bullet ? 16 : 0);
     const link = text.match(/https:\/\/[^\s,]+/)?.[0];
-    const lines = wrap(text, size);
-    const height = lines.length * lineHeight + 6;
-    // Keep short question and answer blocks together across page boundaries.
+    const lines = wrap(text, size, face, width - (bullet ? 16 : 0));
+    const height = blockHeight(block);
     if (height <= contentTop - margin - 24) room(height);
-    for (const line of lines) {
+    for (const [index, line] of lines.entries()) {
       room(lineHeight); y -= lineHeight;
-      page.drawText(line, { x: margin, y, size, font, color: earth });
+      if (bullet && index === 0) page.drawCircle({ x: margin + 4, y: y + size * .3, size: 2, color: earth });
+      page.drawText(line, { x, y, size, font: face, color: earth });
       if (link) {
-        const annotation = pdf.context.obj({ Type: "Annot", Subtype: "Link", Rect: [margin, y - 2, margin + font.widthOfTextAtSize(line, size), y + size], Border: [0, 0, 0], A: { S: "URI", URI: PDFString.of(link) } });
+        const annotation = pdf.context.obj({ Type: "Annot", Subtype: "Link", Rect: [x, y - 2, x + face.widthOfTextAtSize(line, size), y + size], Border: [0, 0, 0], A: { S: "URI", URI: PDFString.of(link) } });
         page.node.addAnnot(pdf.context.register(annotation));
       }
     }
     y -= 6;
+  }
+  function sectionBlocks(section: ReportData["sections"][number]): TextBlock[][] {
+    return section.lines.map((text) => {
+      const answer = section.layout === "answers";
+      const separator = answer ? text.indexOf("\n") : text.indexOf(": ");
+      const labelled = section.layout !== "metadata" && separator > 0 && (answer || section.labels?.includes(text.slice(0, separator)));
+      const size = section.layout === "metadata" ? 10.5 : 12;
+      return labelled ? [
+        { text: text.slice(0, separator), size: 11, face: bold },
+        { text: text.slice(separator + (answer ? 1 : 2)), size, face: font },
+      ] : [{ text, size, face: font, bullet: section.layout === "bullets" }];
+    });
   }
   const images = await Promise.all(report.photos.map(async (photo) => pdf.embedJpg(await photo.blob.arrayBuffer())));
   const columnWidth = images.length === 2 ? (width - 16) / 2 : width;
@@ -78,14 +101,24 @@ export async function createPdf(report: ReportData, fontBytes: Uint8Array): Prom
   });
   const rowHeight = images.length ? Math.max(...sizes.map((size) => size.height)) : 0;
   for (const section of report.sections) {
-    const headingHeight = blockHeight(section.title, 14) + 8;
-    const firstHeight = section.lines.length ? blockHeight(section.lines[0], 12) : 0;
+    continuationTitle = null;
+    const heading: TextBlock = { text: section.title, size: 15, face: bold };
+    const blocks = sectionBlocks(section);
+    const headingHeight = blockHeight(heading) + 14;
+    const firstHeight = blocks[0]?.reduce((sum, block) => sum + blockHeight(block), 0) ?? 0;
     const keepHeight = headingHeight + firstHeight;
-    const sectionHeight = headingHeight + section.lines.reduce((height, text) => height + blockHeight(text, 12), 0) + (section.includePhotos && images.length ? rowHeight + 42 : 0);
+    const sectionHeight = headingHeight + blocks.flat().reduce((sum, block) => sum + blockHeight(block), 0) + (section.includePhotos && images.length ? rowHeight + 42 : 0);
     if ((sectionHeight <= 240 || section.includePhotos) && sectionHeight <= contentTop - margin - 24) room(sectionHeight);
     else room(keepHeight <= contentTop - margin - 24 ? keepHeight : headingHeight + 36);
-    y -= 8; draw(section.title, 14);
-    for (const text of section.lines) draw(text);
+    y -= 14;
+    page.drawLine({ start: { x: margin, y }, end: { x: margin + 32, y }, thickness: 2, color: rule });
+    y -= 4; draw(heading);
+    continuationTitle = section.title;
+    for (const group of blocks) {
+      const height = group.reduce((sum, block) => sum + blockHeight(block), 0);
+      if (height <= contentTop - margin - 24) room(height);
+      for (const block of group) draw(block);
+    }
     if (section.includePhotos) {
       if (images.length) {
         room(rowHeight + 42);

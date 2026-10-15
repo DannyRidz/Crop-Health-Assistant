@@ -283,6 +283,10 @@
     "sourcesLimit": "Ol dispela buk i tok long mak bilong sik. Ol i no riviuim keis bilong yu o tok orait long marasin bilong ples bilong yu. Ol nem na hap bilong ol buk i stap long Inglis.",
     "screeningStatus": "Tok bilong sek bilong AI",
     "possibleCauseStatus": "AI i painim sampela as i ken kamap",
-    "noCauseStatus": "AI i no inap makim klia as bilong senis"
+    "noCauseStatus": "AI i no inap makim klia as bilong senis",
+    "possibleCauseLabel": "Samting i ken kamapim dispela, mipela i no save tru yet",
+    "reportReady": "Ripoti bilong sekim lip bilong yu",
+    "reportContents": "I gat ol poto, ol samting i ken kamapim hevi na samting yu ken sekim bihain.",
+    "reportUse": "I gat tu ol bekim bilong yu na samting AI i no inap save long en."
   }
 }

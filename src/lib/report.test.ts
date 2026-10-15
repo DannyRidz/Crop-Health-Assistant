@@ -47,4 +47,11 @@ describe("honest report snapshots, AC-10, AC-11, AC-13 and AC-19", () => {
     for (const expected of ["Synthetic tentative cause", "Synthetic visible pattern", "Inspect the underside.", "Photo 1", "Hawaii diagnostic publication", english.assessment.causeIntro]) expect(text).toContain(expected);
     expect(state.guidance!.data.entries).toEqual([]);
   });
+  it("marks findings as key points and keeps farmer answers separate from AI findings", () => {
+    const report = makeReport(withResult(), "en", undefined, false);
+    expect(report.sections.find((section) => section.title === english.assessment.keyFindings)?.layout).toBe("bullets");
+    expect(report.sections.find((section) => section.title === english.assessment.farmerRecord)?.layout).toBe("answers");
+    expect(report.sections[0].labels).toContain(english.assessment.countryValue);
+  });
+
 });

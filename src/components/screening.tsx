@@ -203,10 +203,10 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
     clearMessage(); setBusy("export");
     const frozen = report, capturedEpoch = epoch.current;
     try {
-      const response = await fetch("/fonts/NotoSans-Regular.ttf", { cache: "force-cache" });
-      if (!response.ok) throw new Error("exportError");
+      const [response, boldResponse] = await Promise.all(["Regular", "Bold"].map((weight) => fetch(`/fonts/NotoSans-${weight}.ttf`, { cache: "force-cache" })));
+      if (!response.ok || !boldResponse.ok) throw new Error("exportError");
       const { createPdf } = await import("@/lib/pdf");
-      const bytes = await createPdf(frozen, new Uint8Array(await response.arrayBuffer()));
+      const bytes = await createPdf(frozen, new Uint8Array(await response.arrayBuffer()), new Uint8Array(await boldResponse.arrayBuffer()));
       if (epoch.current !== capturedEpoch || !reportCurrent(memory.current)) return;
       const url = URL.createObjectURL(new Blob([bytes as BlobPart], { type: "application/pdf" }));
       const anchor = document.createElement("a"); anchor.href = url; anchor.download = frozen.filename; anchor.click();
@@ -330,7 +330,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
           <p>{t.causeIntro}</p><p><strong>{t.screeningStatus}: {state.result.data.possibleCauses.length ? t.possibleCauseStatus : t.noCauseStatus}</strong></p>
           {canShowGenerated && <p lang={generatedLocale}>{generated("causeAssessment", state.result.data.causeAssessmentEn)}</p>}
           {canShowGenerated && state.result.data.possibleCauses.map((cause, index) => <article className={styles.causeCard} key={index}>
-            <h3 lang={generatedLocale}>{generated(`cause:${index}:nameEn`, cause.nameEn)}</h3>
+            <p className={styles.small}>{t.possibleCauseLabel}</p><h3 lang={generatedLocale}>{generated(`cause:${index}:nameEn`, cause.nameEn)}</h3>
             <p><strong>{t.whyFits}: </strong><span lang={generatedLocale}>{generated(`cause:${index}:whyEn`, cause.whyEn)}</span></p>
             <p>{cause.observationIds.flatMap((id) => state.result!.data.observations.find((item) => item.id === id)?.photoIds ?? []).filter((id, i, ids) => ids.indexOf(id) === i).map((id) => `${t.photo} ${state.photos.findIndex((photo) => photo.id === id) + 1}`).join(", ")}</p>
             <p><strong>{t.causeUncertainty}: </strong><span lang={generatedLocale}>{generated(`cause:${index}:uncertaintyEn`, cause.uncertaintyEn)}</span></p>
@@ -358,7 +358,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
         <div className={styles.actions}><button className={styles.primary} disabled={!!busy || !reportCurrent(state)} onClick={() => apply({ type: "stage", stage: "report" })}>{t.prepareReport}</button><button disabled={!!busy} onClick={() => apply({ type: "stage", stage: "questions" })}>{t.editAnswers}</button><button disabled={!!busy} onClick={() => apply({ type: "stage", stage: "photos" })}>{t.backPhotos}</button></div>
       </>}
       {state.stage === "report" && <>
-        <p>{t.reportShort}</p><p className={styles.small}>{t.reportSummary}</p>{!state.result && <p className={styles.note}>{t.noResult}</p>}{translationPanel}
+        <section className={styles.collectionNotes}><h2>{t.reportReady}</h2>{state.result && <><p><strong>{findingHeadline(state.result.data, t)}</strong></p>{canShowGenerated && <p lang={generatedLocale}>{generated("causeAssessment", state.result.data.causeAssessmentEn)}</p>}<p className={styles.small}>{state.result.data.visualFinding === "no_clear_changes" ? t.healthCaveat : t.visualCaveat}</p></>}<p>{t.reportShort}</p><ul><li>{t.reportContents}</li><li>{t.reportUse}</li></ul><p className={styles.small}>{t.reportSummary}</p></section>{!state.result && <p className={styles.note}>{t.noResult}</p>}{translationPanel}
         <RegionControl value={state.region} text={t} locale={locale} disabled={!!busy} onChange={(region) => void updateGuidance(region)} />{guidancePanel}
         {!report && state.result && locale === "tpi" && !variant && !englishAllowed && <p>{t.noTranslationExport}</p>}
         {report && <details className={styles.preview} ref={reportDisclosure}><summary>{t.reportPreview}</summary><ReportPreview report={report} /></details>}

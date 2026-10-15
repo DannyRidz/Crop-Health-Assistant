@@ -6,6 +6,8 @@ import { createPdf } from "./pdf";
 import { makeReport } from "./report";
 import { assessmentFixture, withResult } from "./test-fixtures";
 
+const boldFont = await readFile(new URL("../../public/fonts/NotoSans-Bold.ttf", import.meta.url));
+
 describe("real PDF export, AC-13", () => {
   it("creates a readable multipage PDF with an embedded font and processed photo", async () => {
     const state = withResult(assessmentFixture());
@@ -13,17 +15,20 @@ describe("real PDF export, AC-13", () => {
     state.photos[0].blob = new Blob([jpeg]);
     state.answers = [{ questionId: "care_change", optionIds: ["not_sure"], detail: "Café " + "a".repeat(290) }];
     const font = await readFile(new URL("../../public/fonts/NotoSans-Regular.ttf", import.meta.url));
-    const bytes = await createPdf(makeReport(state, "tpi", undefined, true), font);
+    const bytes = await createPdf(makeReport(state, "tpi", undefined, true), font, boldFont);
     if (process.env.CROP_REPORT_VERIFICATION_OUTPUT) await writeFile(process.env.CROP_REPORT_VERIFICATION_OUTPUT, bytes);
     expect(new TextDecoder().decode(bytes.slice(0, 5))).toBe("%PDF-");
     expect(bytes.byteLength).toBeLessThan(3 * 1024 * 1024);
     const document = await PDFDocument.load(bytes);
     expect(document.getPageCount()).toBeGreaterThan(1);
+    const fontNames = document.context.enumerateIndirectObjects().flatMap(([, object]) => object instanceof PDFDict ? [object.get(PDFName.of("FontName"))?.toString() ?? ""] : []);
+    expect(fontNames.some((name) => name.includes("NotoSans-Bold"))).toBe(true);
+    expect(fontNames.some((name) => name.includes("NotoSans-Regular"))).toBe(true);
     expect(document.getTitle()).toContain("ripoti");
   });
   it("fails clearly instead of silently replacing unsupported farmer characters", async () => {
     const font = await readFile(new URL("../../public/fonts/NotoSans-Regular.ttf", import.meta.url));
-    await expect(createPdf({ reference: "test", title: "Test", sections: [{ title: "Farmer answer", lines: ["漢字"] }], photos: [], photoLabel: "Photo", filename: "test.pdf" }, font)).rejects.toThrow("unsupported_font_character");
+    await expect(createPdf({ reference: "test", title: "Test", sections: [{ title: "Farmer answer", lines: ["漢字"] }], photos: [], photoLabel: "Photo", filename: "test.pdf" }, font, boldFont)).rejects.toThrow("unsupported_font_character");
   });
   it("keeps both full-size photo references together on one printed page", async () => {
     const state = withResult(assessmentFixture());
@@ -31,7 +36,7 @@ describe("real PDF export, AC-13", () => {
     state.photos[0].blob = new Blob([jpeg]);
     state.photos.push({ ...state.photos[0], id: "7a3bdb4f-46a2-4704-ad91-6d41ce951eb2" });
     const font = await readFile(new URL("../../public/fonts/NotoSans-Regular.ttf", import.meta.url));
-    const document = await PDFDocument.load(await createPdf(makeReport(state, "en", undefined, false), font));
+    const document = await PDFDocument.load(await createPdf(makeReport(state, "en", undefined, false), font, boldFont));
     expect(document.getPages().some((page) => (page.node.Resources()?.lookupMaybe(PDFName.of("XObject"), PDFDict)?.keys().length ?? 0) === 2)).toBe(true);
   });
 });

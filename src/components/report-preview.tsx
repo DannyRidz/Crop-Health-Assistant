@@ -1,12 +1,18 @@
 import type { ReportData } from "@/lib/report";
 import styles from "./screening.module.css";
 
+function ReportLine({ text, labels = [], answer = false }: { text: string; labels?: string[]; answer?: boolean }) {
+  const separator = answer ? text.indexOf("\n") : text.indexOf(": ");
+  const hasLabel = separator > 0 && (answer || labels.includes(text.slice(0, separator)));
+  return hasLabel ? <><strong>{text.slice(0, separator)}{answer ? "" : ":"}</strong>{answer ? <br /> : " "}{text.slice(separator + (answer ? 1 : 2))}</> : <>{text}</>;
+}
+
 export function ReportPreview({ report }: { report: ReportData }) {
   return <article id="report-preview" className={styles.reportPreview}>
     <h2>{report.title}</h2>
     {report.sections.map((section, index) => <section key={index}>
       <h3>{section.title}</h3>
-      {section.lines.map((line, lineIndex) => <p key={lineIndex} style={{ whiteSpace: "pre-wrap" }} lang={lineIndex >= (section.generatedFrom ?? 0) ? section.language : undefined}>{line}</p>)}
+      {section.layout === "bullets" ? <ul>{section.lines.map((line, lineIndex) => <li key={lineIndex} lang={lineIndex >= (section.generatedFrom ?? 0) ? section.language : undefined}><ReportLine text={line} labels={section.labels} /></li>)}</ul> : section.lines.map((line, lineIndex) => <p key={lineIndex} style={{ whiteSpace: "pre-wrap" }} lang={lineIndex >= (section.generatedFrom ?? 0) ? section.language : undefined}><ReportLine text={line} labels={section.labels} answer={section.layout === "answers"} /></p>)}
       {section.includePhotos && <div className={styles.photoGrid}>{report.photos.map((photo, photoIndex) => <figure key={photo.id}>
         {/* Temporary local blobs must retain real leaf edges in the preview. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
