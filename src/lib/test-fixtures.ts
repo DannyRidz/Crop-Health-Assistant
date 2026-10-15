@@ -1,3 +1,4 @@
+import { CARE_VERSION, PRODUCT_VERSION } from "./advice-contracts";
 // Synthetic policy fixtures, never agricultural evidence or shipped sample cases.
 import { newAssessment, type Assessment } from "./assessment";
 import { REGISTRY_VERSION, PROMPT_VERSION, POLICY_VERSION, SCHEMA_VERSION, QUESTION_BANK_VERSION, type CheckedResult, type ModelOutput, type GuidanceEntry } from "./contracts";
@@ -16,6 +17,7 @@ export function assessmentFixture(): Assessment {
 }
 export function resultFixture(state: Assessment): CheckedResult {
   return { id: "238ba37b-83b3-4d71-85d4-7562ace070de", assessmentId: state.id, assessedAt: "2026-10-12T04:01:00.000Z", inputRevision: state.inputRevision,
+    careVersion: CARE_VERSION, productVersion: PRODUCT_VERSION, careSelections: [], adviceIssues: [], photoSides: state.photos.map(({ id, side }) => ({ id, side })),
     status: "unable_to_assess", conditionId: null, observations: modelFixture().observations, evidenceIds: ["visible_1"], limitations: modelFixture().limitations,
     missingInfo: [], coverageUnavailable: true, unsupported: false, registryVersion: REGISTRY_VERSION, promptVersion: PROMPT_VERSION, schemaVersion: SCHEMA_VERSION, policyVersion: POLICY_VERSION, photoChecks: modelFixture().photoChecks, contradictions: [], visualFinding: "changes_visible", visualReason: "changes", keyObservationIds: ["visible_1"], excludedPhotoIds: [], coverageReason: "not_available", collectionPrompts: [], possibleCauses: [], causeAssessmentEn: "Synthetic evidence does not narrow the cause.", modelId: "gemini-3.8-flash", textHash: "a".repeat(64) };
 }
@@ -33,5 +35,5 @@ export function guidanceFixture(): GuidanceEntry {
 }
 
 export function preliminaryFixture(state = assessmentFixture()) {
-  return { ...modelFixture(), assessmentId: state.id, inputRevision: state.inputRevision, photoRevision: state.photoRevision, promptVersion: PROMPT_VERSION, policyVersion: POLICY_VERSION, registryVersion: REGISTRY_VERSION, questionBankVersion: QUESTION_BANK_VERSION, textHash: "test" };
+  return { ...modelFixture(), careVersion: CARE_VERSION, productVersion: PRODUCT_VERSION, assessmentId: state.id, inputRevision: state.inputRevision, photoRevision: state.photoRevision, promptVersion: PROMPT_VERSION, policyVersion: POLICY_VERSION, registryVersion: REGISTRY_VERSION, questionBankVersion: QUESTION_BANK_VERSION, textHash: "test" };
 }

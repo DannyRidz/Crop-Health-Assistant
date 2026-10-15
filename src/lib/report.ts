@@ -1,3 +1,7 @@
+import { careActions } from "@/content/care-actions";
+import { chemicalReportProduct } from "./ai-advice";
+import { chemicalLines } from "./chemical-copy";
+import type { ChemicalContext } from "./advice-contracts";
 import english from "@/content/locales/en.json";
 import tokPisin from "@/content/locales/tpi.json";
 import type { Assessment } from "./assessment";
@@ -8,9 +12,9 @@ import { countryName } from "./countries";
 import { findingHeadline } from "./result-copy";
 import { diagnosticReferences } from "@/content/diagnostic-references";
 
-export type ReportSection = { title: string; lines: string[]; language?: Locale; generatedFrom?: number; includePhotos?: boolean; layout?: "bullets" | "answers" | "metadata"; labels?: string[] };
+export type ReportSection = { title: string; lines: string[]; language?: Locale; generatedFrom?: number; includePhotos?: boolean; chemical?: boolean; layout?: "bullets" | "answers" | "metadata"; labels?: string[] };
 export type ReportData = { reference: string; title: string; sections: ReportSection[]; photos: LocalPhoto[]; photoLabel: string; photoCaptions?: string[]; filename: string };
-export function makeReport(state: Assessment, locale: Locale, variant: TextVariant | undefined, englishAccepted: boolean): ReportData {
+export function makeReport(state: Assessment, locale: Locale, variant: TextVariant | undefined, englishAccepted: boolean, chemicalContext: ChemicalContext | null = null, verifiedDigest: string | null = null): ReportData {
   if (!reportCurrent(state)) throw new Error("regionStale");
   const t = (locale === "tpi" ? tokPisin : english).assessment;
   const result = state.result?.data;
@@ -45,6 +49,19 @@ export function makeReport(state: Assessment, locale: Locale, variant: TextVaria
     }
     if (result.collectionPrompts.length) sections.push({ title: t.nextInformation, lines: [...result.collectionPrompts.map((prompt) => `${t.collection[prompt.id]}${prompt.photoIds.length ? ` (${prompt.photoIds.map((id) => `${t.photo} ${state.photos.findIndex((photo) => photo.id === id) + 1}`).join(", ")})` : ""}`), t.collectionHelp, t.officerPhotoNote] });
   }
+  const advice = state.guidance?.data.aiAdvice;
+  const actions = advice ? advice.careIds.flatMap((id) => careActions.filter((action) => action.id === id)) : [];
+  if (result && advice) {
+    sections.push({ title: t.careTitle, lines: actions.length ? [t.careUnreviewed, ...actions.map((action) => t.careActions[action.textKey]), t.careHelper, t.careSourceScope] : [advice.careAvailability === "region_unknown" ? t.careRegionUnknown : advice.careAvailability === "no_regional_source" ? t.careNoRegion : t.careNone] });
+    if (actions.length) sections.push({ title: t.source, language: "en", lines: [actions[0].sourceTitle, ...new Set(actions.map((action) => action.section)), actions[0].sourceUrl] });
+    if (advice.issues.length) sections.push({ title: t.uncertain, lines: [t.careInvalid] });
+    const product = chemicalReportProduct(result, advice, chemicalContext, state.region, state.contextRevision, locale, Date.now(), verifiedDigest);
+    sections.push(product ? { title: english.assessment.chemicalTitle, language: "en", chemical: true, lines: [
+      ...(locale === "tpi" ? [t.chemicalEnglishReport] : []), english.assessment.careUnreviewed, `${product.name} (${product.concentration}, ${product.formulation})`, `${product.activeIngredient}, ${product.registrationId}`, english.assessment.chemicalCaveat,
+      ...chemicalLines(product).map((line) => `${line.label}: ${line.text}`), `${english.assessment.chemicalRevision}: ${product.labelRevision}, ${product.labelSection}`, product.labelUrl, `${english.assessment.chemicalVerification}: ${product.verifiedAt}`,
+      `${english.assessment.chemicalChecked}: ${new Date(advice.checkedAt).toISOString()}`, `${english.assessment.chemicalRegistration}: ${product.registrationUrl}`,
+    ], labels: chemicalLines(product).map((line) => line.label) } : { title: t.chemicalTitle, lines: [advice.chemical.reason === "region_unknown" ? t.chemicalUnknown : advice.chemical.reason === "insufficient_evidence" ? t.chemicalNoEvidence : t.chemicalUnavailable] });
+  }
   sections.push({ title: t.photos, includePhotos: true, lines: [`${t.coffee}, ${t.leaf}`, t.processed,
     ...(result ? result.photoChecks.map((check) => `${t.photo} ${state.photos.findIndex((photo) => photo.id === check.photoId) + 1}: ${t.quality}, ${t[check.quality]}; ${t.cropPart}, ${t[check.crop]}, ${t[check.part]}`) : []),
     ...(result?.excludedPhotoIds.length ? [`${t.excludedPhoto}: ${result.excludedPhotoIds.map((id) => `${t.photo} ${state.photos.findIndex((photo) => photo.id === id) + 1}`).join(", ")}`] : [])] });
@@ -66,15 +83,15 @@ export function makeReport(state: Assessment, locale: Locale, variant: TextVaria
     sections.push({ title: t.diagnosticSources, lines: [t.sourcesLimit] });
     sections.push({ title: t.source, language: "en", lines: sourceIds.flatMap((id, index) => { const source = diagnosticReferences[id]; return [`${index + 1}. ${source.title}`, `${source.section}. ${source.geography}.`, source.url]; }) });
   }
-  sections.push({ title: t.guidance, lines: entries.length ? entries.flatMap((entry) => [entry.text, `${t.reviewGeography}: ${entry.reviewGeography}`, ...(entry.applicableCountryCodes.includes("PG") ? [t.pngReviewed] : []), ...entry.regionalLimitations, `${t.source}: ${entry.sourceTitle}, ${entry.sectionOrPage}, ${entry.sourceUrl}`, `${entry.agriculturalReviewDate}, ${entry.regionalReviewDate}`, entry.attribution]) : [state.region.response === "known" ? t.noRegional : t.unknownRegional] });
+  if (entries.length || !actions.length) sections.push({ title: t.guidance, lines: entries.length ? entries.flatMap((entry) => [entry.text, `${t.reviewGeography}: ${entry.reviewGeography}`, ...(entry.applicableCountryCodes.includes("PG") ? [t.pngReviewed] : []), ...entry.regionalLimitations, `${t.source}: ${entry.sourceTitle}, ${entry.sectionOrPage}, ${entry.sourceUrl}`, `${entry.agriculturalReviewDate}, ${entry.regionalReviewDate}`, entry.attribution]) : [actions.length ? t.careUnreviewed : state.region.response === "known" ? t.noRegional : t.unknownRegional] });
   sections.push({ title: t.limitsHeading, lines: [t.pngPending, t.share, t.temporary] });
-  sections.push({ title: t.demonstration, lines: [`${t.created}: ${formatDate(state.createdAt)}`, `${t.timezone}: ${state.timezone}`, `${t.language}: ${locale === "tpi" ? "Tok Pisin" : "English"}`, ...(result ? [`${t.reportVersions}: ${result.schemaVersion}, ${result.promptVersion}, ${result.policyVersion}, ${result.registryVersion}`] : [])] });
+  sections.push({ title: t.demonstration, lines: [`${t.created}: ${formatDate(state.createdAt)}`, `${t.timezone}: ${state.timezone}`, `${t.language}: ${locale === "tpi" ? "Tok Pisin" : "English"}`, ...(result ? [`${t.reportVersions}: ${result.schemaVersion}, ${result.promptVersion}, ${result.policyVersion}, ${result.registryVersion}, ${result.careVersion}, ${result.productVersion}`] : [])] });
   const bulletTitles = [t.keyFindings, t.nextInformation, t.aiObservations, t.uncertain, t.aiUncertainty, t.missing, t.limitsHeading];
   for (const section of sections) {
     if (bulletTitles.includes(section.title)) section.layout = "bullets";
     if (section.title === t.farmerRecord) section.layout = "answers";
     if (section.title === t.demonstration) section.layout = "metadata";
-    section.labels = [t.reference, t.assessed, t.countryValue, t.screeningStatus, t.whyFits, t.causeUncertainty, t.nextCheck, t.source, t.created, t.timezone, t.language, t.reportVersions];
+    section.labels = [...(section.labels ?? []), t.reference, t.assessed, t.countryValue, t.screeningStatus, t.whyFits, t.causeUncertainty, t.nextCheck, t.source, t.created, t.timezone, t.language, t.reportVersions];
   }
   return { reference: state.id, title: t.reportHeading, sections, photos: state.photos.slice(), photoLabel: t.photo, photoCaptions: state.photos.map((photo, index) => `${t.photo} ${index + 1}: ${t[photo.side]}`), filename: `coffee-screening-${state.id.slice(0, 8)}-${locale}.pdf` };
 }

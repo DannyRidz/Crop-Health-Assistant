@@ -1,3 +1,4 @@
+import { CARE_VERSION, PRODUCT_VERSION } from "./advice-contracts";
 import type { CheckedResult, GuidanceSnapshot, LocalPhoto, Preliminary, RegionContext, Signed, StarterAnswer } from "./contracts";
 import { GUIDANCE_VERSION, REGISTRY_VERSION, UNKNOWN_REGION, currentContent, regionSchema } from "./contracts";
 
@@ -39,5 +40,5 @@ export function assessmentReducer(state: Assessment, action: AssessmentAction): 
 export function reportCurrent(state: Assessment): boolean {
   return regionSchema.safeParse(state.region).success && (!state.result || (currentContent(state.result.data) && state.result.data.inputRevision === state.inputRevision &&
     state.guidance?.data.resultId === state.result.data.id && state.guidance.data.contextRevision === state.contextRevision &&
-    state.guidance.data.registryVersion === REGISTRY_VERSION && state.guidance.data.guidanceVersion === GUIDANCE_VERSION && JSON.stringify(state.guidance.data.region) === JSON.stringify(state.region)));
+    state.guidance.data.registryVersion === REGISTRY_VERSION && state.guidance.data.guidanceVersion === GUIDANCE_VERSION && state.guidance.data.aiAdvice.careVersion === CARE_VERSION && state.guidance.data.aiAdvice.productVersion === PRODUCT_VERSION && JSON.stringify(state.guidance.data.region) === JSON.stringify(state.region)));
 }

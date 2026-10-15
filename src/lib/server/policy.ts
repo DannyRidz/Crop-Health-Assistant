@@ -1,3 +1,6 @@
+import { CARE_VERSION, PRODUCT_VERSION } from "../advice-contracts";
+import { sanitizeAdvice, checkedPhotoSides } from "../ai-advice";
+import type { PhotoMeta } from "../contracts";
 import { randomUUID } from "node:crypto";
 import type { CheckedResult, ModelOutput } from "../contracts";
 import { PROMPT_VERSION, REGISTRY_VERSION, POLICY_VERSION, SCHEMA_VERSION, type ContentVersions } from "../contracts";
@@ -33,19 +36,21 @@ export function textValues(value: { observations: { id: string; textEn: string }
   ]);
 }
 export function canonicalTextHash(value: Parameters<typeof textValues>[0] & { inputRevision: number }): string {
-  return digest(JSON.stringify({ revision: value.inputRevision, schema: SCHEMA_VERSION, prompt: PROMPT_VERSION, policy: POLICY_VERSION, registry: REGISTRY_VERSION, values: textValues(value) }));
+  return digest(JSON.stringify({ revision: value.inputRevision, schema: SCHEMA_VERSION, prompt: PROMPT_VERSION, policy: POLICY_VERSION, registry: REGISTRY_VERSION, care: CARE_VERSION, products: PRODUCT_VERSION, advice: { selections: (value as Partial<CheckedResult>).careSelections, targets: value.possibleCauses?.map((cause) => ({ targetId: cause.targetId, targetEvidence: cause.targetEvidence })) }, values: textValues(value) }));
 }
 export function assertCurrentVersions(value: Partial<ContentVersions>) {
-  if (value.schemaVersion !== SCHEMA_VERSION || value.promptVersion !== PROMPT_VERSION || value.policyVersion !== POLICY_VERSION || value.registryVersion !== REGISTRY_VERSION)
+  if (value.schemaVersion !== SCHEMA_VERSION || value.promptVersion !== PROMPT_VERSION || value.policyVersion !== POLICY_VERSION || value.registryVersion !== REGISTRY_VERSION || value.careVersion !== CARE_VERSION || value.productVersion !== PRODUCT_VERSION)
     throw new ApiError(409, "assessment_version_changed");
 }
-export function checkedResult(output: ModelOutput, assessmentId: string, inputRevision: number, modelId: string): CheckedResult {
+export function checkedResult(output: ModelOutput, assessmentId: string, inputRevision: number, modelId: string, photos: PhotoMeta[] = []): CheckedResult {
+  output = sanitizeAdvice(output);
   const limitations = output.limitations;
   const result: CheckedResult = { id: randomUUID(), assessmentId, assessedAt: new Date().toISOString(), inputRevision,
     status: "unable_to_assess", conditionId: null, observations: output.observations, evidenceIds: output.evidenceObservationIds,
     limitations, missingInfo: output.missingInfo, coverageUnavailable: true,
     unsupported: output.photoChecks.some((item) => item.crop === "other" || item.part === "other"),
     registryVersion: REGISTRY_VERSION, promptVersion: PROMPT_VERSION, schemaVersion: SCHEMA_VERSION, policyVersion: POLICY_VERSION,
+    careVersion: CARE_VERSION, productVersion: PRODUCT_VERSION, careSelections: output.careSelections ?? [], adviceIssues: output.adviceIssues ?? [], photoSides: checkedPhotoSides(photos),
     modelId, textHash: "", photoChecks: output.photoChecks, contradictions: output.contradictions,
     ...visualFindings(output), coverageReason: "not_available", collectionPrompts: [], possibleCauses: output.possibleCauses, causeAssessmentEn: output.causeAssessmentEn };
   // AI hypotheses are separate from independently evaluated condition screening.

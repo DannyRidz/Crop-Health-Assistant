@@ -1,12 +1,13 @@
 import { z } from "zod";
+import { careSelectionSchema, targetEvidenceSchema, TARGET_IDS, CARE_VERSION, PRODUCT_VERSION, type AdviceIssue, type AdviceSnapshot, type CareSelection } from "./advice-contracts";
 import { COUNTRY_CODES } from "./countries";
 
 export const REGISTRY_VERSION = "coffee-pending-1";
-export const SCHEMA_VERSION = 2;
-export const POLICY_VERSION = "coffee-analysis-3";
+export const SCHEMA_VERSION = 3;
+export const POLICY_VERSION = "coffee-analysis-4";
 export const GUIDANCE_VERSION = "coffee-guidance-empty-1";
 export const QUESTION_BANK_VERSION = "coffee-questions-empty-1";
-export const PROMPT_VERSION = "coffee-analysis-6";
+export const PROMPT_VERSION = "coffee-analysis-7";
 export const GLOSSARY_VERSION = "draft-1";
 export const STARTER_IDS = ["onset", "spread", "symptoms", "care_change"] as const;
 export const ANSWER_OPTIONS = {
@@ -69,6 +70,7 @@ export const observationSchema = z.strictObject({ id: plainText(40), photoIds: z
   feature: z.enum(["discolouration", "spots_or_patches", "surface_material", "edge_damage", "shape_change", "no_distinct_change", "unclear"]) });
 export const conflictSchema = z.strictObject({ textEn: plainText(240), observationIds: z.array(plainText(40)).max(6) });
 export const causeSchema = z.strictObject({
+  targetId: z.enum(TARGET_IDS).nullable().optional(), targetEvidence: z.array(targetEvidenceSchema).max(2).optional(),
   nameEn: plainText(80), whyEn: plainText(240), uncertaintyEn: plainText(240), nextCheckEn: plainText(240),
   observationIds: z.array(plainText(40)).min(1).max(6),
   sourceIds: z.array(z.enum(["aps_coffee_rust", "hawaii_leaf_identification"])).max(2),
@@ -82,13 +84,14 @@ export const modelSchema = z.strictObject({
   limitations: z.array(plainText(240)).max(4), missingInfo: z.array(plainText(240)).max(3),
   followUpQuestionIds: z.array(z.string()).max(0), contradictions: z.array(conflictSchema).max(3),
   possibleCauses: z.array(causeSchema).max(3), causeAssessmentEn: plainText(300),
+  careSelections: z.array(careSelectionSchema).max(3).optional(),
 });
-export type ModelOutput = z.infer<typeof modelSchema>;
+export type ModelOutput = z.infer<typeof modelSchema> & { adviceIssues?: AdviceIssue[] };
 export type Observation = z.infer<typeof observationSchema>;
 export type ScreeningStatus = "possible_supported_issue" | "more_information_needed" | "unable_to_assess" | "no_clear_supported_signs";
-export type ContentVersions = { schemaVersion: number; promptVersion: string; policyVersion: string; registryVersion: string };
+export type ContentVersions = { schemaVersion: number; promptVersion: string; policyVersion: string; registryVersion: string; careVersion: string; productVersion: string };
 export function currentContent(value: Partial<ContentVersions>): boolean {
-  return value.schemaVersion === SCHEMA_VERSION && value.promptVersion === PROMPT_VERSION && value.policyVersion === POLICY_VERSION && value.registryVersion === REGISTRY_VERSION;
+  return value.schemaVersion === SCHEMA_VERSION && value.promptVersion === PROMPT_VERSION && value.policyVersion === POLICY_VERSION && value.registryVersion === REGISTRY_VERSION && value.careVersion === CARE_VERSION && value.productVersion === PRODUCT_VERSION;
 }
 export type Preliminary = ContentVersions & { assessmentId: string; inputRevision: number; photoRevision: number; questionBankVersion: string; photoChecks: ModelOutput["photoChecks"]; observations: Observation[]; limitations: string[]; missingInfo: string[]; contradictions: ModelOutput["contradictions"]; followUpQuestionIds: string[]; textHash: string };
 export type VisualFinding = "changes_visible" | "no_clear_changes" | "insufficient_evidence";
@@ -103,6 +106,7 @@ export type CheckedResult = {
   visualFinding: VisualFinding; visualReason: VisualReason; keyObservationIds: string[]; excludedPhotoIds: string[];
   coverageReason: "not_available"; collectionPrompts: CollectionPrompt[];
   possibleCauses: ModelOutput["possibleCauses"]; causeAssessmentEn: string;
+  careSelections: CareSelection[]; adviceIssues: AdviceIssue[]; photoSides: PhotoMeta[]; careVersion: string; productVersion: string;
 };
 export type GuidanceEntry = {
   id: string; version: string; crop: "coffee"; plantPart: "leaf"; conditionId: string;
@@ -120,6 +124,7 @@ export type GuidanceEntry = {
 export type GuidanceSnapshot = {
   resultId: string; contextRevision: number; region: RegionContext; guidanceIds: string[];
   guidanceAvailability: "available" | "region_unknown" | "no_regional_match" | "no_approved_content";
+  aiAdvice: AdviceSnapshot;
   guidanceLimitations: string[]; entries: GuidanceEntry[]; registryVersion: string; guidanceVersion: string;
 };
 export type Signed<T> = { data: T; envelope: string };

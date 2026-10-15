@@ -12,6 +12,8 @@ import type { Locale } from "@/lib/language";
 import { makeReport, type ReportData } from "@/lib/report";
 import { findingHeadline } from "@/lib/result-copy";
 import { diagnosticReferences } from "@/content/diagnostic-references";
+import { chemicalContextKey, type ChemicalContext } from "@/lib/advice-contracts";
+import { AdvicePanel } from "./advice-panel";
 import { RegionControl } from "./region-control";
 import { ReportPreview } from "./report-preview";
 import styles from "./screening.module.css";
@@ -19,6 +21,12 @@ import styles from "./screening.module.css";
 type Busy = "photos" | "result" | "guidance" | "translation" | "export" | "photo" | null;
 type TranslationState = { status: "pending" | "failed" } | { status: "ready"; variant: TextVariant };
 type Props = { screeningAvailable: boolean; serviceTier: "demo" | "paid" };
+
+function currentTime() { return Date.now(); }
+function permitChemicalPrint(allowed: boolean) {
+  if (allowed) document.documentElement.setAttribute("data-chemical-print-validated", "true");
+  else document.documentElement.removeAttribute("data-chemical-print-validated");
+}
 
 export function Screening({ screeningAvailable, serviceTier }: Props) {
   const locale = useLanguage();
@@ -29,6 +37,12 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
   const epoch = useRef(0);
   const localeMemory = useRef(locale);
   const [busy, setBusy] = useState<Busy>(null);
+  const [chemicalContext, setChemicalContext] = useState<ChemicalContext | null>(null);
+  const chemicalMemory = useRef<ChemicalContext | null>(null);
+  const [verifiedDigest, setVerifiedDigest] = useState<string | null>(null);
+  const verifiedDigestMemory = useRef<string | null>(null);
+  const [exportWithoutChemical, setExportWithoutChemical] = useState(false);
+  const [clock, setClock] = useState(Date.now);
   const [slow, setSlow] = useState(false);
   const [error, setError] = useState<{ code: string; requestId?: string } | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
@@ -44,6 +58,11 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
   const reportDisclosure = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => { localeMemory.current = locale; }, [locale]);
+  useEffect(() => { const timer = setInterval(() => setClock(Date.now()), 1000); const clear = () => { permitChemicalPrint(false); }; window.addEventListener("afterprint", clear); return () => { clearInterval(timer); window.removeEventListener("afterprint", clear); clear(); }; }, []);
+  function changeChemical(context: ChemicalContext | null) {
+    epoch.current++; verifiedDigestMemory.current = null; setVerifiedDigest(null); chemicalMemory.current = context; setChemicalContext(context); setExportWithoutChemical(false);
+    permitChemicalPrint(false);
+  }
   useEffect(() => {
     if (previousStage.current === state.stage) return;
     previousStage.current = state.stage;
@@ -63,6 +82,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
   useEffect(() => () => { for (const photo of memory.current.photos) URL.revokeObjectURL(photo.url); }, []);
 
   function apply(action: AssessmentAction) {
+    if (["photos", "answer", "region", "incompatible", "result"].includes(action.type)) changeChemical(null);
     memory.current = assessmentReducer(memory.current, action);
     setState(memory.current);
     setNotice(null);
@@ -106,6 +126,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
   function changeLocale(next: Locale) {
     if (busy === "export") return;
     epoch.current++;
+    changeChemical(null);
     localeMemory.current = next;
     selectLocale(next);
     if (!busy) void ensureTranslation(currentText(), memory.current.stage === "questions" ? "preliminary" : "result", next);
@@ -176,7 +197,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
     if (!captured.result || !regionSchema.safeParse(region).success) return;
     clearMessage(); setBusy("guidance");
     try {
-      const guidance = await api<Signed<GuidanceSnapshot>>("/api/guidance", JSON.stringify({ schemaVersion: SCHEMA_VERSION, resultEnvelope: captured.result.envelope, contextRevision: captured.contextRevision, region }), true);
+      const guidance = await api<Signed<GuidanceSnapshot>>("/api/guidance", JSON.stringify({ schemaVersion: SCHEMA_VERSION, resultEnvelope: captured.result.envelope, contextRevision: captured.contextRevision, region, locale: localeMemory.current }), true);
       apply({ type: "guidance", guidance });
     } catch (error) { fail(error); }
     finally { setBusy(null); setSlow(false); }
@@ -185,6 +206,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
     if (busy || !window.confirm(t.confirmClear)) return;
     epoch.current++;
     for (const photo of memory.current.photos) URL.revokeObjectURL(photo.url);
+    changeChemical(null);
     memory.current = newAssessment(); setState(memory.current);
     translationCache.current.clear(); setTranslations({}); setAcceptedEnglish({}); setPermission(false); clearMessage();
   }
@@ -196,21 +218,52 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
   const generatedLocale = locale === "tpi" && variant ? "tpi" : "en";
   function generated(key: string, value: string) { return generatedLocale === "tpi" ? variant!.values[key] : value; }
   let report: ReportData | null = null;
-  if (state.stage === "report" && reportCurrent(state) && (locale === "en" || !state.result || variant || englishAllowed)) report = makeReport(state, locale, variant, englishAllowed);
+  if (state.stage === "report" && reportCurrent(state) && (locale === "en" || !state.result || variant || englishAllowed)) report = makeReport(state, locale, variant, englishAllowed, state.guidance && clock < state.guidance.data.aiAdvice.validUntil ? chemicalContext : null, verifiedDigest);
 
-  async function exportReport() {
+  async function refreshChemical(context: ChemicalContext, requireEligible = false): Promise<void> {
+    const captured = memory.current, capturedEpoch = epoch.current, target = localeMemory.current;
+    if (!captured.result) throw new Error("chemicalExportFailed");
+    const guidance = await api<Signed<GuidanceSnapshot>>("/api/guidance", JSON.stringify({ schemaVersion: SCHEMA_VERSION, resultEnvelope: captured.result.envelope, contextRevision: captured.contextRevision, region: captured.region, locale: target, chemicalContext: context }), true);
+    const key = chemicalContextKey(context);
+    const digest = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key))), (value) => value.toString(16).padStart(2, "0")).join("");
+    if (epoch.current !== capturedEpoch || localeMemory.current !== target || guidance.data.aiAdvice.contextKey !== key || guidance.data.aiAdvice.contextDigest !== digest || guidance.data.aiAdvice.validUntil <= currentTime()) throw new Error("chemicalExportFailed");
+    verifiedDigestMemory.current = digest; setVerifiedDigest(digest);
+    apply({ type: "guidance", guidance });
+    if (requireEligible && guidance.data.aiAdvice.chemical.reason !== null) throw new Error("chemicalExportFailed");
+  }
+  async function submitChemical(context: ChemicalContext) {
+    if (busy) return; clearMessage(); setBusy("guidance");
+    try { await refreshChemical(context); } catch { setNotice("chemicalExportFailed"); }
+    finally { setBusy(null); }
+  }
+  async function exportReport(print = false, omitChemical = false) {
     if (busy || !report) return;
     clearMessage(); setBusy("export");
-    const frozen = report, capturedEpoch = epoch.current;
+    const capturedEpoch = epoch.current;
     try {
+      const context = omitChemical ? null : chemicalMemory.current;
+      if (context) {
+        try { await refreshChemical(context, true); }
+        catch { setNotice("chemicalExportFailed"); setExportWithoutChemical(true); return; }
+      }
+      const frozen = makeReport(memory.current, locale, variant, englishAllowed, context, context ? verifiedDigestMemory.current : null);
+      if (print) {
+        if (context && frozen.sections.some((section) => section.chemical)) permitChemicalPrint(true);
+        else permitChemicalPrint(false);
+        await new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+        if (epoch.current === capturedEpoch) window.print();
+        permitChemicalPrint(false);
+        return;
+      }
       const [response, boldResponse] = await Promise.all(["Regular", "Bold"].map((weight) => fetch(`/fonts/NotoSans-${weight}.ttf`, { cache: "force-cache" })));
       if (!response.ok || !boldResponse.ok) throw new Error("exportError");
       const { createPdf } = await import("@/lib/pdf");
       const bytes = await createPdf(frozen, new Uint8Array(await response.arrayBuffer()), new Uint8Array(await boldResponse.arrayBuffer()));
       if (epoch.current !== capturedEpoch || !reportCurrent(memory.current)) return;
+      if (context && memory.current.guidance!.data.aiAdvice.validUntil <= currentTime()) { setNotice("chemicalExportFailed"); setExportWithoutChemical(true); return; }
       const url = URL.createObjectURL(new Blob([bytes as BlobPart], { type: "application/pdf" }));
       const anchor = document.createElement("a"); anchor.href = url; anchor.download = frozen.filename; anchor.click();
-      setTimeout(() => URL.revokeObjectURL(url), 60000); setNotice("downloaded");
+      setTimeout(() => URL.revokeObjectURL(url), 60000); setNotice("downloaded"); setExportWithoutChemical(false);
     } catch { setNotice("exportError"); }
     finally { setBusy(null); }
   }
@@ -262,8 +315,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
     </>}
   </section>; }
   const guidancePanel = <section className={styles.note}>
-    <h2>{t.nextShort}</h2>
-    <p>{state.region.response === "known" ? t.noRegionalShort : t.unknownRegionalShort}</p>
+    {state.result && state.guidance && reportCurrent(state) ? <AdvicePanel key={`${state.result.data.id}:${state.contextRevision}:${locale}`} advice={state.guidance.data.aiAdvice} result={state.result.data} region={state.region} revision={state.contextRevision} locale={locale} context={chemicalContext} verifiedDigest={verifiedDigest} busy={!!busy} onChange={changeChemical} onSubmit={submitChemical} /> : <><h2>{t.nextShort}</h2><p>{state.region.response === "known" ? t.noRegionalShort : t.unknownRegionalShort}</p></>}
     <details className={styles.disclosure}><summary>{t.reviewDetails}</summary><p>{t.pngPending}</p><p>{t.initial}</p></details>
     {state.result && !reportCurrent(state) && <><p>{t.regionStale}</p><button disabled={!!busy || !regionSchema.safeParse(state.region).success} onClick={() => void updateGuidance(state.region, false)}>{t.regionRetry}</button></>}
   </section>;
@@ -370,8 +422,9 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
         <section className={styles.collectionNotes}>{state.result && <><h2>{findingHeadline(state.result.data, t)}</h2>{canShowGenerated && <p lang={generatedLocale}>{generated("causeAssessment", state.result.data.causeAssessmentEn)}</p>}<p className={styles.small}>{state.result.data.visualFinding === "no_clear_changes" ? t.healthCaveat : t.visualCaveat}</p></>}<p>{t.reportShort}</p><p className={styles.small}>{t.reportSummary}</p></section>{!state.result && <p className={styles.note}>{t.noResult}</p>}{translationPanel}
         <RegionControl compact value={state.region} text={t} locale={locale} disabled={!!busy} onChange={(region) => void updateGuidance(region)} />{guidancePanel}
         {!report && state.result && locale === "tpi" && !variant && !englishAllowed && <p>{t.noTranslationExport}</p>}
-        <div className={styles.actions}><button className={styles.primary} disabled={!!busy || !report} onClick={() => void exportReport()}>{t.download}</button><button disabled={!!busy} onClick={() => apply({ type: "stage", stage: state.result ? "result" : state.preliminary ? "questions" : "photos" })}>{state.result ? t.backResult : state.preliminary ? t.questions : t.backPhotos}</button></div>
-        {report && <details className={styles.preview} ref={reportDisclosure}><summary>{t.reportPreview}</summary><ReportPreview report={report} /><div className={styles.actions}><button disabled={!!busy || !report} onClick={() => window.print()}>{t.print}</button></div></details>}
+        <div className={styles.actions}><button className={styles.primary} disabled={!!busy || !report} onClick={() => void exportReport(false)}>{t.download}</button><button disabled={!!busy} onClick={() => apply({ type: "stage", stage: state.result ? "result" : state.preliminary ? "questions" : "photos" })}>{state.result ? t.backResult : state.preliminary ? t.questions : t.backPhotos}</button></div>
+        {report && <details className={styles.preview} ref={reportDisclosure}><summary>{t.reportPreview}</summary><ReportPreview report={report} /><div className={styles.actions}><button disabled={!!busy || !report} onClick={() => void exportReport(true)}>{t.print}</button></div></details>}
+        {exportWithoutChemical && <button disabled={!!busy} onClick={() => void exportReport(false, true)}>{t.chemicalWithout}</button>}
         {notice && <p role="status" className={styles.note}>{(t as Record<string, unknown>)[notice] as string}</p>}
       </>}
       {remaining !== null && remaining <= 1 && <p className={styles.small}>{t.remaining}: {remaining}</p>}

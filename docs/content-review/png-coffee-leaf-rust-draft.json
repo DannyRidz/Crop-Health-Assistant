@@ -1,0 +1,35 @@
+{
+  "id": "png-clr-care-en-draft-1",
+  "version": "draft-1",
+  "crop": "coffee",
+  "plantPart": "leaf",
+  "conditionId": "coffee_leaf_rust",
+  "applicableCountryCodes": [
+    "PG"
+  ],
+  "applicableRegionIds": [],
+  "regionalApplicabilityStatus": "pending",
+  "regionalLimitations": [
+    "Proposed PNG scope only; the reviewer must confirm the actual area, coffee type and plant stage.",
+    "Not a confirmed diagnosis, cure guarantee or chemical prescription."
+  ],
+  "reviewGeography": "Proposed PNG scope; not yet reviewed",
+  "regionalReviewer": null,
+  "regionalReviewDate": null,
+  "language": "en",
+  "text": "Check existing drains for blockages and avoid leaving water around coffee roots. Manage weeds without injuring coffee roots or stems. Have the shade, pruning and soil nutrition plan checked for this garden. Do not choose a spray from a leaf photo alone.",
+  "sourceTitle": "Smallholder coffee production in Papua New Guinea, Farmer Training Guide, Unit 2, Module 5: Pest and disease management",
+  "sourceUrl": "https://www.aciar.gov.au/sites/default/files/2024-08/05_FTG_Unit2-M5-pests-diseases.pdf",
+  "sectionOrPage": "Sections 5.2 and 5.5, printed pages 13 to 15 and 52 (PDF pages 19 to 21 and 58)",
+  "publicationDate": "2023",
+  "agriculturalReviewStatus": "pending",
+  "agriculturalReviewer": null,
+  "agriculturalReviewDate": null,
+  "translationReviewStatus": "not_applicable",
+  "translationReviewer": null,
+  "translationReviewDate": null,
+  "permissionStatus": "pending",
+  "licence": "Copyright ACIAR 2023; app reuse permission not yet established.",
+  "attribution": "Source reference: Curry G, Tilden G and Aroga L (2023), ACIAR Monograph 220. Original draft wording for review; not an ACIAR endorsement.",
+  "contentMode": "farmer_guidance"
+}

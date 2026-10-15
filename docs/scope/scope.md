@@ -139,6 +139,20 @@ Specs: [frontend](../specs/0001-coffee-mvp/design.md), [verification](../specs/0
 
 The [four step clarity review](../validation/full-journey-review-2026-10-15.md) passed on revision coffee-health-demo-00022-2hd with both real photos, English and draft Tok Pisin PDF layout checks. Physical phone and fluent language validation remain pending.
 
+Approved treatment slice, 15 October 2026: [specification 0004](../specs/0004-ai-care-and-label-based-treatment.md). Implementation approved after the seven design review fixes.
+
+- [x] Build separate sourced care and verified label eligibility: `/develop AI care and label based treatment`
+  - [x] Finite model selections, country filtering and optional advice failure isolation
+  - [x] Product conditions, identity and language confirmation with fresh export checks
+  - [x] Step 3, report preview and PDF content paths
+- [ ] Verify the real public care journey and both PDF languages: `/check verify AI care and label based treatment`
+- [x] Test care and label boundaries: `/test AI care and label based treatment`
+- [ ] Verify a current real local registration and exact label before claiming live chemical rates complete
+
+Code: `src/lib/ai-advice.ts`, `src/components/advice-panel.tsx`, `src/app/api/guidance/route.ts`, `src/lib/report.ts`. The live chemical catalogue stays empty while qualifying evidence is missing. This does not approve any reviewed guidance entry.
+
+Care release evidence, 15 October 2026: local lint and types pass, 123 deterministic tests pass, and the remote production build succeeded. Revision `coffee-health-demo-00027-567` serves all traffic with maximum one instance. The spotted BRACOL 1741 photo completed real preliminary and final Gemini requests, selected two sourced PG care checks, retained findings across PG, BN and Not sure changes, and exported English and draft Tok Pisin PDFs. Every page of both six page exports was rendered and visually inspected. The mostly green BRACOL 671 control noted an edge notch, proposed no disease and selected no care. The guarded app print opened native preview and returned after cancellation. These are software and source applicability checks, not agricultural or fluent language validation. The broad verification box remains open because the real chemical label journey cannot be exercised with an empty catalogue. Controlled fixtures prove label eligibility and report boundaries only. PDF samples are in ignored `output/pdf/ai-care/`; render checks are in ignored `tmp/pdfs/ai-care/`.
+
 ### 9. Evaluation and submission, planned
 
 Record actual outcomes, deploy the final prototype and prepare an honest submission package.

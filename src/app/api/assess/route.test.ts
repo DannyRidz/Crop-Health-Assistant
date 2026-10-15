@@ -52,6 +52,29 @@ describe("M1 route integration with mocked SDK boundary, AC-3, AC-6 through AC-1
     expect(JSON.stringify(providerInput.input)).not.toContain("countryCode");
     expect(providerInput.generation_config.max_output_tokens).toBe(3072);
   });
+  it("preserves findings after malformed optional advice and reselects sourced care without another model call", async () => {
+    const cookie = await session(), id = crypto.randomUUID();
+    const preliminary = await (await assessRoute(request("preliminary", cookie, id))).json();
+    createInteraction.mockResolvedValueOnce({ status: "completed", output_text: JSON.stringify({ ...modelFixture(), careSelections: [{ actionId: "pg_check_drainage", observationIds: ["visible_1"] }, { actionId: "invented", observationIds: ["visible_1"] }] }) });
+    const response = await assessRoute(request("final", cookie, id, preliminary.preliminary.envelope, { region: { response: "known", countryCode: "PG", regionId: null } }));
+    expect(response.status).toBe(200);
+    const final = await response.json() as Extract<AssessResponse, { phase: "final" }>;
+    expect(final.guidance.data.aiAdvice.careIds).toEqual(["pg_check_drainage"]);
+    expect(final.result.data.adviceIssues).toContain("invalid_selection"); expect(final.result.data.observations).toHaveLength(1);
+    expect(final.guidance.data.entries).toEqual([]); expect(final.guidance.data.aiAdvice.chemical.product).toBeNull();
+    const changed = await guidanceRoute(jsonRequest("/api/guidance", cookie, { schemaVersion: SCHEMA_VERSION, resultEnvelope: final.result.envelope, contextRevision: 2, region: { response: "known", countryCode: "BN", regionId: null }, locale: "tpi" }));
+    expect(changed.status).toBe(200); expect((await changed.json()).data.aiAdvice.careIds).toEqual([]); expect(createInteraction).toHaveBeenCalledTimes(2);
+  });
+  it("rejects invented chemical form data as a local error while keeping the signed case usable", async () => {
+    const cookie = await session(), id = crypto.randomUUID();
+    const preliminary = await (await assessRoute(request("preliminary", cookie, id))).json();
+    const final = await (await assessRoute(request("final", cookie, id, preliminary.preliminary.envelope))).json();
+    const value = { schemaVersion: SCHEMA_VERSION, resultEnvelope: final.result.envelope, contextRevision: 1, region: UNKNOWN_REGION, locale: "en" };
+    const rejected = await guidanceRoute(jsonRequest("/api/guidance", cookie, { ...value, chemicalContext: { productId: "invented" } }));
+    expect(rejected.status).toBe(422);
+    expect((await guidanceRoute(jsonRequest("/api/guidance", cookie, value))).status).toBe(200);
+    expect(createInteraction).toHaveBeenCalledTimes(2);
+  });
   it("rejects final requests without a valid sequence or with replaced photos", async () => {
     const cookie = await session(), id = crypto.randomUUID();
     expect((await assessRoute(request("final", cookie, id))).status).toBe(422);

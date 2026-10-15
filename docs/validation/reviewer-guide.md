@@ -35,7 +35,7 @@ Record the answers first. Afterwards clarify any misunderstanding, especially a 
 
 Use the exact photos, answers and report for each case. Record the report reference and date. For every observation, mark supported, unsupported or uncertain, explain why and suggest a correction. Record what evidence was available: photo only, field examination or laboratory confirmation. Where possible record crop species, source country and the known condition without inventing missing information.
 
-Check whether photo quality or missing views should have stopped the check, whether an important visible sign was missed, whether uncertainty is clear and whether referral to a local agricultural officer is appropriate. The current Cannot tell the cause status is expected while conditions remain disabled. It is not a disease prediction to score as correct.
+Check whether photo quality or missing views should have stopped the check, whether an important visible sign was missed, whether uncertainty is clear and whether referral to a local agricultural officer is appropriate. The app can now name tentative AI possible causes. Independently evaluated registry conditions remain disabled. Review the observations and each hypothesis against the available evidence, and do not treat an unconfirmed hypothesis as a diagnosis.
 
 If proposing guidance, identify its source, country or region, limits and review date. PNG review must be labelled as PNG review. Do not approve a recommendation for every country from a PNG case. Reviewer feedback is separate from authorisation to enable conditions or publish guidance; those still need the existing review and evaluation gates.
 
@@ -46,3 +46,5 @@ Compare English and Tok Pisin side by side, including fixed instructions, questi
 ## Send feedback to the team
 
 Use feedback-template.md, one copy per participant or case. Share only with permission. Do not post identifying reports publicly. Keep original reports unchanged and note corrections separately. The team should record the action taken, then ask for another review of changed items. A specialist review is limited to its recorded cases and scope; it is not certification of the whole app.
+
+For the first PNG coffee leaf rust guidance review, use the [draft content and reviewer form](../content-review/png-coffee-leaf-rust-review.md). The pack separates content review, regional scope, photo evaluation, permissions and fluent language review.

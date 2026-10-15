@@ -1,3 +1,4 @@
+import { buildAdvice } from "./ai-advice";
 import type { CheckedResult, GuidanceEntry, GuidanceSnapshot, RegionContext } from "./contracts";
 import { GUIDANCE_VERSION, REGISTRY_VERSION } from "./contracts";
 
@@ -19,6 +20,6 @@ export function selectGuidance(result: CheckedResult, region: RegionContext, con
     (entry.applicableRegionIds.length === 0 || (!!region.regionId && entry.applicableRegionIds.includes(region.regionId)))) : [];
   const availability = region.response !== "known" ? "region_unknown" :
     selected.length ? "available" : approved.length ? "no_regional_match" : "no_approved_content";
-  return { resultId: result.id, contextRevision, region, guidanceIds: selected.map((entry) => entry.id),
+  return { aiAdvice: buildAdvice(result, region, contextRevision), resultId: result.id, contextRevision, region, guidanceIds: selected.map((entry) => entry.id),
     guidanceAvailability: availability, guidanceLimitations: selected.flatMap((entry) => entry.regionalLimitations), entries: selected, registryVersion: REGISTRY_VERSION, guidanceVersion: GUIDANCE_VERSION };
 }

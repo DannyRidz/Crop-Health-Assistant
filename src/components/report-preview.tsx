@@ -10,7 +10,7 @@ function ReportLine({ text, labels = [], answer = false }: { text: string; label
 export function ReportPreview({ report }: { report: ReportData }) {
   return <article id="report-preview" className={styles.reportPreview}>
     <h2>{report.title}</h2>
-    {report.sections.map((section, index) => <section key={index}>
+    {report.sections.map((section, index) => <section key={index} data-chemical-group={section.chemical ? "true" : undefined}>
       <h3>{section.title}</h3>
       {section.layout === "bullets" ? <ul>{section.lines.map((line, lineIndex) => <li key={lineIndex} lang={lineIndex >= (section.generatedFrom ?? 0) ? section.language : undefined}><ReportLine text={line} labels={section.labels} /></li>)}</ul> : section.lines.map((line, lineIndex) => <p key={lineIndex} style={{ whiteSpace: "pre-wrap" }} lang={lineIndex >= (section.generatedFrom ?? 0) ? section.language : undefined}><ReportLine text={line} labels={section.labels} answer={section.layout === "answers"} /></p>)}
       {section.includePhotos && <div className={styles.photoGrid}>{report.photos.map((photo, photoIndex) => <figure key={photo.id}>

@@ -33,7 +33,7 @@ describe("M2 unreviewed coverage boundaries, AC-5 and AC-6", () => {
     output.possibleCauses = [{ nameEn: "Synthetic possible cause", whyEn: "The visible patch may fit.", uncertaintyEn: "Other causes can look similar.", nextCheckEn: "Look at the other side.", observationIds: ["visible_1"], sourceIds: [] }];
     expect(() => validateReferences(output, [PHOTO_ID])).not.toThrow();
     const result = checkedResult(output, crypto.randomUUID(), 1, "gemini-3.8-flash");
-    expect(result.possibleCauses).toEqual(output.possibleCauses); expect(result.conditionId).toBeNull(); expect(result.coverageUnavailable).toBe(true);
+    expect(result.possibleCauses).toMatchObject(output.possibleCauses); expect(result.conditionId).toBeNull(); expect(result.coverageUnavailable).toBe(true);
     const hash = result.textHash; result.possibleCauses[0].uncertaintyEn = "Changed uncertainty";
     expect(canonicalTextHash(result)).not.toBe(hash);
   });

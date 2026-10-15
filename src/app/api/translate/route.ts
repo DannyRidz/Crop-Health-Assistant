@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     const allowance = acquire(request, sid, "translate");
     try {
       const raw = await readJson(request);
-      if (typeof raw === "object" && raw !== null && "schemaVersion" in raw && raw.schemaVersion === 1) throw new ApiError(409, "assessment_version_changed");
+      if (typeof raw === "object" && raw !== null && "schemaVersion" in raw && raw.schemaVersion !== SCHEMA_VERSION) throw new ApiError(409, "assessment_version_changed");
       const parsed = inputSchema.safeParse(raw);
       if (!parsed.success) throw new ApiError(422, "invalid_input");
       const input = parsed.data;

@@ -97,3 +97,9 @@ export function assertScreening() {
       !["demo", "paid"].includes(process.env.GEMINI_SERVICE_TIER ?? "")) throw new ApiError(503, "disabled");
   secret();
 }
+
+export function sessionExpiresAt(sid: string): number {
+  const counter = state.sessions.get(sid);
+  if (!counter || counter.expiresAt <= Date.now()) throw new ApiError(409, "expired", true);
+  return counter.expiresAt;
+}

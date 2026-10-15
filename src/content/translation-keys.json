@@ -1050,5 +1050,197 @@
   "assessment.startOverHelp": {
     "en": "authored",
     "tpi": "draft"
+  },
+  "assessment.careTitle": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.careUnreviewed": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.careHelper": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.careNone": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.careRegionUnknown": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.careNoRegion": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.careSourceScope": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.careInvalid": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalTitle": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalUnavailable": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalNoEvidence": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalUnknown": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalLabel": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalEnglish": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalShowEnglish": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalChoose": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalIdentity": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalSubmit": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalConditions": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalYes": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalNo": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalUnsure": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalPending": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalConditionsFailed": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalExpired": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalCaveat": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalExportFailed": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalWithout": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalRate": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalMethod": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalStage": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalTiming": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalFrequency": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalHarvest": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalReentry": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalPpe": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalEnvironment": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalPrecautions": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalApplicability": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalChecked": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.careActions.pg_check_drainage": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.careActions.pg_check_weeds": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.careActions.pg_review_garden_management": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chooseAnswer": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalRegistration": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalEnglishReport": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalVerification": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.chemicalRevision": {
+    "en": "authored",
+    "tpi": "draft"
   }
 }
