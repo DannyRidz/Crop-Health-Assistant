@@ -33,6 +33,9 @@ export async function createPdf(report: ReportData, fontBytes: Uint8Array, boldF
     }
     return lines;
   }
+  const recordText = report.sections.filter((section) => section.layout === "metadata").flatMap((section) => section.lines).join(" | ");
+  const recordLines = recordText ? wrap(recordText, 9) : [];
+  const bottom = Math.max(margin + 24, 48 + (recordLines.length - 1) * 12 + 9 + 16);
   let page = pdf.addPage([pageWidth, pageHeight]);
   let y = pageHeight - margin;
   let contentTop = y;
@@ -57,7 +60,7 @@ export async function createPdf(report: ReportData, fontBytes: Uint8Array, boldF
   }
   pageHeader(true);
   const room = (height: number) => {
-    if (y - height < margin + 24) {
+    if (y - height < bottom) {
       page = pdf.addPage([pageWidth, pageHeight]); y = pageHeight - margin; pageHeader(false);
     }
   };
@@ -69,7 +72,7 @@ export async function createPdf(report: ReportData, fontBytes: Uint8Array, boldF
     const link = text.match(/https:\/\/[^\s,]+/)?.[0];
     const lines = wrap(text, size, face, width - (bullet ? 16 : 0));
     const height = blockHeight(block);
-    if (height <= contentTop - margin - 24) room(height);
+    if (height <= contentTop - bottom) room(height);
     for (const [index, line] of lines.entries()) {
       room(lineHeight); y -= lineHeight;
       if (bullet && index === 0) page.drawCircle({ x: margin + 4, y: y + size * .3, size: 2, color: earth });
@@ -101,22 +104,24 @@ export async function createPdf(report: ReportData, fontBytes: Uint8Array, boldF
   });
   const rowHeight = images.length ? Math.max(...sizes.map((size) => size.height)) : 0;
   for (const section of report.sections) {
+    if (section.layout === "metadata") continue;
     continuationTitle = null;
     const heading: TextBlock = { text: section.title, size: 15, face: bold };
     const blocks = sectionBlocks(section);
     const headingHeight = blockHeight(heading) + 14;
-    const firstHeight = blocks[0]?.reduce((sum, block) => sum + blockHeight(block), 0) ?? 0;
+    // Keep an introductory qualifier with the explanation that follows it.
+    const firstHeight = blocks.slice(0, 2).flat().reduce((sum, block) => sum + blockHeight(block), 0);
     const keepHeight = headingHeight + firstHeight;
     const sectionHeight = headingHeight + blocks.flat().reduce((sum, block) => sum + blockHeight(block), 0) + (section.includePhotos && images.length ? rowHeight + 42 : 0);
-    if ((sectionHeight <= 240 || section.includePhotos) && sectionHeight <= contentTop - margin - 24) room(sectionHeight);
-    else room(keepHeight <= contentTop - margin - 24 ? keepHeight : headingHeight + 36);
+    if ((sectionHeight <= 240 || section.includePhotos) && sectionHeight <= contentTop - bottom) room(sectionHeight);
+    else room(keepHeight <= contentTop - bottom ? keepHeight : headingHeight + 36);
     y -= 14;
     page.drawLine({ start: { x: margin, y }, end: { x: margin + 32, y }, thickness: 2, color: rule });
     y -= 4; draw(heading);
     continuationTitle = section.title;
     for (const group of blocks) {
       const height = group.reduce((sum, block) => sum + blockHeight(block), 0);
-      if (height <= contentTop - margin - 24) room(height);
+      if (height <= contentTop - bottom) room(height);
       for (const block of group) draw(block);
     }
     if (section.includePhotos) {
@@ -136,6 +141,9 @@ export async function createPdf(report: ReportData, fontBytes: Uint8Array, boldF
   }
   const pages = pdf.getPages();
   for (const [index, item] of pages.entries()) {
+    if (index === pages.length - 1) {
+      for (const [lineIndex, line] of recordLines.entries()) item.drawText(line, { x: margin, y: 48 + (recordLines.length - lineIndex - 1) * 12, size: 9, font, color: earth });
+    }
     item.drawLine({ start: { x: margin, y: 36 }, end: { x: pageWidth - margin, y: 36 }, thickness: .5, color: rule });
     item.drawText(checkText(`Crop Health Assistant | ${report.reference.slice(0, 8)}`), { x: margin, y: 22, size: 9, font, color: earth });
     const number = `${index + 1} / ${pages.length}`;

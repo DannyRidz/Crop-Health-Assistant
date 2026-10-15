@@ -63,7 +63,7 @@ Local image decoding failures map to invalid_image before any provider request. 
 
 The public app address is https://coffee-leaf-check.web.app. Hosting rewrites in deploy/preview-link route all paths to the existing Cloud Run service, scoped to Hosting target preview in the MVP project. Deploy only that target. Keep the signed __session cookie and exact PUBLIC_APP_ORIGIN configuration so sessions work through Hosting. Firebase Analytics is disabled.
 
-PDF exports use A4 pages, running headers and page footers. Keep photo captions with their images and section headings with their first content block. Generated report samples and rendered checks belong in ignored output/pdf and tmp/pdfs.
+PDF exports use A4 pages, running headers and page footers. Keep photo captions with their images and section headings with their first two content groups. Keep complete record metadata in the final page footer and reserve its space in the body. Generated report samples and rendered checks belong in ignored output/pdf and tmp/pdfs.
 
 The user authorised [useful reports and AI led explanations](docs/specs/0003-useful-screening-reports.md) on 15 October 2026. Final screening may now name up to three tentative AI possible causes without an external agricultural reviewer prerequisite. Each explanation needs usable coffee leaf evidence, uncertainty and a concrete next observation check. Keep these hypotheses separate from independently evaluated registry conditions and regionally approved treatment guidance, which remain disabled. Do not restore the old blanket disease name ban or describe AI hypotheses as confirmed diagnoses or completed agricultural validation.
 

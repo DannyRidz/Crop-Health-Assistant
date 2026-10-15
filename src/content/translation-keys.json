@@ -1034,5 +1034,17 @@
   "assessment.cancelCountryChange": {
     "en": "authored",
     "tpi": "draft"
+  },
+  "assessment.chooseAll": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.startOver": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.startOverHelp": {
+    "en": "authored",
+    "tpi": "draft"
   }
 }

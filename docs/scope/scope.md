@@ -137,6 +137,8 @@ Specs: [frontend](../specs/0001-coffee-mvp/design.md), [verification](../specs/0
 
 15 October verification: [real public report checks](../validation/useful-reports-2026-10-15.md) passed for both supplied photos, English and draft Tok Pisin exports and native Chrome reflow. Physical phone validation, fluent review and the remaining reviewed screening work are still pending, so feature 8 and the broad milestones remain in progress. The [plain English and PDF refinement checks](../validation/plain-report-checks-2026-10-15.md) also passed on revision coffee-health-demo-00016-ltz, including both language exports with actual bold headings and bullet points.
 
+The [four step clarity review](../validation/full-journey-review-2026-10-15.md) passed on revision coffee-health-demo-00022-2hd with both real photos, English and draft Tok Pisin PDF layout checks. Physical phone and fluent language validation remain pending.
+
 ### 9. Evaluation and submission, planned
 
 Record actual outcomes, deploy the final prototype and prepare an honest submission package.

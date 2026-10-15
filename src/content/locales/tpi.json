@@ -235,8 +235,8 @@
     "visibleShort": "Samting mipela i lukim",
     "uncertainShort": "Samting mipela i no inap konfemim",
     "nextShort": "Gaid bilong ples bilong yu",
-    "reportShort": "Daunlod ripoti bilong serim wantaim ofisa bilong agrikalsa long ples. Yu makim husat i kisim.",
-    "reportSummary": "Ripoti i gat ol poto, bekim, samting i luk olsem na ol limit bilong rijon.",
+    "reportShort": "Daunlodim PDF bilong holim o serim sekim bilong lip.",
+    "reportSummary": "Ol poto, bekim na risalt bilong yu i stap insait. Yu makim husat i kisim.",
     "reviewDetails": "Riviu na ol limit bilong sekim",
     "noRegionalShort": "Riviu bilong gaid long dispela rijon i no pinis. Askim ofisa bilong agrikalsa long ples long lukim ol samting i luk olsem.",
     "unknownRegionalShort": "Mipela i no save rijon bilong yu. Askim ofisa bilong agrikalsa long ples long lukim ol samting i luk olsem.",
@@ -264,7 +264,7 @@
     "farmerRecord": "Tok bilong fama",
     "reportVersions": "Ol vesin bilong sek",
     "nextInformation": "Ol infomesen yu ken bungim",
-    "collectionHelp": "Yu no mas mekim olgeta dispela samting. Holim ol not bilong skelim senis bihain o serim sapos yu laik. Sapos yu senisim poto, yu mas makim long mekim nupela sek.",
+    "collectionHelp": "Ol dispela not em bilong helpim tasol. Nupela poto i nidim nupela sekim.",
     "noCollection": "I no gat narapela askim bilong bungim infomesen. Ol mak bilong sek i stap yet.",
     "collection": {
       "replace_unclear_photos": "Sapos yu inap, kisim ol nupela poto long lait bilong san. Soim lip olgeta.",
@@ -292,6 +292,9 @@
     "countryOptional": "Kantri (yu no mas bekim)",
     "change": "Senisim",
     "changeCountry": "Senisim kantri",
-    "cancelCountryChange": "Holim kantri i stap nau"
+    "cancelCountryChange": "Holim kantri i stap nau",
+    "chooseAll": "Makim olgeta i stret, o makim Mi no save.",
+    "startOver": "Stat gen",
+    "startOverHelp": "Dispela bai rausim dispela sekim. Daunlodim ripoti pastaim sapos yu laik holim."
   }
 }

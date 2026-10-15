@@ -21,7 +21,7 @@ export function RegionControl({ value, text: t, locale, disabled, compact = fals
   }, [compact, editing, disabled]);
   const selected = value.response === "known" ? value.countryCode ?? "not_provided" : value.response;
   if (compact && !editing) return <div className={styles.regionSummary}>
-    <p><strong>{t.country}: </strong><span lang={value.response === "known" ? "en" : locale}>{value.response === "known" && value.countryCode ? countryName(value.countryCode) : value.response === "not_sure" ? t.unknown : t.skipLocation}</span></p>
+    <p><strong>{t.country}: </strong><span lang={value.response === "known" ? "en" : locale}>{value.response === "known" && value.countryCode ? countryName(value.countryCode) : value.response === "not_sure" ? t.unknown : t.notProvided}</span></p>
     <button ref={changeRef} disabled={disabled} aria-label={t.changeCountry} onClick={() => setEditing(true)}>{t.change}</button>
   </div>;
   return <fieldset className={styles.region} disabled={disabled}>

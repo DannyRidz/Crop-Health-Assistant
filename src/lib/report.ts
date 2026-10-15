@@ -14,6 +14,7 @@ export function makeReport(state: Assessment, locale: Locale, variant: TextVaria
   if (!reportCurrent(state)) throw new Error("regionStale");
   const t = (locale === "tpi" ? tokPisin : english).assessment;
   const result = state.result?.data;
+  const sourceIds = [...new Set(result?.possibleCauses.flatMap((cause) => cause.sourceIds) ?? [])];
   const translated = !!result && variant?.hash === result.textHash && variant.glossaryVersion === GLOSSARY_VERSION;
   if (locale === "tpi" && result && !translated && !englishAccepted) throw new Error("noTranslationExport");
   const generatedLocale = locale === "tpi" && translated ? "tpi" : "en";
@@ -21,23 +22,24 @@ export function makeReport(state: Assessment, locale: Locale, variant: TextVaria
   const region = state.region.response === "known" ? `${countryName(state.region.countryCode!)} (${state.region.countryCode})` : state.region.response === "not_sure" ? t.unknown : t.notProvided;
   const formatDate = (date: string) => new Intl.DateTimeFormat(locale === "tpi" ? "en-GB" : "en", { dateStyle: "medium", timeStyle: "short", timeZone: state.timezone }).format(new Date(date));
   const sections: ReportSection[] = [
-    { title: t.caseSummary, lines: [`${t.reference}: ${state.id}`, `${t.assessed}: ${result ? formatDate(result.assessedAt) : t.notProvided}`, `${t.countryValue}: ${region}`, ...(result ? [findingHeadline(result, t), result.visualFinding === "no_clear_changes" ? t.healthCaveat : t.visualCaveat] : [t.noResult]), ...(locale === "tpi" ? [t.fixedDraft] : [])] },
+    { title: t.caseSummary, lines: [`${t.reference}: ${state.id}`, `${t.assessed}: ${result ? formatDate(result.assessedAt) : t.notProvided}`, `${t.countryValue}: ${region}`, ...(result ? [findingHeadline(result, t), result.visualFinding === "no_clear_changes" ? t.healthCaveat : t.visualCaveat] : [t.noResult]), ...(locale === "tpi" ? [t.fixedDraft, result ? translated ? t.automatic : t.englishFallback : t.fixedDraft].filter((value, index, values) => values.indexOf(value) === index) : [])] },
   ];
   const observationLine = (observation: NonNullable<typeof result>["observations"][number]) => `${t.photo} ${observation.photoIds.map((id) => state.photos.findIndex((photo) => photo.id === id) + 1).join(", ")}${observation.photoIds.some((id) => result!.excludedPhotoIds.includes(id)) ? ` (${t.excludedPhoto})` : ""}: ${obs(`observation:${observation.id}`, observation.textEn)}`;
-  const generatedNotice = locale === "tpi" ? [translated ? t.automatic : t.englishFallback] : [];
+  const generatedNotice: string[] = [];
   if (result) {
     const keyObservations = result.observations.filter((item) => result.keyObservationIds.includes(item.id));
     sections.push({ title: t.keyFindings, language: generatedLocale, generatedFrom: generatedNotice.length, lines: [...generatedNotice, ...(keyObservations.length ? keyObservations.map(observationLine) : [t.noObservations])] });
-    sections.push({ title: t.causeTitle, lines: [t.causeIntro, `${t.screeningStatus}: ${result.possibleCauses.length ? t.possibleCauseStatus : t.noCauseStatus}`, ...(result.unsupported ? [t.unsupported] : [])] });
-    sections.push({ title: t.meaning, language: generatedLocale, generatedFrom: generatedNotice.length, lines: [...generatedNotice, obs("causeAssessment", result.causeAssessmentEn)] });
+    const causeIntro = [t.causeIntro, ...(result.possibleCauses.length ? [] : [t.noCauseStatus]), ...(result.unsupported ? [t.unsupported] : [])];
+    sections.push({ title: t.causeTitle, language: generatedLocale, generatedFrom: causeIntro.length, lines: [...causeIntro, obs("causeAssessment", result.causeAssessmentEn)] });
     for (const [index, cause] of result.possibleCauses.entries()) {
       const evidence = cause.observationIds.flatMap((id) => result.observations.find((item) => item.id === id)?.photoIds ?? []);
       sections.push({ title: obs(`cause:${index}:nameEn`, cause.nameEn), language: generatedLocale, lines: [
+        t.possibleCauseLabel,
         `${t.whyFits}: ${obs(`cause:${index}:whyEn`, cause.whyEn)}`,
         [...new Set(evidence)].map((id) => `${t.photo} ${state.photos.findIndex((photo) => photo.id === id) + 1}`).join(", "),
         `${t.causeUncertainty}: ${obs(`cause:${index}:uncertaintyEn`, cause.uncertaintyEn)}`,
         `${t.nextCheck}: ${obs(`cause:${index}:nextCheckEn`, cause.nextCheckEn)}`,
-        cause.sourceIds.length ? `${t.source}: ${cause.sourceIds.map((id) => diagnosticReferences[id].title).join("; ")}` : t.modelKnowledge,
+        cause.sourceIds.length ? `${t.source}: ${cause.sourceIds.map((id) => sourceIds.indexOf(id) + 1).sort((a, b) => a - b).join(", ")}` : t.modelKnowledge,
       ] });
     }
     if (result.collectionPrompts.length) sections.push({ title: t.nextInformation, lines: [...result.collectionPrompts.map((prompt) => `${t.collection[prompt.id]}${prompt.photoIds.length ? ` (${prompt.photoIds.map((id) => `${t.photo} ${state.photos.findIndex((photo) => photo.id === id) + 1}`).join(", ")})` : ""}`), t.collectionHelp] });
@@ -53,15 +55,15 @@ export function makeReport(state: Assessment, locale: Locale, variant: TextVaria
   if (result) {
     const remaining = result.observations.filter((item) => !result.keyObservationIds.includes(item.id));
     if (remaining.length) sections.push({ title: t.aiObservations, language: generatedLocale, generatedFrom: generatedNotice.length, lines: [...generatedNotice, ...remaining.map(observationLine)] });
-    sections.push({ title: t.uncertain, language: generatedLocale, generatedFrom: 1 + generatedNotice.length, lines: [t.initial, ...generatedNotice, ...result.limitations.map((value, index) => obs(`limitation:${index}`, value))] });
+    if (result.limitations.length) sections.push({ title: t.uncertain, language: generatedLocale, lines: result.limitations.map((value, index) => obs(`limitation:${index}`, value)) });
     if (result.contradictions.length) sections.push({ title: t.aiUncertainty, language: generatedLocale, generatedFrom: generatedNotice.length, lines: [...generatedNotice, ...result.contradictions.map((item, index) => `${obs(`conflict:${index}`, item.textEn)}${item.observationIds.length ? ` (${item.observationIds.map((id) => result.observations.find((observation) => observation.id === id)).filter((item) => !!item).map(observationLine).join("; ")})` : ""}`)] });
-    sections.push({ title: t.missing, ...(result.missingInfo.length ? { language: generatedLocale, generatedFrom: generatedNotice.length } : {}), lines: result.missingInfo.length ? [...generatedNotice, ...result.missingInfo.map((value, index) => obs(`missing:${index}`, value))] : [t.noMissing] });
+    if (result.missingInfo.length) sections.push({ title: t.missing, language: generatedLocale, lines: result.missingInfo.map((value, index) => obs(`missing:${index}`, value)) });
   }
   const entries = state.guidance?.data.entries.filter((entry) => entry.language === locale) ?? [];
-  const sourceIds = [...new Set(result?.possibleCauses.flatMap((cause) => cause.sourceIds) ?? [])];
+
   if (sourceIds.length) {
     sections.push({ title: t.diagnosticSources, lines: [t.sourcesLimit] });
-    sections.push({ title: t.source, language: "en", lines: sourceIds.flatMap((id) => { const source = diagnosticReferences[id]; return [source.title, `${source.section}. ${source.geography}.`, source.url]; }) });
+    sections.push({ title: t.source, language: "en", lines: sourceIds.flatMap((id, index) => { const source = diagnosticReferences[id]; return [`${index + 1}. ${source.title}`, `${source.section}. ${source.geography}.`, source.url]; }) });
   }
   sections.push({ title: t.guidance, lines: entries.length ? entries.flatMap((entry) => [entry.text, `${t.reviewGeography}: ${entry.reviewGeography}`, ...(entry.applicableCountryCodes.includes("PG") ? [t.pngReviewed] : []), ...entry.regionalLimitations, `${t.source}: ${entry.sourceTitle}, ${entry.sectionOrPage}, ${entry.sourceUrl}`, `${entry.agriculturalReviewDate}, ${entry.regionalReviewDate}`, entry.attribution]) : [state.region.response === "known" ? t.noRegional : t.unknownRegional] });
   sections.push({ title: t.limitsHeading, lines: [t.pngPending, t.initial, t.share, t.temporary] });

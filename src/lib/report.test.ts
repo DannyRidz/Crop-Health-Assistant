@@ -3,6 +3,8 @@ import { makeReport } from "./report";
 import { assessmentReducer } from "./assessment";
 import { withResult, assessmentFixture } from "./test-fixtures";
 import english from "@/content/locales/en.json";
+import tokPisin from "@/content/locales/tpi.json";
+import { diagnosticReferences } from "@/content/diagnostic-references";
 
 describe("honest report snapshots, AC-10, AC-11, AC-13 and AC-19", () => {
   it("includes farmer region, uncertainty, local referral and exact farmer text", () => {
@@ -19,7 +21,9 @@ describe("honest report snapshots, AC-10, AC-11, AC-13 and AC-19", () => {
     const state = withResult();
     expect(() => makeReport(assessmentReducer(state, { type: "region", region: { response: "not_sure", countryCode: null, regionId: null } }), "en", undefined, false)).toThrow("regionStale");
     expect(() => makeReport(state, "tpi", undefined, false)).toThrow("noTranslationExport");
-    expect(JSON.stringify(makeReport(state, "tpi", undefined, true))).toContain("Inglis");
+    const fallback = JSON.stringify(makeReport(state, "tpi", undefined, true));
+    expect(fallback).toContain("Inglis");
+    expect(fallback.split(tokPisin.assessment.englishFallback)).toHaveLength(2);
   });
   it("marks an incomplete attempt without inserting preliminary or old results", () => {
     const report = makeReport(assessmentFixture(), "en", undefined, false);
@@ -46,6 +50,9 @@ describe("honest report snapshots, AC-10, AC-11, AC-13 and AC-19", () => {
     const text = JSON.stringify(makeReport(state, "en", undefined, false));
     for (const expected of ["Synthetic tentative cause", "Synthetic visible pattern", "Inspect the underside.", "Photo 1", "Hawaii diagnostic publication", english.assessment.causeIntro]) expect(text).toContain(expected);
     expect(state.guidance!.data.entries).toEqual([]);
+    expect(text.split(diagnosticReferences.hawaii_leaf_identification.title)).toHaveLength(2);
+    expect(text).toContain(`${english.assessment.source}: 1`);
+    expect(text).toContain(english.assessment.possibleCauseLabel);
   });
   it("marks findings as key points and keeps farmer answers separate from AI findings", () => {
     const report = makeReport(withResult(), "en", undefined, false);
