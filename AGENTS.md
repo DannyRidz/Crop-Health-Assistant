@@ -72,3 +72,5 @@ Schema 2 retains final photo checks and separates visual findings, AI hypotheses
 During PDF export, keep language controls disabled and guard changeLocale so changing language cannot silently cancel a download. Preserve the stale export epoch check and restore controls after either success or failure.
 
 Report previews and PDF exports share section layout and label metadata. Preserve real bold headings, hanging bullet points, separate farmer answers, compact record details and section titles on continuation pages. PDF export needs both bundled Noto Sans Regular and Bold fonts; keep their licence notices.
+
+Observation panels group displayed findings into one card per input photo, with one photo heading and a bullet list. Preserve all selected observation links; findings linked to both photos belong under both. Keep the photo button working as a focus and scroll link.

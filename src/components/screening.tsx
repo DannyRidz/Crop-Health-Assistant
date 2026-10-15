@@ -244,11 +244,15 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
   function observationPanel(items = activeText?.observations ?? [], title = state.stage === "questions" ? t.preliminary : t.aiObservations) { return activeText && <section className={styles.section}>
     <h2>{title}</h2>
     {canShowGenerated && <div className={styles.observations} lang={generatedLocale}>
-      {items.length ? items.map((observation) => <article key={observation.id}>
-        <div className={styles.photoLinks}>{observation.photoIds.map((id) => <button key={id} onClick={() => { const target = document.getElementById(`photo-${id}`); target?.focus(); target?.scrollIntoView({ block: "nearest", behavior: "auto" }); }}>{t.photo} {state.photos.findIndex((photo) => photo.id === id) + 1}</button>)}</div>
-        <p>{generated(`observation:${observation.id}`, observation.textEn)}</p>
-        {state.result && observation.photoIds.some((id) => state.result!.data.excludedPhotoIds.includes(id)) && <p lang={locale}>{t.excludedPhoto}</p>}
-      </article>) : <p lang={locale}>{t.noObservations}</p>}
+      {items.length ? state.photos.map((photo, index) => {
+        const findings = items.filter((observation) => observation.photoIds.includes(photo.id));
+        if (!findings.length) return null;
+        return <article key={photo.id}>
+          <h3 className={styles.photoLinks} lang={locale}><button onClick={() => { const target = document.getElementById(`photo-${photo.id}`); target?.focus(); target?.scrollIntoView({ block: "nearest", behavior: "auto" }); }}>{t.photo} {index + 1}</button></h3>
+          <ul>{findings.map((observation) => <li key={observation.id}>{generated(`observation:${observation.id}`, observation.textEn)}</li>)}</ul>
+          {state.result?.data.excludedPhotoIds.includes(photo.id) && <p lang={locale}>{t.excludedPhoto}</p>}
+        </article>;
+      }) : <p lang={locale}>{t.noObservations}</p>}
     </div>}
     {state.stage === "questions" && canShowGenerated && activeText.limitations.length > 0 && <>
       <h3>{t.uncertain}</h3>{activeText.limitations.map((value, index) => <p key={index} lang={generatedLocale}>{generated(`limitation:${index}`, value)}</p>)}
