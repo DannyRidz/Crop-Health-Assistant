@@ -157,10 +157,12 @@ Approved care expansion, 15 October 2026: the user accepted Indonesia, Kenya and
 
 - [x] Design care coverage beyond PNG: [specification 0005](../specs/0005-four-country-care.md)
 - [x] Build the four country selector and matching care source records: `/develop care coverage beyond PNG`
-- [ ] Verify public country changes and both language reports: `/check verify care coverage beyond PNG`
+- [x] Verify public country changes and both language reports: `/check verify care coverage beyond PNG`
 - [x] Test country options and regional source boundaries: `/test care coverage beyond PNG`
 
 Source records use the Indonesian Ministry of Agriculture BBPP Lembang GAP article, Kenya Coffee Platform sustainability manual and the Brazil coffee rust review held by Embrapa. Exact sections and limitations are recorded in specification 0005. General care for skipped or unknown countries remains separate from local care; existing observational next checks remain available.
+
+Four country release verification, 16 October 2026: revision `coffee-health-demo-00028-rk5` serves all traffic with maximum one instance after remote build `ad3a3171-34f7-4210-8cf4-9b594bb25bf9`. Local lint, types and 127 tests pass. Real Gemini case `2d53f4d5-b58c-4d33-81bd-39509c3f3be1` retained photo findings through PG, ID, KE, BR, Not sure and skipped contexts. Both language country editors list exactly those six choices. Published care sources matched each explicit country; unknown and skipped contexts withheld regional care. Every page of the six page Indonesia English PDF and five page Brazil draft Tok Pisin PDF was rendered and visually inspected, including source scope and the Arabica limit. Samples are in ignored `output/pdf/four-country-care/`. This completes the four country software slice, not independent agricultural review, fluent translation review or chemical label verification.
 
 ### 9. Evaluation and submission, planned
 
