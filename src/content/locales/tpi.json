@@ -93,7 +93,7 @@
     "newCheck": "Statim nupela sekim",
     "confirmClear": "Rausim dispela keis? Ol poto, bekim na risalt bai lus long dispela tab.",
     "countryTitle": "Kopi bilong yu i gro long wanem kantri o rijon?",
-    "countryHelp": "Makim ples kopi bilong yu i gro long en. Dispela i helpim mipela long sekim wanem gaid i stret. Mipela i no nidim stretpela adres.",
+    "countryHelp": "Makim wanpela kantri long lista. Sapos kantri bilong yu i no stap, yu ken lusim. Mipela i no nidim stretpela ples bilong yu.",
     "locationChoice": "Makim ples",
     "notProvided": "Yu no givim",
     "knownCountry": "Makim kantri",
@@ -303,7 +303,7 @@
     "careNone": "Ol poto i no inap helpim makim wanpela rot bilong lukautim kopi. Yusim ol samting bilong sekim antap.",
     "careRegionUnknown": "Makim kantri bilong kopi bilong yu bilong sekim ol buk i stret long ples. Yu ken makim Mi no save tu.",
     "careNoRegion": "Mipela i no gat ol buk i stret long dispela kantri yet. Holim ol samting AI i lukim na askim ofisa bilong agrikalsa long ples long tritmen.",
-    "careSourceScope": "Ol buk i bilong Papua New Guinea. Dispela i no riviu bilong app o keis bilong yu.",
+    "careSourceScope": "Ol buk i karamapim {country}. Dispela i no riviu bilong app o keis bilong yu.",
     "careInvalid": "Mipela i no inap sekim sampela tok bilong helpim. Ol samting AI i lukim long poto i stap yet.",
     "chemicalTitle": "Ol kemikal",
     "chemicalUnavailable": "Mipela i no sekim wanpela lebel bilong kemikal i stret long dispela ples na keis yet. Ol nem na skel bilong sprei i no stap.",
@@ -346,6 +346,7 @@
     "chemicalRegistration": "As bilong rejistresen",
     "chemicalEnglishReport": "Yu makim long ritim ol tok bilong kemikal long Inglis daunbilo.",
     "chemicalVerification": "Sek bilong lebol",
-    "chemicalRevision": "Senis na hap bilong lebol"
+    "chemicalRevision": "Senis na hap bilong lebol",
+    "careBrazilScope": "Buk bilong Brazil i stori moa long kopi Arabica. Em i no soim olsem tok i stret long olgeta kain kopi."
   }
 }

@@ -1,7 +1,7 @@
 import { z } from "zod";
 import type { RegionContext } from "./contracts";
 
-export const CARE_VERSION = "coffee-care-pg-1";
+export const CARE_VERSION = "coffee-care-four-countries-1";
 export const PRODUCT_VERSION = "coffee-products-empty-1";
 export const CARE_IDS = ["pg_check_drainage", "pg_check_weeds", "pg_review_garden_management"] as const;
 export const TARGET_IDS = ["coffee_leaf_rust", "brown_eye_spot"] as const;

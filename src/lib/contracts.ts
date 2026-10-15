@@ -4,10 +4,10 @@ import { COUNTRY_CODES } from "./countries";
 
 export const REGISTRY_VERSION = "coffee-pending-1";
 export const SCHEMA_VERSION = 3;
-export const POLICY_VERSION = "coffee-analysis-4";
+export const POLICY_VERSION = "coffee-analysis-5";
 export const GUIDANCE_VERSION = "coffee-guidance-empty-1";
 export const QUESTION_BANK_VERSION = "coffee-questions-empty-1";
-export const PROMPT_VERSION = "coffee-analysis-7";
+export const PROMPT_VERSION = "coffee-analysis-8";
 export const GLOSSARY_VERSION = "draft-1";
 export const STARTER_IDS = ["onset", "spread", "symptoms", "care_change"] as const;
 export const ANSWER_OPTIONS = {

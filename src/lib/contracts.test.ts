@@ -1,11 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { answerSchema, regionSchema, UNKNOWN_REGION } from "./contracts";
-import { COUNTRY_CODES } from "./countries";
+import { COUNTRY_CODES, CARE_COUNTRIES } from "./countries";
 
 describe("M1 input boundaries, AC-3 and AC-19", () => {
   it("accepts PNG, Brunei and other ISO countries without treating country as admission", () => {
     expect(COUNTRY_CODES).toHaveLength(249);
     for (const countryCode of ["PG", "BN", "BR", "KE", "US"]) expect(regionSchema.safeParse({ response: "known", countryCode, regionId: null }).success).toBe(true);
+  });
+  it("offers only the four agreed pilot countries without restricting ISO contexts", () => {
+    expect(CARE_COUNTRIES.map((country) => country.code)).toEqual(["PG", "ID", "KE", "BR"]);
+    expect(CARE_COUNTRIES.map((country) => country.name)).toEqual(["Papua New Guinea", "Indonesia", "Kenya", "Brazil"]);
+    expect(regionSchema.safeParse({ response: "known", countryCode: "BN", regionId: null }).success).toBe(true);
   });
   it("accepts unknown or skipped geography and rejects inferred or mismatched context", () => {
     expect(regionSchema.safeParse(UNKNOWN_REGION).success).toBe(true);

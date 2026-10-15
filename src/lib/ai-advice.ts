@@ -1,5 +1,5 @@
 import type { CheckedResult, ModelOutput, PhotoMeta, RegionContext } from "./contracts";
-import { careActions } from "@/content/care-actions";
+import { careActions, careActionsForCountry } from "@/content/care-actions";
 import { chemicalProducts } from "@/content/chemical-products";
 import { CARE_VERSION, PRODUCT_VERSION, CONDITION_IDS, chemicalContextKey, type AdviceSnapshot, type ChemicalContext, type ChemicalDecision, type ChemicalProduct } from "./advice-contracts";
 
@@ -77,7 +77,7 @@ export function buildAdvice(result: CheckedResult, region: RegionContext, contex
   const now = options.now ?? Date.now(), locale = options.locale ?? "en", products = options.products ?? chemicalProducts;
   const eligible = eligibleObservationIds(result);
   const selections = result.visualFinding === "changes_visible" ? result.careSelections.filter((selection) => selection.observationIds.length > 0 && selection.observationIds.every((id) => eligible.has(id))) : [];
-  const careIds = region.response === "known" ? selections.flatMap((selection) => careActions.filter((action) => action.id === selection.actionId && action.countryCodes.includes(region.countryCode!) && action.permissionStatus === "verified").map((action) => action.id)) : [];
+  const careIds = region.response === "known" ? selections.flatMap((selection) => careActionsForCountry(region.countryCode).filter((action) => action.id === selection.actionId).map((action) => action.id)) : [];
   const chemical = chemicalEligibility({ result, region, contextRevision, context: options.context ?? null, locale, now, products });
   return { resultId: result.id, contextRevision, region, careVersion: CARE_VERSION, productVersion: PRODUCT_VERSION, careIds: [...new Set(careIds)],
     careAvailability: region.response !== "known" ? "region_unknown" : careIds.length ? "available" : selections.length ? "no_regional_source" : "no_selection",

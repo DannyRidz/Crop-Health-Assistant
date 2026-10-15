@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 import english from "@/content/locales/en.json";
 import tokPisin from "@/content/locales/tpi.json";
-import { careActions } from "@/content/care-actions";
+import { careActionsForCountry } from "@/content/care-actions";
 import { PRODUCT_VERSION, type AdviceSnapshot, type ChemicalContext, type ChemicalProduct } from "@/lib/advice-contracts";
+import { countryName } from "@/lib/countries";
 import { chemicalLines } from "@/lib/chemical-copy";
 import { chemicalReportProduct } from "@/lib/ai-advice";
 import type { CheckedResult, RegionContext } from "@/lib/contracts";
@@ -19,14 +20,14 @@ export function AdvicePanel({ advice, result, region, revision, locale, context,
   const [englishAccepted, setEnglishAccepted] = useState(false);
   const [now, setNow] = useState(Date.now);
   useEffect(() => { const timer = setInterval(() => setNow(Date.now()), 1000); return () => clearInterval(timer); }, []);
-  const actions = advice.careIds.flatMap((id) => careActions.filter((action) => action.id === id));
+  const actions = advice.careIds.flatMap((id) => careActionsForCountry(region.response === "known" ? region.countryCode : null).filter((action) => action.id === id));
   const product = chemicalReportProduct(result, advice, context, region, revision, locale, now, verifiedDigest);
   const selected = advice.products.find((item) => item.id === context?.productId);
   const choose = (item: ChemicalProduct) => onChange({ resultId: result.id, contextRevision: revision, productId: item.id, labelHash: item.labelHash, catalogueVersion: PRODUCT_VERSION, answers: {}, identityConfirmed: false, locale, englishAccepted: locale === "tpi" && englishAccepted });
   return <section className={styles.collectionNotes}>
     <h2>{t.careTitle}</h2>
     {actions.length ? <><p className={styles.small}>{t.careUnreviewed}</p><ul>{actions.map((action) => <li key={action.id}>{t.careActions[action.textKey]}</li>)}</ul><p className={styles.small}>{t.careHelper}</p>
-      <details className={styles.disclosure}><summary>{t.sourcesDetails}</summary><p>{t.careSourceScope}</p><p><a href={actions[0].sourceUrl} target="_blank" rel="noopener noreferrer" lang="en">{actions[0].sourceTitle}</a></p><ul lang="en">{[...new Set(actions.map((action) => action.section))].map((section) => <li key={section}>{section}</li>)}</ul></details></> :
+      <details className={styles.disclosure}><summary>{t.sourcesDetails}</summary><p>{t.careSourceScope.replace("{country}", countryName(region.countryCode!))}</p>{region.countryCode === "BR" && <p>{t.careBrazilScope}</p>}<p><a href={actions[0].sourceUrl} target="_blank" rel="noopener noreferrer" lang="en">{actions[0].sourceTitle}</a></p><ul lang="en">{[...new Set(actions.map((action) => action.section))].map((section) => <li key={section}>{section}</li>)}</ul></details></> :
       <p>{advice.careAvailability === "region_unknown" ? t.careRegionUnknown : advice.careAvailability === "no_regional_source" ? t.careNoRegion : t.careNone}</p>}
     {advice.issues.length > 0 && <p className={styles.small}>{t.careInvalid}</p>}
     <h3>{t.chemicalTitle}</h3>

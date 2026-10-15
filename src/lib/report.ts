@@ -1,4 +1,4 @@
-import { careActions } from "@/content/care-actions";
+import { careActionsForCountry } from "@/content/care-actions";
 import { chemicalReportProduct } from "./ai-advice";
 import { chemicalLines } from "./chemical-copy";
 import type { ChemicalContext } from "./advice-contracts";
@@ -50,9 +50,9 @@ export function makeReport(state: Assessment, locale: Locale, variant: TextVaria
     if (result.collectionPrompts.length) sections.push({ title: t.nextInformation, lines: [...result.collectionPrompts.map((prompt) => `${t.collection[prompt.id]}${prompt.photoIds.length ? ` (${prompt.photoIds.map((id) => `${t.photo} ${state.photos.findIndex((photo) => photo.id === id) + 1}`).join(", ")})` : ""}`), t.collectionHelp, t.officerPhotoNote] });
   }
   const advice = state.guidance?.data.aiAdvice;
-  const actions = advice ? advice.careIds.flatMap((id) => careActions.filter((action) => action.id === id)) : [];
+  const actions = advice ? advice.careIds.flatMap((id) => careActionsForCountry(state.region.response === "known" ? state.region.countryCode : null).filter((action) => action.id === id)) : [];
   if (result && advice) {
-    sections.push({ title: t.careTitle, lines: actions.length ? [t.careUnreviewed, ...actions.map((action) => t.careActions[action.textKey]), t.careHelper, t.careSourceScope] : [advice.careAvailability === "region_unknown" ? t.careRegionUnknown : advice.careAvailability === "no_regional_source" ? t.careNoRegion : t.careNone] });
+    sections.push({ title: t.careTitle, lines: actions.length ? [t.careUnreviewed, ...actions.map((action) => t.careActions[action.textKey]), t.careHelper, t.careSourceScope.replace("{country}", countryName(state.region.countryCode!)), ...(state.region.countryCode === "BR" ? [t.careBrazilScope] : [])] : [advice.careAvailability === "region_unknown" ? t.careRegionUnknown : advice.careAvailability === "no_regional_source" ? t.careNoRegion : t.careNone] });
     if (actions.length) sections.push({ title: t.source, language: "en", lines: [actions[0].sourceTitle, ...new Set(actions.map((action) => action.section)), actions[0].sourceUrl] });
     if (advice.issues.length) sections.push({ title: t.uncertain, lines: [t.careInvalid] });
     const product = chemicalReportProduct(result, advice, chemicalContext, state.region, state.contextRevision, locale, Date.now(), verifiedDigest);

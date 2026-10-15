@@ -7,3 +7,7 @@ export function countryName(code: string): string {
 
 export const COUNTRIES = COUNTRY_CODES.map((code) => ({ code, name: countryName(code) }))
   .sort((a, b) => a.name.localeCompare(b.name, "en"));
+
+// Pilot care countries are a short form choice list, never a public access restriction.
+export const CARE_COUNTRY_CODES = ["PG", "ID", "KE", "BR"] as const;
+export const CARE_COUNTRIES = CARE_COUNTRY_CODES.map((code) => ({ code, name: countryName(code) }));

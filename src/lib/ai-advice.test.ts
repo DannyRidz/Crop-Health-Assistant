@@ -36,6 +36,21 @@ describe("sourced care and isolated optional model advice", () => {
     result.visualFinding = "no_clear_changes";
     expect(buildAdvice(result, pg, 1).careIds).toEqual([]);
   });
+  it("resolves only the source records for the chosen country in both report languages", () => {
+    const cases = [{ countryCode: "PG", host: "aciar.gov.au", count: 3 }, { countryCode: "ID", host: "bbpplembang.bppsdmp.pertanian.go.id", count: 1 }, { countryCode: "KE", host: "globalcoffeeplatform.org", count: 2 }, { countryCode: "BR", host: "ainfo.cnptia.embrapa.br", count: 1 }];
+    for (const { countryCode, host, count } of cases) {
+      const state = withResult({ ...assessmentFixture(), region: { ...pg, countryCode } });
+      const result = state.result!.data;
+      result.careSelections = ["pg_check_drainage", "pg_check_weeds", "pg_review_garden_management"].map((actionId) => ({ actionId: actionId as "pg_check_drainage" | "pg_check_weeds" | "pg_review_garden_management", observationIds: ["visible_1"] }));
+      state.guidance!.data = selectGuidance(result, state.region, 1, []);
+      expect(state.guidance!.data.aiAdvice.careIds).toHaveLength(count);
+      for (const locale of ["en", "tpi"] as const) {
+        const report = JSON.stringify(makeReport(state, locale, undefined, true));
+        expect(report).toContain(host); expect(report).not.toContain("{country}");
+        if (countryCode !== "PG") expect(report).not.toContain("aciar.gov.au");
+      }
+    }
+  });
   it("drops invalid optional fields while retaining valid core findings", () => {
     const raw = { ...modelFixture(), careSelections: [{ actionId: "invented_action", observationIds: ["visible_1"] }], possibleCauses: [{ ...rustFixture().possibleCauses[0], targetId: "invented_target", targetEvidence: "bad" }] };
     const parsed = parseModelOutput(raw);

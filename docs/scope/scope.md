@@ -153,6 +153,15 @@ Code: `src/lib/ai-advice.ts`, `src/components/advice-panel.tsx`, `src/app/api/gu
 
 Care release evidence, 15 October 2026: local lint and types pass, 123 deterministic tests pass, and the remote production build succeeded. Revision `coffee-health-demo-00027-567` serves all traffic with maximum one instance. The spotted BRACOL 1741 photo completed real preliminary and final Gemini requests, selected two sourced PG care checks, retained findings across PG, BN and Not sure changes, and exported English and draft Tok Pisin PDFs. Every page of both six page exports was rendered and visually inspected. The mostly green BRACOL 671 control noted an edge notch, proposed no disease and selected no care. The guarded app print opened native preview and returned after cancellation. These are software and source applicability checks, not agricultural or fluent language validation. The broad verification box remains open because the real chemical label journey cannot be exercised with an empty catalogue. Controlled fixtures prove label eligibility and report boundaries only. PDF samples are in ignored `output/pdf/ai-care/`; render checks are in ignored `tmp/pdfs/ai-care/`.
 
+Approved care expansion, 15 October 2026: the user accepted Indonesia, Kenya and Brazil alongside PNG and requested a selector limited to these four countries. These are content coverage locations, not completed validation groups. English and draft Tok Pisin remain the only MVP languages. This proposal does not enable chemical products or rates.
+
+- [x] Design care coverage beyond PNG: [specification 0005](../specs/0005-four-country-care.md)
+- [x] Build the four country selector and matching care source records: `/develop care coverage beyond PNG`
+- [ ] Verify public country changes and both language reports: `/check verify care coverage beyond PNG`
+- [x] Test country options and regional source boundaries: `/test care coverage beyond PNG`
+
+Source records use the Indonesian Ministry of Agriculture BBPP Lembang GAP article, Kenya Coffee Platform sustainability manual and the Brazil coffee rust review held by Embrapa. Exact sections and limitations are recorded in specification 0005. General care for skipped or unknown countries remains separate from local care; existing observational next checks remain available.
+
 ### 9. Evaluation and submission, planned
 
 Record actual outcomes, deploy the final prototype and prepare an honest submission package.

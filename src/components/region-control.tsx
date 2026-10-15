@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import type english from "@/content/locales/en.json";
-import { COUNTRIES, countryName } from "@/lib/countries";
+import { CARE_COUNTRIES, countryName } from "@/lib/countries";
 import type { RegionContext } from "@/lib/contracts";
 import type { Locale } from "@/lib/language";
 import styles from "./screening.module.css";
@@ -34,7 +34,7 @@ export function RegionControl({ value, text: t, locale, disabled, compact = fals
         if (compact) { restoreFocus.current = true; setEditing(false); }
       }}>
         <option value="not_provided">{t.skipLocation}</option><option value="not_sure">{t.unknown}</option>
-        {COUNTRIES.map((country) => <option key={country.code} value={country.code} lang="en">{country.name}</option>)}
+        {CARE_COUNTRIES.map((country) => <option key={country.code} value={country.code} lang="en">{country.name}</option>)}
       </select>
     </label>
     {compact && <button onClick={() => { restoreFocus.current = true; setEditing(false); }}>{t.cancelCountryChange}</button>}

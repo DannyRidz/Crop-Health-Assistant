@@ -93,7 +93,7 @@
     "newCheck": "Start new check",
     "confirmClear": "Start a new check? This will clear your photos, answers and result from this tab.",
     "countryTitle": "Where is your coffee grown?",
-    "countryHelp": "Choose where your coffee is grown. This helps us check which advice applies. No exact location is needed.",
+    "countryHelp": "Choose a listed country, or skip if yours is not listed. No exact location is needed.",
     "locationChoice": "Country choice",
     "notProvided": "Not provided",
     "knownCountry": "Choose a country",
@@ -303,7 +303,7 @@
     "careNone": "The photos do not support a specific care suggestion. Use the observation checks above.",
     "careRegionUnknown": "Choose your coffee-growing country to check which care sources apply. Not sure is also fine.",
     "careNoRegion": "We do not yet have suitable care sources for this country. Keep the observations and ask a local agricultural officer about treatment.",
-    "careSourceScope": "Source scope: Papua New Guinea. This is not a review of this app or your case.",
+    "careSourceScope": "Source scope: {country}. This is not a review of this app or your case.",
     "careInvalid": "Some optional advice could not be checked. Your photo findings are still available.",
     "chemicalTitle": "Chemical options",
     "chemicalUnavailable": "No current local product label has been verified for this case, so product names and spray doses are not shown.",
@@ -346,6 +346,7 @@
     "chemicalRegistration": "Registration source",
     "chemicalEnglishReport": "You chose to read the chemical label details below in English.",
     "chemicalVerification": "Label verified",
-    "chemicalRevision": "Label revision and section"
+    "chemicalRevision": "Label revision and section",
+    "careBrazilScope": "The Brazilian source mainly covers Arabica coffee. It does not establish advice for every coffee variety."
   }
 }

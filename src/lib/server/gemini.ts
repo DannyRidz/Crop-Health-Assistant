@@ -1,5 +1,5 @@
 import english from "@/content/locales/en.json";
-import { careActions } from "@/content/care-actions";
+import { careActions, regionalCareActions } from "@/content/care-actions";
 import { parseModelOutput } from "./model-output";
 import { GoogleGenAI } from "@google/genai";
 import { z } from "zod";
@@ -36,7 +36,7 @@ async function generate(input: Parameters<GoogleGenAI["interactions"]["create"]>
 }
 
 export async function screen(input: AssessInput, photos: ProcessedPhoto[], requestId: string): Promise<ModelOutput> {
-  const data = { phase: input.phase, enabledConditions: [], approvedQuestionIds: [], diagnosticBackground: diagnosticReferences, careCatalogue: careActions.map((action) => ({ id: action.id, countries: action.countryCodes, text: english.assessment.careActions[action.textKey], source: action.sourceTitle, section: action.section })),
+  const data = { phase: input.phase, enabledConditions: [], approvedQuestionIds: [], diagnosticBackground: diagnosticReferences, careCatalogue: careActions.map((action) => ({ id: action.id, text: english.assessment.careActions[action.textKey], sources: regionalCareActions.filter((record) => record.id === action.id).map((record) => ({ countries: record.countryCodes, title: record.sourceTitle, section: record.section })) })),
     photos: input.photos, starterAnswers: input.starterAnswers, followUpAnswers: input.followUpAnswers };
   const parts = photos.flatMap((photo) => [
     { type: "text" as const, text: `Photo ID: ${photo.id}` },
