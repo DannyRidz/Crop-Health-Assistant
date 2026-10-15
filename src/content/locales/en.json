@@ -93,7 +93,7 @@
     "newCheck": "Start new check",
     "confirmClear": "Start a new check? This will clear your photos, answers and result from this tab.",
     "countryTitle": "Where is your coffee grown?",
-    "countryHelp": "You can skip this. Advice can differ by country. Choose Not sure if you do not know. We do not need your exact location.",
+    "countryHelp": "Choose where your coffee is grown. This helps us check which advice applies. No exact location is needed.",
     "locationChoice": "Country choice",
     "notProvided": "Not provided",
     "knownCountry": "Choose a country",
@@ -274,9 +274,9 @@
       "record_onset": "If known, record when you first noticed the leaf changes.",
       "record_spread": "If known, record whether one or several plants are affected."
     },
-    "causeIntro": "The AI suggests these possible causes from your photos and answers. A photo alone cannot confirm which cause is correct.",
+    "causeIntro": "These are possible causes, not a confirmed diagnosis.",
     "whyFits": "Why this may fit",
-    "causeUncertainty": "What we cannot tell yet",
+    "causeUncertainty": "What is still unclear",
     "nextCheck": "What to check next",
     "modelKnowledge": "AI explanation without a supplied reference.",
     "diagnosticSources": "Diagnostic background sources",
@@ -284,9 +284,14 @@
     "screeningStatus": "Cause check",
     "possibleCauseStatus": "Possible causes found",
     "noCauseStatus": "The cause is still unclear",
-    "possibleCauseLabel": "Possible cause, not confirmed",
+    "possibleCauseLabel": "Not confirmed",
     "reportReady": "Your leaf check report",
     "reportContents": "Includes your photos, possible causes and what to check next.",
-    "reportUse": "Also includes your answers and what the AI could not tell."
+    "reportUse": "Also includes your answers and what the AI could not tell.",
+    "sourcesDetails": "Sources and details",
+    "countryOptional": "Country (optional)",
+    "change": "Change",
+    "changeCountry": "Change country",
+    "cancelCountryChange": "Keep current country"
   }
 }

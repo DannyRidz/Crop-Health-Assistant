@@ -331,18 +331,20 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
         <div className={styles.resultGrid}><div className={styles.photoGrid}>{state.photos.map((photo, index) => photoPanel(photo, index, false))}</div>
           {observationPanel(state.result.data.observations.filter((item) => state.result!.data.keyObservationIds.includes(item.id)), t.keyFindings)}</div>
         <section className={styles.section}><h2>{t.causeTitle}</h2>
-          <p>{t.causeIntro}</p><p><strong>{t.screeningStatus}: {state.result.data.possibleCauses.length ? t.possibleCauseStatus : t.noCauseStatus}</strong></p>
-          {canShowGenerated && <p lang={generatedLocale}>{generated("causeAssessment", state.result.data.causeAssessmentEn)}</p>}
+          <p>{t.causeIntro}</p>
+          {!state.result.data.possibleCauses.length && <><p><strong>{t.noCauseStatus}</strong></p>{canShowGenerated && <p lang={generatedLocale}>{generated("causeAssessment", state.result.data.causeAssessmentEn)}</p>}</>}
           {canShowGenerated && state.result.data.possibleCauses.map((cause, index) => <article className={styles.causeCard} key={index}>
-            <p className={styles.small}>{t.possibleCauseLabel}</p><h3 lang={generatedLocale}>{generated(`cause:${index}:nameEn`, cause.nameEn)}</h3>
-            <p><strong>{t.whyFits}: </strong><span lang={generatedLocale}>{generated(`cause:${index}:whyEn`, cause.whyEn)}</span></p>
-            <p>{cause.observationIds.flatMap((id) => state.result!.data.observations.find((item) => item.id === id)?.photoIds ?? []).filter((id, i, ids) => ids.indexOf(id) === i).map((id) => `${t.photo} ${state.photos.findIndex((photo) => photo.id === id) + 1}`).join(", ")}</p>
-            <p><strong>{t.causeUncertainty}: </strong><span lang={generatedLocale}>{generated(`cause:${index}:uncertaintyEn`, cause.uncertaintyEn)}</span></p>
-            <p><strong>{t.nextCheck}: </strong><span lang={generatedLocale}>{generated(`cause:${index}:nextCheckEn`, cause.nextCheckEn)}</span></p>
-            {cause.sourceIds.length ? <p>{t.source}: {cause.sourceIds.map((id) => <a key={id} href={diagnosticReferences[id].url} target="_blank" rel="noopener noreferrer" lang="en">{diagnosticReferences[id].title}</a>)}</p> : <p className={styles.small}>{t.modelKnowledge}</p>}
+            <h3 lang={generatedLocale}>{generated(`cause:${index}:nameEn`, cause.nameEn)}</h3>
+            <div className={styles.causeMeta}><p>{t.possibleCauseLabel}</p><p>{cause.observationIds.flatMap((id) => state.result!.data.observations.find((item) => item.id === id)?.photoIds ?? []).filter((id, i, ids) => ids.indexOf(id) === i).map((id) => `${t.photo} ${state.photos.findIndex((photo) => photo.id === id) + 1}`).join(", ")}</p></div>
+            <div className={styles.causeField}><p><strong>{t.whyFits}</strong></p><p lang={generatedLocale}>{generated(`cause:${index}:whyEn`, cause.whyEn)}</p></div>
+            <div className={styles.causeField}><p><strong>{t.causeUncertainty}</strong></p><p lang={generatedLocale}>{generated(`cause:${index}:uncertaintyEn`, cause.uncertaintyEn)}</p></div>
+            <div className={styles.causeNext}><p><strong>{t.nextCheck}</strong></p><p lang={generatedLocale}>{generated(`cause:${index}:nextCheckEn`, cause.nextCheckEn)}</p></div>
+            <details className={styles.disclosure}><summary>{t.sourcesDetails}</summary>
+              {cause.sourceIds.length ? <><p>{t.sourcesLimit}</p><ul>{cause.sourceIds.map((id) => <li key={id}><a href={diagnosticReferences[id].url} target="_blank" rel="noopener noreferrer" lang="en">{diagnosticReferences[id].title}</a><p lang="en">{diagnosticReferences[id].section}. {diagnosticReferences[id].geography}.</p></li>)}</ul></> : <p>{t.modelKnowledge}</p>}
+            </details>
           </article>)}
           {state.result.data.unsupported && <p>{t.unsupported}</p>}
-          {state.result.data.possibleCauses.some((cause) => cause.sourceIds.length > 0) && <details className={styles.disclosure}><summary>{t.diagnosticSources}</summary><p>{t.sourcesLimit}</p>{[...new Set(state.result.data.possibleCauses.flatMap((cause) => cause.sourceIds))].map((id) => <p key={id} lang="en">{diagnosticReferences[id].title}. {diagnosticReferences[id].section}. {diagnosticReferences[id].geography}.</p>)}</details>}
+
         </section>
         {state.result.data.collectionPrompts.length > 0 && <section className={styles.collectionNotes}><h2>{t.nextInformation}</h2>
           <ul>{state.result.data.collectionPrompts.map((prompt) => <li key={prompt.id}>{t.collection[prompt.id]}{prompt.photoIds.length > 0 && <span> ({prompt.photoIds.map((id) => `${t.photo} ${state.photos.findIndex((photo) => photo.id === id) + 1}`).join(", ")})</span>}</li>)}</ul>
@@ -351,6 +353,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
         <details className={styles.disclosure} open={state.result.data.excludedPhotoIds.length > 0 || state.result.data.visualFinding === "insufficient_evidence" || state.result.data.contradictions.length > 0}>
           <summary>{t.officerDetails}</summary>
           {observationPanel()}
+          {canShowGenerated && state.result.data.possibleCauses.length > 0 && <section className={styles.section}><h2>{t.meaning}</h2><p lang={generatedLocale}>{generated("causeAssessment", state.result.data.causeAssessmentEn)}</p></section>}
           <ul className={styles.quality}>{state.result.data.photoChecks.map((check) => <li key={check.photoId}>{t.photo} {state.photos.findIndex((photo) => photo.id === check.photoId) + 1}: {t.quality}, {t[check.quality]}; {t.cropPart}, {t[check.crop]}, {t[check.part]}</li>)}</ul>
           <section className={styles.section}><h2>{t.uncertainShort}</h2>
             {canShowGenerated && state.result.data.limitations.map((value, index) => <p key={index} lang={generatedLocale}>{generated(`limitation:${index}`, value)}</p>)}
@@ -358,12 +361,12 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
             {canShowGenerated && state.result.data.missingInfo.length > 0 && <><h3>{t.missing}</h3>{state.result.data.missingInfo.map((value, index) => <p key={index} lang={generatedLocale}>{generated(`missing:${index}`, value)}</p>)}</>}
           </section>
         </details>
-        <RegionControl value={state.region} text={t} locale={locale} disabled={!!busy} onChange={(region) => void updateGuidance(region)} />{guidancePanel}
+        <RegionControl compact value={state.region} text={t} locale={locale} disabled={!!busy} onChange={(region) => void updateGuidance(region)} />{guidancePanel}
         <div className={styles.actions}><button className={styles.primary} disabled={!!busy || !reportCurrent(state)} onClick={() => apply({ type: "stage", stage: "report" })}>{t.prepareReport}</button><button disabled={!!busy} onClick={() => apply({ type: "stage", stage: "questions" })}>{t.editAnswers}</button><button disabled={!!busy} onClick={() => apply({ type: "stage", stage: "photos" })}>{t.backPhotos}</button></div>
       </>}
       {state.stage === "report" && <>
         <section className={styles.collectionNotes}><h2>{t.reportReady}</h2>{state.result && <><p><strong>{findingHeadline(state.result.data, t)}</strong></p>{canShowGenerated && <p lang={generatedLocale}>{generated("causeAssessment", state.result.data.causeAssessmentEn)}</p>}<p className={styles.small}>{state.result.data.visualFinding === "no_clear_changes" ? t.healthCaveat : t.visualCaveat}</p></>}<p>{t.reportShort}</p><ul><li>{t.reportContents}</li><li>{t.reportUse}</li></ul><p className={styles.small}>{t.reportSummary}</p></section>{!state.result && <p className={styles.note}>{t.noResult}</p>}{translationPanel}
-        <RegionControl value={state.region} text={t} locale={locale} disabled={!!busy} onChange={(region) => void updateGuidance(region)} />{guidancePanel}
+        <RegionControl compact value={state.region} text={t} locale={locale} disabled={!!busy} onChange={(region) => void updateGuidance(region)} />{guidancePanel}
         {!report && state.result && locale === "tpi" && !variant && !englishAllowed && <p>{t.noTranslationExport}</p>}
         {report && <details className={styles.preview} ref={reportDisclosure}><summary>{t.reportPreview}</summary><ReportPreview report={report} /></details>}
         <div className={styles.actions}><button className={styles.primary} disabled={!!busy || !report} onClick={() => void exportReport()}>{t.download}</button><button disabled={!!busy || !report} onClick={() => { if (reportDisclosure.current) reportDisclosure.current.open = true; window.print(); }}>{t.print}</button><button disabled={!!busy} onClick={() => apply({ type: "stage", stage: state.result ? "result" : state.preliminary ? "questions" : "photos" })}>{state.result ? t.backResult : state.preliminary ? t.questions : t.backPhotos}</button></div>

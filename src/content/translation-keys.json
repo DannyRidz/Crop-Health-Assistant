@@ -1014,5 +1014,25 @@
   "assessment.reportUse": {
     "en": "authored",
     "tpi": "draft"
+  },
+  "assessment.sourcesDetails": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.countryOptional": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.change": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.changeCountry": {
+    "en": "authored",
+    "tpi": "draft"
+  },
+  "assessment.cancelCountryChange": {
+    "en": "authored",
+    "tpi": "draft"
   }
 }
