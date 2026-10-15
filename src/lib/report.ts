@@ -67,7 +67,7 @@ export function makeReport(state: Assessment, locale: Locale, variant: TextVaria
     sections.push({ title: t.source, language: "en", lines: sourceIds.flatMap((id, index) => { const source = diagnosticReferences[id]; return [`${index + 1}. ${source.title}`, `${source.section}. ${source.geography}.`, source.url]; }) });
   }
   sections.push({ title: t.guidance, lines: entries.length ? entries.flatMap((entry) => [entry.text, `${t.reviewGeography}: ${entry.reviewGeography}`, ...(entry.applicableCountryCodes.includes("PG") ? [t.pngReviewed] : []), ...entry.regionalLimitations, `${t.source}: ${entry.sourceTitle}, ${entry.sectionOrPage}, ${entry.sourceUrl}`, `${entry.agriculturalReviewDate}, ${entry.regionalReviewDate}`, entry.attribution]) : [state.region.response === "known" ? t.noRegional : t.unknownRegional] });
-  sections.push({ title: t.limitsHeading, lines: [t.pngPending, t.initial, t.share, t.temporary] });
+  sections.push({ title: t.limitsHeading, lines: [t.pngPending, t.share, t.temporary] });
   sections.push({ title: t.demonstration, lines: [`${t.created}: ${formatDate(state.createdAt)}`, `${t.timezone}: ${state.timezone}`, `${t.language}: ${locale === "tpi" ? "Tok Pisin" : "English"}`, ...(result ? [`${t.reportVersions}: ${result.schemaVersion}, ${result.promptVersion}, ${result.policyVersion}, ${result.registryVersion}`] : [])] });
   const bulletTitles = [t.keyFindings, t.nextInformation, t.aiObservations, t.uncertain, t.aiUncertainty, t.missing, t.limitsHeading];
   for (const section of sections) {
