@@ -38,3 +38,7 @@ Reviewed on 16 October 2026 using the complete exported English auto generated c
 4. What is the exact 18 October cutoff time and timezone, and through what date should the deployed service remain available?
 
 These questions are prepared for the user. No message has been sent to the organiser.
+
+## Later organiser reply
+
+The user supplied a support email response on 16 October 2026. For current preparation, strictly under three minutes supersedes the session duration advice; the confirmed cutoff is 18 October 2026 at 11:59 PM IST. The reply permits explaining Firestore nonapplicability in the deck and technical documentation, while Agent Platform and ADK remain unresolved. The historical session notes above are retained. See [current instructions](instructions.md).

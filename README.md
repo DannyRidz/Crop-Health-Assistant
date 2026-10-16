@@ -50,7 +50,7 @@ flowchart LR
 | pdf-lib and Noto Sans | PDF export with headings, photos and page numbers |
 | Vitest | Deterministic software checks |
 
-Firestore and a separate Agent Platform component are not used. There is no permanent case database. Competition clarification about these technologies and video duration is pending; see [submission requirements](docs/submission/instructions.md).
+Firestore is not needed for this MVP: cases are processed temporarily and reports are downloaded to the farmer’s device, without saved case history or a permanent database. The organiser permits documenting why Firestore is not applicable. A separate Agent Platform component and ADK are not used; whether either is mandatory remains unresolved. The organiser confirmed the demo must be strictly under three minutes. See [submission requirements](docs/submission/instructions.md).
 
 ## Run locally
 

@@ -39,19 +39,25 @@ The user supplied screenshot states:
 
 Keep final submission prose, documentation, presentation and narration in English. Describe Tok Pisin as a product feature with fixed wording and AI generated sample reports reviewed, as confirmed by the user on 16 October 2026. New case text is still automatically translated. Do not claim completed farmer or agricultural validation, measured yield improvements or accuracy scores without evidence.
 
-## Discrepancies to resolve
+## Organiser reply received, 16 October 2026
 
-### Video duration
+Source: the user supplied screenshot of an email from Simarjit Mukherjee, Support Experience Manager, Hack2skill. This records the supplied reply, not a separate inbox verification. The reply resolves the duration and deadline conflicts and allows a documented explanation when Firestore is not applicable. It does not confirm Agent Platform or ADK eligibility.
 
-The screenshot and session host at 4:41 to 4:50 say 3 to 4 minutes. The inspected template's links slide says 3 minutes. The public FAQ says under 3 minutes, while the themes page says 3 minutes. These are conflicting instructions, not a verified single limit. Prepare a concise script around three minutes, preserve an editable recording and confirm the final portal rule or obtain organiser clarification before locking the duration. Do not claim one duration complies with all versions.
+### Video duration, resolved
 
-### Firestore
+The organiser says the demo video must be **strictly under 3 minutes**. This supersedes the earlier screenshot and session references to 3 to 4 minutes for our submission preparation. Target **2 minutes 45 seconds total**, including credits and source cards. Verify the actual exported runtime is below 180 seconds. Do not include the earlier optional extension.
 
-The screenshot names Firebase, Firestore, Cloud Run and Gemini and asks for all mentioned technology. Our deployed app uses Firebase Hosting, Cloud Run and Gemini. It does not currently use Firestore. Do not describe Firebase Hosting as Firestore or imply a database exists. Confirm whether Firestore is mandatory or whether the description should cover only services actually used. Any new Firestore feature needs a defined purpose, data handling decision and implementation scope; this record does not authorise adding one.
+### Firestore, document why it is not applicable
 
-### Agent Platform
+The reply says that if Firestore is not applicable, the reason may be explained in technical documentation and the pitch deck, while still aligning with the stated technology requirements. Our app processes cases temporarily and generates PDFs on the farmer's device. It has no permanent case database, saved case history or account records, so the current MVP does not require Firestore. Firebase Hosting provides routing; it is not a Firestore database. This explanation is now in the README and technology slide. The reply is not blanket approval of the whole submission or authorisation to add a database.
 
-The session at 13:13 to 14:57 discusses direct AI Studio calls but also describes an Agent Platform capability as required. This is stronger wording than the public page allowing Google models or agentic platforms. Our current implementation uses the official Gemini SDK, without ADK or Agent Platform runtime, memory or session services. Confirm whether this is sufficient before marking all competition requirements met. See [the timestamped session notes](expert-session-notes.md), including other conflicts on prior work and service availability. Do not add services or claim compliance based on ambiguous auto generated captions.
+### Agent Platform and ADK, unresolved
+
+The reply asks for meaningful use of the required Google Cloud stack and refers back to official guidelines and hackathon updates for whether Agent Platform or ADK is mandatory. It gives no direct yes or no. Our implementation uses the official Gemini SDK, Cloud Run, Firebase Hosting and Secret Manager, without ADK or a separate Agent Platform service. Keep that description accurate and the eligibility question open. Do not add services or claim compliance from this ambiguous reply. See the [session notes](expert-session-notes.md) for the earlier evidence.
+
+### Deadline and availability
+
+Confirmed deadline: **18 October 2026 at 11:59 PM IST (UTC+05:30)**, equivalent to **19 October 2026 at 2:29 AM in Brunei (UTC+08:00)**. Aim to submit during 18 October in Brunei, before the final cutoff. Keep the public app and its dependencies usable throughout evaluation. The reply does not specify an evaluation end date. Preserve the submitted URL and check funded API access without initiating purchases or changing existing spending controls.
 
 ## Current evidence and outstanding work
 
@@ -60,7 +66,7 @@ The session at 13:13 to 14:57 discusses direct AI Studio calls but also describe
 - Theme: Sustainability & Social Impact. Product framing: a globally accessible coffee screening assistant, with PNG users as the first planned validation group.
 - Software verification includes real Gemini journeys, Cloud Run deployment, PDF exports and 127 deterministic tests. Tests are not an agricultural accuracy benchmark.
 - Independent agricultural evaluation and actual farmer feedback remain pending. Tok Pisin fixed wording and AI generated sample reports have completed language review, confirmed by the user. Show those limits in the benchmarking and future development sections.
-- Prepare the template based deck, video, current README, brief description and final form fields. Verify every link from a signed out session and retain submission acknowledgement.
+- The template based deck and current README are prepared as drafts. Record the under three minute video, finish the brief description and final form fields. Verify every link from a signed out session and retain submission acknowledgement.
 - Keep within the existing USD 20 allowance. No further purchases or automatic top ups are authorised. Check funded API availability before submission and during evaluation; project alerts and the one instance limit do not guarantee a spending cutoff or uninterrupted service.
 
 ## Sources

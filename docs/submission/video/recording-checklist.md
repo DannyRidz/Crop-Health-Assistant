@@ -10,7 +10,7 @@ This prepares a real screen recording. It does not certify a finished video. No 
 - Choose Brazil for the dataset example and Not sure for history that was not supplied. If demonstrating another country, label it as an interface example, not the photo's collection location.
 - Check the app responds and screening has usable funded access. A successful health response alone does not prove Gemini availability. Keep within the existing allowance; do not buy credits or enable automatic reload.
 - Keep the [script](script.md) beside the recording window. Rehearse once without dispatching repeated AI requests. The test count is dated 16 October, not an accuracy score.
-- Use the deck's existing architecture diagram. It shows Firebase Hosting, Cloud Run, Gemini and Secret Manager. Do not add Firestore or Agent Platform claims while clarification is pending.
+- Use the deck's existing architecture diagram. It shows Firebase Hosting, Cloud Run, Gemini and Secret Manager. Explain Firestore is unnecessary because cases are temporary and PDFs stay on the device. Agent Platform and ADK are not used and their requirement remains unresolved.
 
 ## Capture sequence
 
@@ -23,7 +23,6 @@ This prepares a real screen recording. It does not certify a finished video. No 
 | E | Same case in Tok Pisin | Language changes preserve case and findings |
 | F | Prepare report, download and open PDF | Matching reference, country, photos and readable sections |
 | G | Architecture and closing credits | Actual services, both team members and app URL |
-| Optional | Change country to Not sure | Updated care limits with unchanged photo evidence |
 
 Record the complete original interaction. You can divide it into short clips and record narration separately to reduce memory load. Keep unused processing footage until the final edit is checked. Do not refresh the app mid case, because refreshing clears it.
 
@@ -37,7 +36,7 @@ Record the complete original interaction. You can divide it into short clips and
 
 ## Edit and verify before upload
 
-- Confirm the organiser's duration rule. Measure the exported video's actual runtime, including introduction, credits and source cards. The script timings are estimates.
+- The organiser confirmed strictly under three minutes. Target 2:45 total and measure the exported runtime, including introduction, credits and source cards. It must be below 180 seconds. Omit the former optional extension. Script timings are rehearsal estimates.
 - Watch the entire exported video once with audio, checking readable text, cursor actions, speech pacing and abrupt cuts.
 - Confirm the same case reference, country and selected language remain consistent between result and PDF.
 - Keep the key limitation visible or audible: tentative causes, pending agricultural validation, and regional applicability. No claim of guaranteed diagnosis, worldwide validation or live chemical doses.

@@ -1,6 +1,6 @@
 # J2D pitch deck working draft
 
-Prepared and visually verified on 16 October 2026. Team J2D consists of Jeremiah Ewande (team leader and resource coordination) and Daniel Ridzwan Bin Mohamad (app development), as confirmed by the user. The clarification email has already been sent by the user; the reply is pending.
+Prepared and visually verified on 16 October 2026. Team J2D consists of Jeremiah Ewande (team leader and resource coordination) and Daniel Ridzwan Bin Mohamad (app development), as confirmed by the user. The organiser reply has been supplied by the user. Video duration and deadline are confirmed; Firestore nonuse can be explained. Agent Platform and ADK remain unresolved.
 
 ## Deliverables
 
@@ -38,8 +38,8 @@ The deck follows a copy of the prescribed [organiser template](https://docs.goog
 
 ## Before submission
 
-- Add the genuine demo video link after recording; resolve the duration with the organiser.
-- Confirm the organiser reply about Firestore and Agent Platform. Update technology and architecture slides only if the implemented solution changes.
+- Add the genuine demo video link after recording. The complete video must be strictly under three minutes; target 2:45.
+- Retain the Firestore nonuse explanation. Resolve Agent Platform and ADK eligibility before claiming full technology compliance.
 - Verify public repository visibility and bring its documentation up to date. The repository URL in this draft is the configured project remote; its public access is not yet verified.
 - Add actual farmer or reviewer outcomes only if received and documented.
 - Check final portal requirements and all public links, then export the current deck again.
@@ -61,8 +61,10 @@ Team credit update, 16 October 2026: Daniel Ridzwan Bin Mohamad is named as app 
 
 ## Demo video preparation
 
-The [English narration](../video/script.md) and [recording checklist](../video/recording-checklist.md) are prepared. They include both team credits, BRACOL attribution, genuine result handling and an optional timing extension. No video has been recorded or uploaded. Final duration remains subject to organiser clarification.
+The [English narration](../video/script.md) and [recording checklist](../video/recording-checklist.md) are prepared. They include both team credits, BRACOL attribution, genuine result handling and a 2:45 recording target. No video has been recorded or uploaded. The organiser confirmed a strict duration below three minutes; the earlier optional extension is removed.
 
 Language follow up: three later Tok Pisin cause wording edits on 16 October are marked pending fluent review. The earlier fixed wording and sample report review remains complete for its recorded scope. Reflect this exception in final narration and deck language claims if it remains unresolved at submission.
 
 Deck language exception update, 16 October 2026: verification slide 10 now separates the completed Tok Pisin wording and sample review from three recent edits awaiting review. Roadmap slide 11 includes that small follow up instead of claiming all current wording has completed review. The native deck and both exports were refreshed. Both changed slides were rendered and visually inspected, with no clipped or overlapping text; the deck retains 13 slides.
+
+Organiser reply update, 16 October 2026: the technology slide now explains that Firestore is unnecessary for temporary cases and device saved PDFs. Agent Platform and ADK remain explicitly unresolved. The native deck and both exports were refreshed; slide 7 was rendered and visually inspected. The organiser confirmed a strict video runtime below three minutes and a deadline of 18 October 2026, 11:59 PM IST (19 October, 2:29 AM Brunei). The recording plan targets 2:45 with no extension. No submission or video upload has occurred.
