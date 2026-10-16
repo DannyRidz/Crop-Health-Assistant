@@ -333,7 +333,6 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
       {state.stage === "photos" && <div className={styles.intro}><p>{t.introShort}</p>
         <div className={styles.tags}><span>{text.scopeLabel}</span></div>
       </div>}
-      {locale === "tpi" && <p className={styles.small}>{t.draftShort}</p>}
       <ol className={styles.progress} aria-label={text.journeyTitle}>{steps.map((step, index) => <li key={step} aria-current={state.stage === step ? "step" : undefined}><span>{index + 1}</span>{t[step]}</li>)}</ol>
       <div className={styles.title}><p>{t.step} {steps.indexOf(state.stage) + 1} {t.of} 4</p><h1 ref={heading} tabIndex={-1}>{titles[state.stage]}</h1></div>
       {error && <div id="assessment-error" className={styles.error} role="alert" ref={errorPanel} tabIndex={-1}><p>{errorMessage}</p>{error.requestId && <p className={styles.small}>{t.reference}: {error.requestId}</p>}{cooldown > 0 && <p>{cooldown}s</p>}</div>}

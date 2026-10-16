@@ -4,6 +4,8 @@ A globally accessible coffee screening assistant, initially intended for validat
 
 ## Current milestone
 
+Language status update, 16 October 2026: the user confirmed completed review of fixed Tok Pisin wording and AI generated sample reports. The app and deck now reflect that scope. Future case text remains automatically translated; this is separate from agricultural accuracy and farmer testing. See [the review record](docs/content-review/tok-pisin-language-review.md).
+
 Public app link: [coffee-leaf-check.web.app](https://coffee-leaf-check.web.app). The short address now stays in the browser throughout the app journey. [Hosting configuration and verification](deploy/preview-link/README.md).
 
 The phone interface has been simplified on 14 October 2026. Short instructions, expandable supporting details, compact question photos and three plain result sections reduce reading. Sharing consent, screening status and important limitations stay visible. Photo quality and scope warnings automatically expand. The report preview starts collapsed; PDF export still includes the complete evidence and regional limitations. Phone refinement is in progress, with farmer feedback, fluent language review and complete accessibility verification still pending.

@@ -2,7 +2,7 @@
 
 ## Product and current state
 
-Globally accessible coffee leaf screening assistant. PNG users are the first planned validation group, not the only audience. English and Tok Pisin are the only MVP languages. M1 narrow public journey is complete with a permitted BRACOL image, real Gemini preliminary and final requests, regional limitations and English plus draft Tok Pisin PDFs. Cloud Run screening is enabled in paid mode with two scoped Secret Manager references and maximum one instance. Conditions remain disabled, guidance remains empty and all Tok Pisin text is draft. M2 core boundary checks pass, but live reviewed condition status selection and the follow up bank remain pending. Agricultural accuracy and farmer release validation remain pending.
+Globally accessible coffee leaf screening assistant. PNG users are the first planned validation group, not the only audience. English and Tok Pisin are the only MVP languages. M1 narrow public journey is complete with a permitted BRACOL image, real Gemini preliminary and final requests, regional limitations and English plus draft Tok Pisin PDFs. Cloud Run screening is enabled in paid mode with two scoped Secret Manager references and maximum one instance. Conditions remain disabled, guidance remains empty and Tok Pisin fixed wording and sample AI reports have completed language review, as confirmed by the user on 16 October 2026. M2 core boundary checks pass, but live reviewed condition status selection and the follow up bank remain pending. Agricultural accuracy and farmer release validation remain pending.
 
 ## Stack
 
@@ -32,7 +32,7 @@ Tracer Bullet: prove one real complete journey before adding breadth. The approv
 2. Never expose credentials in browser code, committed files, logs or responses. Local secrets belong in ignored `.env.local`. The MVP allowance is USD 20 total, excluding older projects. The user purchased initial USD 5 Gemini credits; funded API access was verified on 14 October 2026. Do not initiate further purchases. Keep automatic top ups off. The allowance is not a guaranteed service cutoff.
 3. Describe screening and uncertainty honestly. Never certify health, invent treatment or imply completed agricultural or worldwide validation.
 4. Guidance must match the explicit farmer region and actual review scope. Missing regional guidance means observations, a limitation and local officer referral. Never infer location from language or IP.
-5. Fixed UI text lives in `src/content/locales/`. Draft Tok Pisin is labelled and requires fluent review. Language changes never change screening evidence.
+5. Fixed UI text lives in `src/content/locales/`. Tok Pisin fixed wording and sample AI reports have completed language review, as confirmed by the user. New case text remains automatic translation. Language changes never change screening evidence.
 6. Keep a small functional structure: routes in `src/app`, UI in `src/components`, pure shared logic in `src/lib`. Use named exports except framework required route exports.
 7. Use the [frontend specification](docs/specs/0001-coffee-mvp/design.md). Tokens live in `src/app/globals.css`. Use semantic HTML, visible focus, 48 px targets and wrapping text.
    Supporting details may use native disclosures. Keep sharing consent and screening uncertainty visible; automatically expand preliminary photo details when quality or crop and part checks flag a limitation. A collapsed report preview must not omit content from PDF export.
@@ -94,3 +94,7 @@ Result keeps regional care before supporting photo details. Report keeps summary
 Submission preparation must follow [the recorded organiser instructions and prescribed template](docs/submission/instructions.md). Resolve the conflicting video durations and whether Firestore is mandatory before finalising the package. The current app does not use Firestore; do not claim otherwise or add it without a defined authorised scope.
 
 [Expert session notes](docs/submission/expert-session-notes.md) record timestamped clarification questions. Agent Platform or ADK use is an additional unresolved requirement; direct Gemini SDK use must not be described as an Agent Platform integration. Session captions also conflict with written rules on video length and prior work.
+
+The [J2D pitch draft record](docs/submission/pitch/README.md) links the editable prescribed template deck and its evidence. Keep it a draft until the organiser reply, real video link and public repository checks are complete. Team leader is Jeremiah Ewande, confirmed by the user. Do not claim the deck was submitted or publish it without authorisation.
+
+[Tok Pisin review record](docs/content-review/tok-pisin-language-review.md): the user confirmed fixed wording and AI generated sample reports were reviewed. Reviewer identity and actual review date are unspecified. Do not reintroduce blanket draft notices, imply every future case was human reviewed, or treat language review as agricultural approval. Substantive future wording changes need a new language status.

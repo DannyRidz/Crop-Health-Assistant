@@ -1,1250 +1,1250 @@
 {
   "skipLink": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "languageLabel": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "prototypeLabel": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "eyebrow": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "title": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "introduction": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "scopeLabel": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "validationLabel": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "availabilityTitle": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "availabilityText": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "journeyTitle": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "journey.0.title": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "journey.0.description": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "journey.1.title": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "journey.1.description": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "journey.2.title": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "journey.2.description": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "journey.3.title": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "journey.3.description": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "beforeTitle": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "uncertaintyTitle": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "uncertaintyText": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "regionalTitle": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "regionalText": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "sessionTitle": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "sessionText": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "translationNotice": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "footer": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "screeningStatement": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.photos": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questions": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.result": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.report": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.step": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.of": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.prototype": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.intro": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.photoTitle": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.photoHelp": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.addPhoto": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.camera": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.photo": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.side": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.upper": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.underside": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.unknown": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.remove": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.replace": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.limits": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.privacy": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.temporary": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.demoPrivacy": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.paidPrivacy": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.permission": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.checkPhotos": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.checkingPhotos": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.checkingResult": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.slow": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.preliminary": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.noObservations": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.quality": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.usable": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.blurry": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.dark": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.incomplete": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.coffee": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.leaf": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.other": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.unclear": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.cropPart": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionTitle": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionHelp": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.detail": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.getResult": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.backPhotos": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.backResult": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.editAnswers": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.prepareReport": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.incompleteReport": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.retry": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.newCheck": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.confirmClear": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.countryTitle": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.countryHelp": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.locationChoice": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.notProvided": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.knownCountry": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.countrySearch": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.country": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chooseCountry": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.countryEnglish": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.noCountries": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.regionUpdating": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.regionRetry": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.regionStale": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.visible": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.meaning": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.uncertain": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.coverage": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.unsupported": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.initial": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.guidance": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.noRegional": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.unknownRegional": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.pngPending": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.pngReviewed": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.reviewGeography": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.source": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.missing": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.noMissing": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.status": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.unable_to_assess": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.more_information_needed": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.possible_supported_issue": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.no_clear_supported_signs": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.reportTitle": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.reportHelp": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.reportPreview": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.download": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.downloading": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.downloaded": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.print": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.exportError": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.reportHeading": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.reference": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.created": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.assessed": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.timezone": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.language": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.demonstration": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.processed": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.answers": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.noResult": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.noResultShort": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.share": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.emptyAnswer": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.automatic": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.translationLoading": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.translationUnavailable": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.showEnglish": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.englishFallback": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.fixedDraft": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.noTranslationExport": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.needPhoto": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.needPermission": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.needAnswers": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.needCountry": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.processing": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.condition": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.none": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.remaining": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.enableNote": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.countryValue": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.limitsHeading": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.errors.disabled": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.errors.unavailable": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.errors.timeout": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.errors.invalid_input": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.errors.invalid_image": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.errors.format": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.errors.too_large": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.errors.invalid_output": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.errors.expired": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.errors.busy": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.errors.quota": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.errors.origin": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.errors.demo_only": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.errors.translation_unavailable": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.errors.network": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.errors.photo_failed": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.onset.label": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.onset.options.today": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.onset.options.days_2_7": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.onset.options.over_week": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.onset.options.not_sure": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.spread.label": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.spread.options.one": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.spread.options.several": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.spread.options.not_sure": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.symptoms.label": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.symptoms.options.spots": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.symptoms.options.yellowing": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.symptoms.options.falling": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.symptoms.options.other": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.symptoms.options.not_sure": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.care_change.label": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.care_change.options.yes": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.care_change.options.no": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionBank.care_change.options.not_sure": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.introShort": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.photoHelpShort": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.fileHint": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.privacyShort": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.privacyDetails": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.prototypeDetails": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.coverageShort": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.initialShort": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.sessionShort": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.draftShort": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.questionsShort": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.photoDetails": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.visibleShort": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.uncertainShort": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.nextShort": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.reportShort": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.reportSummary": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.reviewDetails": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.noRegionalShort": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.unknownRegionalShort": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.resultTitle": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.photoCheckComplete": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.skipLocation": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.errors.assessment_version_changed": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.findings.changes_visible": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.findings.no_clear_changes": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.findings.unsupported": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.findings.unclear_subject": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.findings.quality": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.findings.unclear_observations": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.visualCaveat": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.healthCaveat": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.causeTitle": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.causeUnavailable": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.keyFindings": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.officerDetails": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.aiObservations": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.aiUncertainty": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.excludedPhoto": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.caseSummary": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.farmerRecord": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.reportVersions": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.nextInformation": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.officerPhotoNote": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.collectionHelp": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.noCollection": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.collection.replace_unclear_photos": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.collection.add_upper": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.collection.add_underside": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.collection.identify_sides": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.collection.record_onset": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.collection.record_spread": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.causeIntro": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.whyFits": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.causeUncertainty": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.nextCheck": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.modelKnowledge": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.diagnosticSources": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.sourcesLimit": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.screeningStatus": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.possibleCauseStatus": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.noCauseStatus": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.possibleCauseLabel": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.reportReady": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.reportContents": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.reportUse": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.sourcesDetails": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.countryOptional": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.change": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.changeCountry": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.cancelCountryChange": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chooseAll": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.startOver": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.startOverHelp": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.careTitle": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.careUnreviewed": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.careHelper": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.careNone": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.careRegionUnknown": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.careNoRegion": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.careSourceScope": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.careInvalid": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalTitle": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalUnavailable": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalNoEvidence": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalUnknown": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalLabel": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalEnglish": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalShowEnglish": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalChoose": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalIdentity": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalSubmit": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalConditions": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalYes": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalNo": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalUnsure": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalPending": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalConditionsFailed": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalExpired": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalCaveat": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalExportFailed": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalWithout": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalRate": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalMethod": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalStage": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalTiming": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalFrequency": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalHarvest": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalReentry": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalPpe": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalEnvironment": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalPrecautions": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalApplicability": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalChecked": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.careActions.pg_check_drainage": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.careActions.pg_check_weeds": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.careActions.pg_review_garden_management": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chooseAnswer": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalRegistration": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalEnglishReport": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalVerification": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.chemicalRevision": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   },
   "assessment.careBrazilScope": {
     "en": "authored",
-    "tpi": "draft"
+    "tpi": "reviewed"
   }
 }

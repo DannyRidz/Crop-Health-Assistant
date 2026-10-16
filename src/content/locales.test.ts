@@ -21,15 +21,19 @@ describe("translation collection, AC-12 foundation", () => {
     expect(textShape(tokPisin)).toEqual(textShape(english));
   });
 
-  it("keeps the unreviewed Tok Pisin collection labelled as draft", () => {
-    expect(review.tpi).toEqual({ status: "draft", reviewer: null, reviewDate: null });
+  it("records the user confirmed language scope without approving agricultural guidance", () => {
+    expect(review.tpi.status).toBe("reviewed");
+    expect(review.tpi.scope).toContain("ai_generated_sample_reports");
+    expect(review.tpi.futureGeneratedReports).toBe("automatic_translation_not_individually_reviewed");
+    expect(review.tpi.reviewer).toBeNull();
+    expect(review.agriculturalReview.status).toBe("pending");
   });
-  it("records draft status for every fixed text key, including errors and reports", () => {
+  it("records reviewed fixed text separately from future generated reports", () => {
     function paths(value: unknown, prefix = ""): string[] {
       if (typeof value === "string") return [prefix];
       return Object.entries(value as object).flatMap(([key, item]) => paths(item, prefix ? `${prefix}.${key}` : key));
     }
     expect(Object.keys(keyReview).sort()).toEqual(paths(english).sort());
-    expect(Object.values(keyReview).every((value) => value.en === "authored" && value.tpi === "draft")).toBe(true);
+    expect(Object.values(keyReview).every((value) => value.en === "authored" && value.tpi === "reviewed")).toBe(true);
   });
 });

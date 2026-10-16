@@ -27,7 +27,7 @@ export function makeReport(state: Assessment, locale: Locale, variant: TextVaria
   const formatDate = (date: string) => new Intl.DateTimeFormat(locale === "tpi" ? "en-GB" : "en", { dateStyle: "medium", timeStyle: "short", timeZone: state.timezone }).format(new Date(date));
   const sections: ReportSection[] = [
     { title: t.caseSummary, lines: [`${t.reference}: ${state.id}`, `${t.assessed}: ${result ? formatDate(result.assessedAt) : t.notProvided}`, `${t.countryValue}: ${region}`] },
-    { title: t.result, lines: [...(result ? [findingHeadline(result, t), result.visualFinding === "no_clear_changes" ? t.healthCaveat : t.visualCaveat] : [t.noResult]), ...(locale === "tpi" ? [t.fixedDraft, result ? translated ? t.automatic : t.englishFallback : t.fixedDraft].filter((value, index, values) => values.indexOf(value) === index) : [])] },
+    { title: t.result, lines: [...(result ? [findingHeadline(result, t), result.visualFinding === "no_clear_changes" ? t.healthCaveat : t.visualCaveat] : [t.noResult]), ...(locale === "tpi" && result ? [translated ? t.automatic : t.englishFallback] : [])] },
   ];
   const observationLine = (observation: NonNullable<typeof result>["observations"][number]) => `${t.photo} ${observation.photoIds.map((id) => state.photos.findIndex((photo) => photo.id === id) + 1).join(", ")}${observation.photoIds.some((id) => result!.excludedPhotoIds.includes(id)) ? ` (${t.excludedPhoto})` : ""}: ${obs(`observation:${observation.id}`, observation.textEn)}`;
   const generatedNotice: string[] = [];

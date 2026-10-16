@@ -16,3 +16,7 @@ next-env.d.ts
 *.pem
 .DS_Store
 npm-debug.log*
+
+/tmp/pitch-deck/
+
+/output/presentations/

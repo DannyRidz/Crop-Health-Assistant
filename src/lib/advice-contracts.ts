@@ -20,7 +20,7 @@ export type ChemicalContext = z.infer<typeof chemicalContextSchema>;
 export type AdviceIssue = "invalid_selection" | "insufficient_evidence";
 export type CareAction = {
   id: typeof CARE_IDS[number]; version: string; textKey: typeof CARE_IDS[number]; countryCodes: string[];
-  crop: "coffee"; plantPart: "leaf"; reviewStatus: "unreviewed"; translationStatus: "draft";
+  crop: "coffee"; plantPart: "leaf"; reviewStatus: "unreviewed"; translationStatus: "reviewed";
   sourceTitle: string; sourceUrl: string; section: string; publicationDate: string; publicationReleaseDate: string;
   sourceUseBasis: "original_text_with_citation"; copiedSourceAssets: false; permissionStatus: "verified";
 };

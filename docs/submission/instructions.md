@@ -37,7 +37,7 @@ The user supplied screenshot states:
 - Include a brief description explaining the use of Firebase, Firestore, Cloud Run and Gemini.
 - All submitted links must work and be publicly accessible.
 
-Keep final submission prose, documentation, presentation and narration in English. Describe Tok Pisin as a product feature with its draft review status. Do not claim completed farmer or agricultural validation, measured yield improvements or accuracy scores without evidence.
+Keep final submission prose, documentation, presentation and narration in English. Describe Tok Pisin as a product feature with fixed wording and AI generated sample reports reviewed, as confirmed by the user on 16 October 2026. New case text is still automatically translated. Do not claim completed farmer or agricultural validation, measured yield improvements or accuracy scores without evidence.
 
 ## Discrepancies to resolve
 
@@ -59,7 +59,7 @@ The session at 13:13 to 14:57 discusses direct AI Studio calls but also describe
 - Source remote: https://github.com/DannyRidz/Crop-Health-Assistant, public visibility and final contents still need checking.
 - Theme: Sustainability & Social Impact. Product framing: a globally accessible coffee screening assistant, with PNG users as the first planned validation group.
 - Software verification includes real Gemini journeys, Cloud Run deployment, PDF exports and 127 deterministic tests. Tests are not an agricultural accuracy benchmark.
-- Independent agricultural evaluation, fluent Tok Pisin review and actual farmer feedback remain pending. Show those limits in the benchmarking and future development sections.
+- Independent agricultural evaluation and actual farmer feedback remain pending. Tok Pisin fixed wording and AI generated sample reports have completed language review, confirmed by the user. Show those limits in the benchmarking and future development sections.
 - Prepare the template based deck, video, current README, brief description and final form fields. Verify every link from a signed out session and retain submission acknowledgement.
 - Keep within the existing USD 20 allowance. No further purchases or automatic top ups are authorised. Check funded API availability before submission and during evaluation; project alerts and the one instance limit do not guarantee a spending cutoff or uninterrupted service.
 

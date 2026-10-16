@@ -1,5 +1,24 @@
 {
-  "en": { "status": "authored", "reviewer": null, "reviewDate": null },
-  "tpi": { "status": "draft", "reviewer": null, "reviewDate": null },
-  "agriculturalReview": { "status": "pending", "reviewer": null, "reviewDate": null }
+  "en": {
+    "status": "authored",
+    "reviewer": null,
+    "reviewDate": null
+  },
+  "tpi": {
+    "status": "reviewed",
+    "reviewer": null,
+    "reviewDate": null,
+    "confirmedBy": "user",
+    "confirmationDate": "2026-10-16",
+    "scope": [
+      "fixed_interface_and_report_wording",
+      "ai_generated_sample_reports"
+    ],
+    "futureGeneratedReports": "automatic_translation_not_individually_reviewed"
+  },
+  "agriculturalReview": {
+    "status": "pending",
+    "reviewer": null,
+    "reviewDate": null
+  }
 }

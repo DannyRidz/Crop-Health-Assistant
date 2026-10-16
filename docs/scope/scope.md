@@ -20,7 +20,7 @@ A globally accessible coffee screening assistant lets coffee farmers worldwide u
 | 6 | Bounded questions and checked results | Broaden the journey | in-progress |
 | 7 | Reviewed guidance and translations | Content gate | planned |
 | 8 | Phone experience and complete reports | Completion | in-progress |
-| 9 | Evaluation and submission | Delivery | planned |
+| 9 | Evaluation and submission | Delivery | in-progress |
 
 ## Foundations
 
@@ -111,6 +111,8 @@ Specs: [technical design](../specs/0001-coffee-mvp/technical.md), [approved usef
 
 ### 7. Reviewed guidance and translations, planned
 
+Language review completion, 16 October 2026: the user confirmed that fixed Tok Pisin wording and AI generated sample findings and reports were reviewed. [Scope and provenance record](../content-review/tok-pisin-language-review.md). This supersedes earlier blanket draft and fluent review pending statements. It does not approve agricultural guidance, certify future generated translations or complete farmer validation.
+
 Enable one condition only after content, image permissions and evaluation gates pass. Record guidance applicability by country or broad region and identify guidance reviewed specifically for PNG. Agricultural review and Tok Pisin review are separate.
 
 **Done when:** only guidance eligible for the farmer's stated region is shown, PNG review scope is clear and missing regional guidance or translations produce explicit fallback behaviour, AC-9 through AC-12 and AC-19.
@@ -168,7 +170,9 @@ Review wording correction, 16 October 2026: the shared English and draft Tok Pis
 
 Result and report presentation polish, 16 October 2026: Step 3 keeps regional care before supporting photo details and avoids repeating the general photo warning in the expert review disclosure. Step 4 keeps a compact summary, country, download and optional full preview; treatment confirmation and stale guidance recovery remain visible when applicable. PDF body spacing is tighter without dropping content, with 11.5 point body text and preserved photo grouping and heading rules. Lint, types and 127 tests pass; the final conditional change also passed lint and types. Remote build `9a6f50c2-ee23-44a0-ad64-e9636a729977` succeeded, revision `coffee-health-demo-00030-l8f` serves all traffic with maximum one instance. Real BRACOL case `3d3b7af8-2ffa-457d-ab54-2ccf0dedd182` completed preliminary and final requests, an Indonesia to Kenya report country update, full preview and English plus draft Tok Pisin downloads. Every page of both five page PDFs was visually inspected, and browser errors were empty. Local synthetic layout samples were checked separately and are not agricultural evidence. Real samples are in ignored `output/pdf/result-polish/`, renders in `tmp/pdfs/result-polish/`.
 
-### 9. Evaluation and submission, planned
+### 9. Evaluation and submission, in-progress
+
+Pitch deck draft prepared on 16 October 2026 using the prescribed template, with J2D and leader Jeremiah Ewande confirmed by the user. [Deck and verification record](../submission/pitch/README.md). The 13 slide native draft, PDF and PowerPoint were checked visually and structurally. The user has sent the clarification email; the reply, genuine demo video, public repository verification and final package remain pending. Nothing has been submitted.
 
 The user supplied mandatory submission instructions and the official deck template on 16 October 2026. Read [the recorded instructions](../submission/instructions.md) before preparing the deck, video, description or form. It records the required template sections, ongoing public availability requirement and unresolved video duration and Firestore wording.
 
@@ -195,3 +199,5 @@ Next: finish the M1 real integration gate. Gemini access is configured locally; 
 M1 completion, 14 October 2026: the exact original BRACOL 671.jpg match is verified, and assessment 78ca06f5-1a5f-432b-af01-d044cea864c3 completed the public Cloud Run journey with real preliminary and final Gemini output, four Not sure answers, Brazil context, missing regional guidance and English plus draft Tok Pisin PDF exports. An unknown region PDF and simulated PNG context were also checked without another screening request. The result is unable to assess because no supported condition has passed review. This completes the narrow M1 software demonstration and AC-17, not the later agricultural, translation review or release criteria. Cloud revision coffee-health-demo-00003-sdk has screening enabled, paid provider mode and maximum one instance. Next is M2 boundary verification, while agricultural and fluent language resources remain pending.
 
 M2 progress, 14 October 2026: 68 tests and all local checks passed. The corrupt local photo error was fixed and deployed in revision coffee-health-demo-00004-gz8. Public corrupt and oversized upload checks and a real two photo preliminary request passed. Controlled browser retry retained photos and answers, and translation failure produced explicit English fallback. Served local API checks proved upload rejection and exhausted quota without provider calls. Four status headings were exercised only with synthetic responses. Feature 6 remains in progress: reviewed condition rules, live supported status selection and reviewed bilingual follow up questions still depend on the content gate. Do not mark M2 complete from these synthetic checks. Next dependency is agricultural review of the narrow condition and question bank, while fluent Tok Pisin review remains pending.
+
+Tok Pisin status release, 16 October 2026: lint, type checks and 127 tests pass. The tests distinguish user confirmed language review from pending agricultural approval and future automatic case text. Controlled English and Tok Pisin report exports no longer contain blanket draft notices. Remote build `538b2457-324f-4f9b-b7aa-de9c1a468dd5` passed; revision `coffee-health-demo-00031-tqh` serves all traffic with maximum one instance. The published Tok Pisin screen and About disclosure were checked in the real browser, with no errors. No additional paid AI screening was needed. The J2D deck and both exports were updated and the four changed slides inspected.
