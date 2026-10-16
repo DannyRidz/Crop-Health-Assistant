@@ -65,10 +65,10 @@ export async function createPdf(report: ReportData, fontBytes: Uint8Array, boldF
     }
   };
   type TextBlock = { text: string; size: number; face: PDFFont; bullet?: boolean };
-  const blockHeight = (block: TextBlock) => wrap(block.text, block.size, block.face, width - (block.bullet ? 16 : 0)).length * block.size * 1.45 + 6;
+  const blockHeight = (block: TextBlock) => wrap(block.text, block.size, block.face, width - (block.bullet ? 16 : 0)).length * block.size * 1.4 + 5;
   function draw(block: TextBlock) {
     const { text, size, face, bullet } = block;
-    const lineHeight = size * 1.45, x = margin + (bullet ? 16 : 0);
+    const lineHeight = size * 1.4, x = margin + (bullet ? 16 : 0);
     const link = text.match(/https:\/\/[^\s,]+/)?.[0];
     const lines = wrap(text, size, face, width - (bullet ? 16 : 0));
     const height = blockHeight(block);
@@ -82,14 +82,14 @@ export async function createPdf(report: ReportData, fontBytes: Uint8Array, boldF
         page.node.addAnnot(pdf.context.register(annotation));
       }
     }
-    y -= 6;
+    y -= 5;
   }
   function sectionBlocks(section: ReportData["sections"][number]): TextBlock[][] {
     return section.lines.map((text) => {
       const answer = section.layout === "answers";
       const separator = answer ? text.indexOf("\n") : text.indexOf(": ");
       const labelled = section.layout !== "metadata" && separator > 0 && (answer || section.labels?.includes(text.slice(0, separator)));
-      const size = section.layout === "metadata" ? 10.5 : 12;
+      const size = section.layout === "metadata" ? 10.5 : 11.5;
       return labelled ? [
         { text: text.slice(0, separator), size: 11, face: bold },
         { text: text.slice(separator + (answer ? 1 : 2)), size, face: font },
@@ -108,14 +108,14 @@ export async function createPdf(report: ReportData, fontBytes: Uint8Array, boldF
     continuationTitle = null;
     const heading: TextBlock = { text: section.title, size: 15, face: bold };
     const blocks = sectionBlocks(section);
-    const headingHeight = blockHeight(heading) + 14;
+    const headingHeight = blockHeight(heading) + 12;
     // Keep an introductory qualifier with the explanation that follows it.
     const firstHeight = blocks.slice(0, 2).flat().reduce((sum, block) => sum + blockHeight(block), 0);
     const keepHeight = headingHeight + firstHeight;
     const sectionHeight = headingHeight + blocks.flat().reduce((sum, block) => sum + blockHeight(block), 0) + (section.includePhotos && images.length ? rowHeight + 42 : 0);
-    if ((sectionHeight <= 240 || section.includePhotos) && sectionHeight <= contentTop - bottom) room(sectionHeight);
+    if (section.includePhotos && sectionHeight <= contentTop - bottom) room(sectionHeight);
     else room(keepHeight <= contentTop - bottom ? keepHeight : headingHeight + 36);
-    y -= 14;
+    y -= 12;
     page.drawLine({ start: { x: margin, y }, end: { x: margin + 32, y }, thickness: 2, color: rule });
     y -= 4; draw(heading);
     continuationTitle = section.title;

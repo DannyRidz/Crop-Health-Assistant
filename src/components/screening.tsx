@@ -316,7 +316,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
   </section>; }
   const guidancePanel = <section className={styles.note}>
     {state.result && state.guidance && reportCurrent(state) ? <AdvicePanel key={`${state.result.data.id}:${state.contextRevision}:${locale}`} advice={state.guidance.data.aiAdvice} result={state.result.data} region={state.region} revision={state.contextRevision} locale={locale} context={chemicalContext} verifiedDigest={verifiedDigest} busy={!!busy} onChange={changeChemical} onSubmit={submitChemical} /> : <><h2>{t.nextShort}</h2><p>{state.region.response === "known" ? t.noRegionalShort : t.unknownRegionalShort}</p></>}
-    <details className={styles.disclosure}><summary>{t.reviewDetails}</summary><p>{t.pngPending}</p><p>{t.initial}</p></details>
+    <details className={styles.disclosure}><summary>{t.reviewDetails}</summary><p>{t.pngPending}</p></details>
     {state.result && !reportCurrent(state) && <><p>{t.regionStale}</p><button disabled={!!busy || !regionSchema.safeParse(state.region).success} onClick={() => void updateGuidance(state.region, false)}>{t.regionRetry}</button></>}
   </section>;
 
@@ -404,6 +404,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
           <p className={styles.small}>{t.collectionHelp}</p>
           <p className={styles.small}>{t.officerPhotoNote}</p>
         </section>}
+        <RegionControl compact value={state.region} text={t} locale={locale} disabled={!!busy} onChange={(region) => void updateGuidance(region)} />{guidancePanel}
         <details className={styles.disclosure} open={state.result.data.excludedPhotoIds.length > 0 || state.result.data.visualFinding === "insufficient_evidence" || state.result.data.contradictions.length > 0}>
           <summary>{t.officerDetails}</summary>
           {observationPanel()}
@@ -415,12 +416,12 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
             {canShowGenerated && state.result.data.missingInfo.length > 0 && <><h3>{t.missing}</h3>{state.result.data.missingInfo.map((value, index) => <p key={index} lang={generatedLocale}>{generated(`missing:${index}`, value)}</p>)}</>}
           </section>
         </details>
-        <RegionControl compact value={state.region} text={t} locale={locale} disabled={!!busy} onChange={(region) => void updateGuidance(region)} />{guidancePanel}
         <div className={styles.actions}><button className={styles.primary} disabled={!!busy || !reportCurrent(state)} onClick={() => apply({ type: "stage", stage: "report" })}>{t.prepareReport}</button><button disabled={!!busy} onClick={() => apply({ type: "stage", stage: "questions" })}>{t.editAnswers}</button><button disabled={!!busy} onClick={() => apply({ type: "stage", stage: "photos" })}>{t.backPhotos}</button></div>
       </>}
       {state.stage === "report" && <>
-        <section className={styles.collectionNotes}>{state.result && <><h2>{findingHeadline(state.result.data, t)}</h2>{canShowGenerated && <p lang={generatedLocale}>{generated("causeAssessment", state.result.data.causeAssessmentEn)}</p>}<p className={styles.small}>{state.result.data.visualFinding === "no_clear_changes" ? t.healthCaveat : t.visualCaveat}</p></>}<p>{t.reportShort}</p><p className={styles.small}>{t.reportSummary}</p></section>{!state.result && <p className={styles.note}>{t.noResult}</p>}{translationPanel}
-        <RegionControl compact value={state.region} text={t} locale={locale} disabled={!!busy} onChange={(region) => void updateGuidance(region)} />{guidancePanel}
+        <section className={styles.collectionNotes}>{state.result && <><h2>{findingHeadline(state.result.data, t)}</h2>{canShowGenerated && <p lang={generatedLocale}>{generated("causeAssessment", state.result.data.causeAssessmentEn)}</p>}<p className={styles.small}>{state.result.data.visualFinding === "no_clear_changes" ? t.healthCaveat : t.visualCaveat}</p></>}<p className={styles.small}>{t.reportSummary}</p></section>{!state.result && <p className={styles.note}>{t.noResult}</p>}{translationPanel}
+        <RegionControl compact value={state.region} text={t} locale={locale} disabled={!!busy} onChange={(region) => void updateGuidance(region)} />
+        {state.result && (!reportCurrent(state) || !!state.guidance?.data.aiAdvice.products.length) ? guidancePanel : null}
         {!report && state.result && locale === "tpi" && !variant && !englishAllowed && <p>{t.noTranslationExport}</p>}
         <div className={styles.actions}><button className={styles.primary} disabled={!!busy || !report} onClick={() => void exportReport(false)}>{t.download}</button><button disabled={!!busy} onClick={() => apply({ type: "stage", stage: state.result ? "result" : state.preliminary ? "questions" : "photos" })}>{state.result ? t.backResult : state.preliminary ? t.questions : t.backPhotos}</button></div>
         {report && <details className={styles.preview} ref={reportDisclosure}><summary>{t.reportPreview}</summary><ReportPreview report={report} /><div className={styles.actions}><button disabled={!!busy || !report} onClick={() => void exportReport(true)}>{t.print}</button></div></details>}
