@@ -135,6 +135,7 @@ The public app uses Firebase Hosting to route to the existing Cloud Run service.
 - [Four country care design](docs/specs/0005-four-country-care.md)
 - [Reviewer instructions](docs/validation/reviewer-guide.md) and [feedback form](docs/validation/feedback-template.md)
 - [Pitch deck and submission preparation](docs/submission/pitch/README.md)
+- [Demo narration](docs/submission/video/script.md) and [recording checklist](docs/submission/video/recording-checklist.md)
 - [Archived development log](docs/history/readme-development-log-through-2026-10-16.md), historical entries may be superseded
 
 The pitch deck is a working draft. The demo video and final submission checks remain pending. Public deployment does not establish production readiness or competition acceptance.

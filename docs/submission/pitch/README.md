@@ -58,3 +58,7 @@ The user reports that Tok Pisin language verification is complete. This supersed
 The Google Slides draft and exported PDF and PowerPoint were updated after the review scope was confirmed. The four changed slides (opportunities, features, verification and roadmap) were rendered and visually inspected again.
 
 Team credit update, 16 October 2026: Daniel Ridzwan Bin Mohamad is named as app developer on the native team slide. The updated PDF and PowerPoint exports retain both team names. The changed slide was rendered and visually inspected; spacing was adjusted to keep the theme line separate. Video credits and submission form names are recorded in the submission instructions for later use. No video or form has been submitted.
+
+## Demo video preparation
+
+The [English narration](../video/script.md) and [recording checklist](../video/recording-checklist.md) are prepared. They include both team credits, BRACOL attribution, genuine result handling and an optional timing extension. No video has been recorded or uploaded. Final duration remains subject to organiser clarification.
