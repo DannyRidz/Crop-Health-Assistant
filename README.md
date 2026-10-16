@@ -1,26 +1,60 @@
 # Crop Health Assistant
 
-A globally accessible coffee screening assistant, initially intended for validation with PNG users. Validation is still pending. Coffee leaves, English and Tok Pisin are the only MVP crop, plant part and languages. The app does not confirm disease or claim worldwide agricultural validation.
+A globally accessible coffee leaf screening assistant that helps farmers understand visible leaf problems, explore possible causes and find practical next steps.
 
-## Current milestone
+**[Open the app](https://coffee-leaf-check.web.app)** · [Reviewer guide](docs/validation/reviewer-guide.md) · [Project scope](docs/scope/scope.md)
 
-Language status update, 16 October 2026: the user confirmed completed review of fixed Tok Pisin wording and AI generated sample reports. The app and deck now reflect that scope. Future case text remains automatically translated; this is separate from agricultural accuracy and farmer testing. See [the review record](docs/content-review/tok-pisin-language-review.md).
+Built by **J2D** for the AI Builder Cup, under **Sustainability & Social Impact**. Team leader: **Jeremiah Ewande**. PNG coffee farmers are our first planned validation group. Agricultural and farmer validation are still pending; we do not claim worldwide agricultural validation.
 
-Public app link: [coffee-leaf-check.web.app](https://coffee-leaf-check.web.app). The short address now stays in the browser throughout the app journey. [Hosting configuration and verification](deploy/preview-link/README.md).
+## What you can do
 
-The phone interface has been simplified on 14 October 2026. Short instructions, expandable supporting details, compact question photos and three plain result sections reduce reading. Sharing consent, screening status and important limitations stay visible. Photo quality and scope warnings automatically expand. The report preview starts collapsed; PDF export still includes the complete evidence and regional limitations. Phone refinement is in progress, with farmer feedback, fluent language review and complete accessibility verification still pending.
+1. **Add photos.** Upload or take up to two coffee leaf photos. On supported phones, the camera button opens the device camera.
+2. **Answer four short questions.** Add the country if known, or choose Not sure or skip it.
+3. **Read your result.** See visible changes, possible causes, what to check next and available care steps.
+4. **Save your report.** Download an A4 PDF with photos, findings, country, sources and limitations.
 
-M1 narrow demonstration is complete as of 14 October 2026. A verified permitted BRACOL coffee image completed the real public Gemini journey and downloaded English and draft Tok Pisin reports. Agricultural validation and content review remain pending. It includes photo preparation, four starter questions, optional country context, server Gemini integration, checked observations, regional guidance selection, language fallback and a local PDF report. The condition registry is disabled, the reviewed guidance collection is empty and every Tok Pisin fixed text key is a draft. No treatment or supported disease claim is enabled.
+English and Tok Pisin are supported. Fixed Tok Pisin wording and AI generated sample reports have completed language review, as confirmed by the team on 16 October 2026. Future generated text is automatically translated and is not individually human reviewed. See the [review scope](docs/content-review/tok-pisin-language-review.md).
 
-Earlier integration checkpoint, superseded by the completed journey below: a Gemini key is configured locally. Cloud billing is now enabled for the project; paid Gemini access has not yet been verified. On 12 October 2026, a real API journey using a synthetic green rectangle completed preliminary screening, four starter answers, final screening, PNG guidance selection and generated Tok Pisin translation. A temporary final request failure required a manual retry. The checked result was unable to assess with no condition claim or approved guidance. English and draft Tok Pisin PDFs were generated from that real result, with geography and local officer referral verified. This proves provider and report integration for an unsupported synthetic sample, not a complete browser journey or agricultural accuracy. Permitted coffee image evaluation and a complete real browser journey remain pending. The public Cloud Run demonstration is now deployed with screening disabled. Google documents a no billing Starter Tier for eligible accounts, but the existing paid billing account has now been reopened by you. The MVP project is now linked to your reopened paid billing account. The payment card warning cleared after you updated the card. You approved USD 20 total for the MVP, with USD 5 Gemini credits to be purchased by you later this week, not now. Automatic top ups remain off; no credits have been purchased. Cloud Build, Artifact Registry and Cloud Run resources have now been created and may incur charges. This is an internal demonstration, not a farmer release.
+## Care coverage and limits
 
-Provider failure investigation on 12 October 2026: the exact final screening function called directly outside the app returned Gemini HTTP 429. The app had mapped provider errors to generic 503 responses. This classification bug is fixed: provider quota returns 429 with a quota message and a 60 second minimum retry cooldown, without promising quota recovery at that time. SDK timeout messages now return 504. Logs record only request metadata, numeric provider status and a fixed failure category, never provider message text or case content. Two regression tests cover these failures and sensitive detail exclusion. All 58 tests, lint, TypeScript and production build passed. A real request through the rebuilt app returned 429 with code quota, confirming the fix. The successful complete journey remains blocked by current provider quota and permitted coffee images. The public demo is deployed with screening disabled. Earlier high demand evidence remains a separate observation; not every historic 503 can be assigned the same cause.
+The app is publicly accessible worldwide. Its country selector currently offers **Papua New Guinea, Indonesia, Kenya and Brazil**, plus **Not sure** and **Skip**. These are care coverage locations, not independently validated countries. Country changes do not change the underlying photo evidence.
 
-Latest M1 recheck on 12 October 2026: lint, TypeScript, all 56 tests and production build passed. A real browser upload and preliminary Gemini response worked after retry; final requests returned service errors and retained inputs. An incomplete PDF downloaded from the browser and its contents verified the missing result, unknown region and local officer referral. Layout had no horizontal overflow at 320, 360, 390 and 1280 pixels on the exercised screen. A stale remaining attempt count after errors was fixed by withholding that count until a current server response is available, and a controlled browser regression verified the fix. Controlled language switching preserved the photo and all four answers and showed explicit English fallback. A successful complete live browser journey, permitted coffee image validation, full accessibility coverage and a complete real Cloud Run screening journey remain unverified.
+- Possible causes are tentative AI explanations, not confirmed diagnoses. Photos cannot establish that a plant is healthy or determine every cause.
+- Practical care steps are selected from a fixed catalogue with published sources and explicit country applicability. Independent agricultural review of this app remains pending.
+- When the country is unknown or matching care is unavailable, the app retains supported observations, explains the gap and recommends local agricultural review.
+- Chemical product and spray dose checks are implemented, but **no live chemical products or doses are available**. The verified local registration and label catalogue is currently empty.
+- Coffee leaves are the only supported crop and plant part. Other crops, languages and additional regional guidance belong on the roadmap.
+
+The app uses Gemini for screening and explanation. BRACOL images support permitted demonstrations and software evaluation; this project does not train a custom model on the dataset or claim measured disease accuracy.
+
+## How it works
+
+```mermaid
+flowchart LR
+    Farmer[Farmer browser] --> Hosting[Firebase Hosting]
+    Hosting --> Server[Next.js on Cloud Run]
+    Server --> Gemini[Gemini API]
+    Secrets[Secret Manager] --> Server
+    Catalogue[Bundled regional care and sources] --> Server
+    Farmer --> PDF[PDF downloaded to device]
+```
+
+| Component | Purpose |
+|---|---|
+| Next.js, React and TypeScript | Four step farmer journey and server routes |
+| Gemini, official Google SDK | Photo observations, possible causes and generated translation |
+| Firebase Hosting | Public address and routing to Cloud Run |
+| Cloud Run | Server processing and session checks |
+| Secret Manager | Server credentials |
+| Zod and sharp | Structured response checks and image validation |
+| pdf-lib and Noto Sans | PDF export with headings, photos and page numbers |
+| Vitest | Deterministic software checks |
+
+Firestore and a separate Agent Platform component are not used. There is no permanent case database. Competition clarification about these technologies and video duration is pending; see [submission requirements](docs/submission/instructions.md).
 
 ## Run locally
 
-Use Node.js 24 and npm:
+Use **Node.js 24** and npm with the committed lockfile:
 
 ```sh
 nvm use
@@ -28,128 +62,87 @@ npm ci
 npm run dev
 ```
 
-Open [the local app](http://localhost:3000). With no credentials, you can prepare photos locally, see the explicit screening unavailable response and download a report documenting an incomplete attempt. No invented AI result is substituted. `/api/health` returning ready means the app responds, not that screening is enabled.
+Open [localhost:3000](http://localhost:3000). Without credentials, local photo preparation works and screening reports its unavailability. No fabricated AI result is substituted. Incomplete reports are available after service or session failures.
 
-## Configuration
-
-Copy `.env.example` to ignored `.env.local` when actual provider access is arranged. Set `GEMINI_API_KEY` privately and generate an independent random `SESSION_SIGNING_SECRET` of at least 32 characters. Never commit either secret or use a browser exposed environment variable for it.
-
-`SCREENING_ENABLED` defaults to false. Set it to true only after access, data permissions and the spending decision are settled. `GEMINI_SERVICE_TIER=demo` allows only permitted sample data, with explicit consent and the free service notice. `paid` describes an actually paid Gemini service and must never be set merely to hide that notice. All cases remain labelled demonstrations until the content and release gates pass. Never send private farmer data to the free service.
-
-`GEMINI_MODEL` defaults to `gemini-3.8-flash`. Requests use the official SDK Interactions API, stateless processing with `store: false`, a 45 second deadline and no automatic retry. The service still applies its own processing and retention terms.
-
-`TRUST_PROXY=false` is the local default. It uses one conservative shared address bucket. Enable trusted forwarded address limiting only behind the verified Google Cloud Run ingress. Geography is always chosen explicitly by the farmer, never inferred from these headers.
-
-## Temporary data and limits
-
-Only language preference is stored on the device. Photos, answers, region, results and translation variants remain in the open tab and disappear on refresh or close. The server processes photos in memory, reencodes them without metadata and does not write case data to a database, disk or logs. Downloads remain on the farmer's device.
-
-Photos accept JPEG, PNG or WebP, at most two originals of 10 MiB and 40 megapixels each. The browser creates JPEG copies with a long edge at most 1600 pixels and 2 MiB each. The server independently verifies decoding and enforces a streaming body limit of 6 MiB.
-
-Each anonymous session permits six screening attempts, two translation attempts and twenty guidance selections per hour. Failed dispatches consume allowance. One request runs per session and at most two Gemini requests run per instance. Temporary counters reset on restart and do not create a global hard spending cap. The screening switch is the manual shutoff.
-
-## Checks and remaining verification
+### Enable local Gemini access
 
 ```sh
-npm run check
+cp .env.example .env.local
 ```
 
-This runs lint, TypeScript, Vitest and the production build. Tests use synthetic policy and image fixtures with Gemini mocked only at the SDK boundary. They do not establish agricultural accuracy. Browser checks used the real standalone app for local photo preparation, the disabled service path and a PDF download. A separate temporary HTTP harness exercised the complete screen flow, language fallback and region changes without real AI calls.
+Set these values privately in the ignored `.env.local`:
 
-`npm run build` also copies static assets and the licensed font into the standalone output. `npm start` runs that production layout. Local `.env.local` is read during the build and development; container secrets are supplied at runtime. Rebuild after local configuration changes.
-
-Remaining checks include real Gemini evaluation with permitted images, all M2 policy states, complete keyboard and 200 percent zoom coverage, fluent Tok Pisin review and a complete real cloud screening journey. Production dependency audit reported no advisories on 12 October 2026; development lint dependencies reported advisories. Recheck dependencies and the scheduled framework security update before public deployment, as required by the technical spec.
-
-## Deployment preparation
-
-`Dockerfile` builds the standalone app, includes static assets and the report font, runs as a nonroot user and listens on port 8080. `.dockerignore` excludes local credentials, case artifacts and test fixtures. The standalone layout has run locally. Cloud Build successfully built this container on 12 October 2026; the container CLI remains unavailable locally.
-
-After Google access and spending approval, use the selected Google Cloud Run project with secrets from Google Secret Manager, public access without an app country restriction, minimum zero and maximum one instance, one CPU, 512 MiB initial memory and a 60 second timeout. Measure resource needs and token usage rather than claiming those settings guarantee a spending ceiling. Confirm budget alerts and model quotas before enabling screening. The initial demo has been deployed with screening disabled and no secrets. Secret Manager setup and paid Gemini verification remain pending.
-
-## Plan
-
-Read the [approved plan](docs/specs/0001-coffee-mvp/index.md), [current scope](docs/scope/scope.md) and [build sequence](docs/specs/0001-coffee-mvp/verification-delivery.md). The next M1 gate is a successful complete provider journey, then one permitted coffee case through screening and PDF, followed by verification of that complete journey on the public deployment. Content approval remains a separate gate.
-
-## Third party attribution
-
-Dependency packages retain their licences and metadata. Reports embed Noto Sans Regular, obtained from the [official Noto font repository](https://github.com/notofonts/noto-fonts/tree/main/hinted/ttf/NotoSans), under the SIL Open Font License in `public/fonts/OFL.txt`. The interface uses Arial and sans-serif fallback. No third party coffee image is bundled. If a farmer enters a character unsupported by the report font, PDF export fails clearly and the print view preserves the original text. Source organisations are not project partners, and Google use does not imply endorsement.
-
-
-Cloud deployment verified on 12 October 2026: [open the public demonstration](https://coffee-health-demo-952364218688.asia-southeast1.run.app). Service `coffee-health-demo` in `asia-southeast1` runs revision `coffee-health-demo-00001-8wl` with 100 percent of traffic. Cloud Build `fcbe1ee1-af44-4997-8d16-36e187d806bb` succeeded. Public `allUsers` invoker access and ingress `all` are configured, with no app country restriction. The approved script sets minimum zero and the service maximum is one instance. Runtime inspection verified one CPU, 512 MiB, request based CPU allocation, startup CPU boost off, concurrency eight and timeout 60 seconds. `SCREENING_ENABLED=false`; no Gemini key or signing secret is configured. The dedicated runtime account has no project role bindings or secret access. The approved build account has the Cloud Run Builder role. `.gcloudignore` excludes local secrets and generated files from source uploads.
-
-Live verification: unauthenticated health returned HTTP 200 with ready true. Session creation returned the expected HTTP 503 disabled response. Browser photo preparation with a synthetic rectangle worked; attempting screening retained the photo and explicitly reported that no result was produced. English and draft Tok Pisin switching retained the photo. Region choices Not sure, PNG and Brunei were exercised without access restrictions, with explicit missing guidance and review limitations. The English PDF downloaded from the live app has two pages and records Not sure, the incomplete attempt, local officer referral and pending PNG and worldwide validation. The report screen had no horizontal overflow at 390 pixels. These checks verify the disabled public demonstration, not a complete real AI journey or agricultural accuracy. A fresh production dependency audit reported zero advisories.
-
-A USD 20 monthly alert budget named Crop Health Assistant MVP USD 20 is saved for Default Gemini Project only, with actual spend alerts at 50, 90 and 100 percent. This is not automatic spend enforcement and does not replace the total hackathon allowance. No Gemini credits have been purchased. Initial USD 5 remains deferred until you purchase it. Next: configure cloud secrets after paid access is available, verify actual model quota, then enable and exercise one permitted coffee case through the complete public journey. M1 remains in progress.
-
-Gemini access check on 12 October 2026: Google AI Studio lists the linked billing account as Paid 1, but explicitly states that prepay is required and no prepayment method is set up. Paid tier recognition does not mean requests are funded. The user must complete the initial USD 5 prepay setup and purchase; no purchase or automatic top up was initiated. Public screening stays disabled until usable Gemini access and cloud secrets are verified.
-
-Resource intake on 14 October 2026: the teammate supplied a shared collection identified as BRACOL. The original dataset page confirms CC BY 4.0, Brazilian Arabica leaf photographs and expert assisted labels. A shared whole leaf candidate, 671.jpg, was visually inspected. See the [source and attribution record](docs/data-sources/bracol.md) for licence links, provenance checks and evaluation limits. These images can support the M1 demonstration after provenance is settled; they do not establish PNG or worldwide agricultural validation. No dataset image is bundled or used for a Gemini request yet. Paid Gemini access, cloud secrets and the complete real journey remain unverified. Agricultural and fluent Tok Pisin review remain pending.
-
-Gemini access verified on 14 October 2026: AI Studio showed USD 5 prepaid credit, Paid 1 and automatic reload off. One request using the existing local key and configured model completed with 1662 total tokens. The synthetic input produced unable to assess with no condition claim; this proves funded API access, not the coffee case journey. The prepared `scripts/configure-cloud-secrets.sh` stores the Gemini key and signing secret in separate Google Secret Manager secrets, grants the dedicated runtime account access only to those two secrets and pins their versions on Cloud Run. Screening remains disabled during configuration. Secret transmission and the new secret access grant await confirmation; neither has run.
-
-Cloud secrets verified on 14 October 2026: after your explicit approval, both credentials were stored in separate Secret Manager secrets. The runtime account has secretAccessor on those two secrets. Cloud Run revision coffee-health-demo-00002-x6t is ready and serves all traffic, referencing version 1 of each secret. GEMINI_SERVICE_TIER is paid and SCREENING_ENABLED remains false. Public health returned HTTP 200; session creation returned the expected HTTP 503 disabled response. Temporary credential transport files were removed locally and in Cloud Shell; original ignored local credentials were retained. Secret values were not printed. The next M1 step is to settle the selected BRACOL sample provenance, then enable screening for the demonstration and verify the complete public coffee journey. No completed cloud Gemini journey or agricultural validation is claimed.
-
-M1 public journey completed on 14 October 2026: revision coffee-health-demo-00003-sdk serves the public URL with SCREENING_ENABLED=true, GEMINI_SERVICE_TIER=paid and maximum one instance. The licensed shared BRACOL 671.jpg exactly matches the original sample by SHA-256 and passed its stored archive checksum. See the source record for archive download limitations and attribution. This case uses Brazil and four Not sure answers because farmer history is absent.
-
-Assessment reference 78ca06f5-1a5f-432b-af01-d044cea864c3 completed preliminary screening, final screening and generated Tok Pisin translation with three actual provider requests. Safe cloud logs record request IDs 049e918b-7520-43c6-ab43-d3cd3ed5144b (1908 tokens), 44cd5434-8269-4f6c-acb3-c02146b5a5b2 (1773 tokens) and 7aab6319-24c5-48a2-b3e6-5fcb13c8c8d9 (349 tokens), totalling 4030. Region changes and repeated language switching did not add provider calls. The checked status is unable to assess with visible observations, no enabled disease claim, no approved regional guidance and local officer referral. This is a completed software journey, not a diagnostic accuracy result.
-
-Actual browser downloads: three page English and draft Tok Pisin Brazil reports and a three page English Not sure report. PDF text and rendered pages were inspected for reference, current region, answers, observations, uncertainty and review limitations. Simulated PNG and unknown context checks preserved the same reference, evidence and four remaining screening attempts. Export was disabled while guidance refreshed. English report layout fit 390 pixels; Tok Pisin report layout fit 360 and 320 pixels without horizontal overflow. Full keyboard, zoom, all screen responsive coverage and fluent language meaning review remain later checks. Local app code was unchanged, so the previously passing 58 tests and production build were not rerun for these cloud configuration and documentation changes.
-
-Reports are retained in ignored output/m1-verification with an accompanying attribution notice. The public tab retains the real case in English with Brazil restored. M1 is complete for the approved narrow observation demonstration; M2 boundary verification is next. Disease enablement, reviewed PNG guidance, held out accuracy evaluation, farmer usability validation, fluent Tok Pisin review and full submission readiness remain pending. Public access does not mean worldwide agricultural validation. Screening is now enabled and can incur Gemini charges; existing limits and alerts remain, with automatic reload off and no guaranteed hard spend cutoff.
-
-M2 verification on 14 October 2026: all 68 tests, lint, TypeScript and production build passed. A corrupt JPEG with a readable size header previously reached browser decoding and showed a screening service outage message when decoding failed. The minimal fix maps that local decoding failure to invalid_image. A regression first failed with the raw browser error and then passed. Cloud Build 2a46ac72-25f5-4054-a160-348cfda5c764 deployed revision coffee-health-demo-00004-gz8, preserving paid screening, maximum one instance and version 1 references for both secrets. The public browser repeated the corrupt input and showed the correct invalid photo message; an original larger than 10 MiB showed the size limit message. Two copies of the verified BRACOL sample were used only to test two separate photo IDs, not distinct viewpoints or a larger agricultural dataset. The add control disappeared after two photos, permission was required before dispatch, and one real preliminary Gemini request returned usable checks for both IDs.
-
-Controlled M2 evidence, separate from real Gemini: the actual production interface was served through a temporary local HTTP response harness. A forced final HTTP 503 retained both photos, four answers and synthetic typed detail. Manual retry completed. A forced translation HTTP 502 offered explicit English fallback and the report labelled the accepted English passages. The four status headings rendered with synthetic responses, including the no plant health caveat. A corrupt replacement retained both original photo IDs. The harness performed six synthetic assess requests and one synthetic translation request, without calling Gemini. It used no reviewed condition or agricultural evidence. A proxy response compression mismatch was corrected in the temporary harness, not in app code. Local test servers were stopped afterwards.
-
-The served local production API, with synthetic credentials and no provider dispatch, returned 415 for wrong content type, 422 for corrupt bytes, 413 for an oversized submitted file, 422 for third photo metadata, 422 for an unreviewed follow up and 422 for unknown metadata. The seventh attempt returned 429 quota with Retry-After 3600. New SDK boundary tests cover two photo processing and incomplete model references, session bound preliminary envelopes, photo side changes, provider retry and exhausted attempts. Session tests cover two concurrent model requests across sessions and address window expiry. Policy tests preserve contradictory evidence and prevent promotion of every unreviewed candidate, including unsupported crops and parts. Existing reducer and report tests reject old revisions, another assessment, old guidance and stale exports.
-
-M2 remains in progress. The engineering checks above pass, but actual four status server selection and reviewed optional follow up questions cannot be completed while the condition registry and bilingual follow up bank remain unreviewed. Current server policy deliberately returns unable to assess for all unreviewed coverage. Synthetic status display checks do not substitute for reviewed decision rules, a positive supported case or held out agricultural evaluation. Agricultural review of a narrow condition and question bank is the next dependency; fluent Tok Pisin review remains an independent M3 requirement. Complete accessibility and all screen responsive verification remain M4 work. No additional topup was purchased and no disease or treatment claim was enabled.
-
-Phone UX deployment, 14 October 2026: Cloud Build c42c73a4-95dd-4ca1-95e8-2234e29efa92 deployed revision coffee-health-demo-00006-kgv to the existing public URL. Paid screening and both version 1 secret references remain configured. All 68 tests, lint, TypeScript and production build passed after the final change. Public English at 390 px and draft Tok Pisin at 320 px fit without horizontal overflow. The full privacy disclosure opened and closed by keyboard. Controlled local responses verified the simpler question and result flow, an automatically expanded blurry photo warning and PDF download with a collapsed preview. The downloaded PDF retains observations, region and full limitations. Those synthetic responses made no Gemini requests and provide no agricultural evidence. Native print preview was not verified. Farmer testing and fluent Tok Pisin review remain pending.
-
-The requested UX refinement changes the frontend specification's always visible routine preliminary observations into an expandable section. Quality and scope warnings stay automatically expanded. The original frontend specification otherwise remains the design reference; its preliminary observation display wording needs reconciliation with this authorised refinement.
-
-Initial heading focus fix, 14 October 2026: initial render no longer moves focus to the step heading. Actual step changes still focus the heading, and error focus is unchanged. All 68 tests and the required local checks pass. Browser regression checks verified unfocused headings after English and Tok Pisin reloads, visible keyboard focus on Skip to content and heading focus after a keyboard initiated step change using a controlled response. Cloud Build 012797df-a250-44fe-b731-7db1bc9a103c deployed the fix in revision coffee-health-demo-00008-fbg. The public English page was reloaded and confirmed to have no heading outline; Tab still displayed visible focus. A preceding cloud patch formatting failure deployed unchanged source in revision 00007, then was corrected with a guarded patch whose source checksum matches the tested local file. No Gemini request was needed for these checks.
-
-## Simulated farmer walkthrough, 14 October 2026
-
-Two complete live journeys used the permitted BRACOL 671.jpg, with four Not sure answers because farmer history is unavailable. This is a simulated user experience check, not actual farmer feedback or agricultural evaluation. Case 95fc27ae-4b2f-4c0e-85b2-cb9249e57e1b exposed confusing validation paths and technical generated wording. The corrected journey is e4ebe46a-ad67-4bad-8e10-e30e4204933a. Cloud Build 31e786ed-c876-4004-800c-a497e96e325a deployed revision coffee-health-demo-00009-xks with prompt coffee-observations-2. All 68 tests, lint, TypeScript and production build pass.
-
-Fixed permission wording now identifies the actual photos and answers. Consent and country errors clear when their inputs change. Local validation errors no longer offer an incomplete report; service and session failures still do. Country help is shorter. A completed observation result explicitly says the photo was checked while disease identification remains unavailable. The prompt requests everyday words without changing evidence rules, enabling diseases or generating treatment. The repeated real result uses leaf surface and leaf veins rather than lamina and venation.
-
-| Walkthrough action | Observed outcome |
+| Variable | Meaning |
 |---|---|
-| Continue without a photo; add corrupt JPEG | Clear local error, no fabricated result |
-| Add a permitted leaf; continue without consent | Required permission explained; corrected live version offers no premature incomplete report |
-| Switch language before screening | Photo stays in the current check |
-| Check photos and answer four questions | Real preliminary request, four Not sure choices, explicit unanswered question error |
-| Choose a country without selecting one, then select Brazil | Local error; corrected public version clears it after valid selection |
-| Go back to photos and return to questions | Photo, permission, answers and region retained |
-| Get final result | Real Gemini output with linked observations, uncertainty, missing information and local officer referral |
-| Change Brazil to simulated PNG, then Not sure | Same checked evidence; export disabled while guidance refreshes; no regional treatment invented |
-| Download reports | Three page English Brazil, simulated PNG and Not sure reports; three page draft Tok Pisin Not sure report. Reference, region and limitations checked by PDF text and rendered pages |
-| Final corrected exports | Three page English and draft Tok Pisin PDFs for e4ebe46a, with current Not sure region and one photo each |
-| Print with the preview initially collapsed | Native Chrome print preview opened three pages of the full draft Tok Pisin report. Preview was cancelled without printing |
-| Phone layout | English result fits 390 px, draft Tok Pisin result fits 320 px. All visible result buttons and summaries measured at least 48 px high |
-| Simulated unavailable service and manual retry | Controlled local response retains inputs, offers incomplete report and completes on retry. This is separate from real provider evidence |
-| Camera control on desktop | Rear camera capture hint configured; desktop file picker fallback can add the photo. Actual mobile camera not exercised |
+| `GEMINI_API_KEY` | Your Gemini API credential, server only |
+| `SESSION_SIGNING_SECRET` | Independent random secret of at least 32 characters |
+| `SCREENING_ENABLED` | Defaults to `false`; set to `true` for authorised real screening |
+| `GEMINI_MODEL` | Model configured in `.env.example`; requires access and quota |
+| `GEMINI_SERVICE_TIER` | `demo` for permitted sample data; `paid` only for an actually paid service |
+| `TRUST_PROXY` | Keep `false` locally; enable only behind verified Cloud Run ingress |
+| `PUBLIC_APP_ORIGIN` | Exact additional HTTPS origin when Firebase Hosting fronts Cloud Run; empty locally |
 
-Six real provider requests were recorded across the two cases, four screening and two translation calls. First prompt total: 3954 tokens, from 1738 preliminary, 1791 final and 425 translation. Corrected prompt total: 3954 tokens, from 1736 preliminary, 1826 final and 392 translation. Corrected request IDs are 057e5a8c-a411-40a8-a7ed-5941d25dab81, 31e4d94c-1b38-45a1-943a-d7ede49d6f32 and 0052a8cd-fbfc-4e51-a5c0-7499ff2d7f36. No further credits were purchased.
+Never commit credentials or expose them through browser environment variables. Real screening requires usable Gemini access and may incur charges. Requests use the official SDK, stateless processing with `store: false`, a 45 second deadline and no automatic retry. Google's processing and retention terms still apply.
 
-Evidence includes scratch captures /private/tmp/farmer-start.png, farmer-result-before.png, farmer-report-en.png, farmer-result-tpi.png, farmer-print-preview.png, farmer-final-result-en.png and farmer-final-tpi-result.png. Browser downloads are coffee-screening-95fc27ae-en.pdf and numbered copies, coffee-screening-95fc27ae-tpi.pdf, coffee-screening-e4ebe46a-en.pdf and coffee-screening-e4ebe46a-tpi.pdf. The source and attribution record remains docs/data-sources/bracol.md.
+### Checks
 
-The normal workflow is verified for this observation prototype. Full acceptance remains partial: real mobile camera use, complete keyboard and 200 percent zoom checks, long answer and slow connection coverage, farmer comprehension feedback and independent Tok Pisin review remain pending. Start new check displayed its confirmation, but browser control stalled on the native dialog, so cancellation and confirmed clearing were not verified in this run. The disposable controlled tab was closed to recover control. Agricultural status coverage, reviewed guidance and submission criteria remain gated as previously recorded. Do not mark M2 or M4 complete, or claim farmer readiness or worldwide agricultural validation from this walkthrough.
+```sh
+npm run lint
+npm run typecheck
+npm test
+```
 
-Product language polish, 14 October 2026: at your request, the app uses farmer task wording instead of repeated demo and prototype labels. The prototype badge is removed, consent says permission to submit photos and answers, About leaf screening replaces About this prototype, and reports use Screening details. Review facts, visible disease coverage limits, draft Tok Pisin notices, regional applicability and actual provider processing remain explicit. This is a presentation change, not production or agricultural readiness approval. Cloud Build dc5910a4-b245-4e2a-b143-ed97762481ce deployed revision coffee-health-demo-00010-457. All 68 tests and required local checks pass. Public English at 390 px and Tok Pisin at 320 px show no demo or prototype wording on the start screen and no horizontal overflow; the Tok Pisin draft notice is visible. Controlled report checks retain pending review and regional limitations, with a two page English PDF using Screening details and no development labels. English fallback in the draft Tok Pisin report remains explicit. No Gemini requests or credit purchases were needed for these copy checks. Screenshots are /private/tmp/coffee-product-polish-live.png and /private/tmp/coffee-product-polish-desktop.png. Existing content and release gates remain pending.
+For a production build and standalone server:
 
-Plain English and report update, 14 October 2026: shorter action labels, questions and region instructions are deployed in revision coffee-health-demo-00011-t5z. The PDF uses A4 pages, consistent margins, section spacing, running headers and page numbers. Two photos fit together with their captions. All 69 tests, lint, type checks and production build passed. A real public BRACOL case b2dffd4d completed preliminary, final and translation requests; its English and draft Tok Pisin three page PDFs were downloaded and visually checked page by page. Two photo and long Tok Pisin layouts were also checked using controlled fixtures. These are software and layout checks, not agricultural or language validation. Sample reports and attribution are in ignored output/pdf. Firebase activation was approved and the short share link was published and verified after these two steps. No additional credits or domain were purchased. Independent review, real mobile camera checks and farmer feedback remain pending.
+```sh
+npm run build
+npm start
+```
 
-Public address correction, 14 October 2026: the earlier sharing redirect is superseded by Firebase Hosting routing to the existing Cloud Run service. Revision coffee-health-demo-00012-2b4 uses the signed __session cookie and an exact configured HTTPS app origin. All 70 tests, lint, type checks and build passed. At the short URL, the real permitted BRACOL case 0b137704 completed screening and English plus draft Tok Pisin PDF downloads. Both three page files retain Brazil and the case reference. Missing or foreign origins returned 400 and missing or invalid sessions returned 409. The URL stayed at coffee-leaf-check.web.app on all four screens. Existing independent review and farmer release gates remain pending.
+`npm run check` runs all checks, including the production build. The build copies static assets and the licensed PDF font into the standalone output.
 
-Desktop checks and reviewer preparation, 15 October 2026: [testing guide](docs/validation/reviewer-guide.md), [blank feedback template](docs/validation/feedback-template.md) and [observed desktop checks](docs/validation/desktop-checks-2026-10-15.md) are available. Actual 200 percent Chrome zoom, selected keyboard and error recovery paths, matching report downloads and reset cancellation and confirmation were checked without a simulator or local build. The language change during PDF preparation issue was subsequently fixed and verified in revision coffee-health-demo-00013-j4v. Language buttons are temporarily disabled during export and recover after success or failure. These checks do not complete agricultural, language, phone or full accessibility validation.
+## Privacy and operating limits
 
-Useful AI reports, 15 October 2026: you approved [the report enhancement](docs/specs/0003-useful-screening-reports.md), then explicitly authorised tentative AI cause explanations without an external reviewer prerequisite. Revision coffee-health-demo-00015-lfb now separates visible findings, possible causes, specific next checks and regional treatment guidance. It no longer uses the empty reviewed registry as a blanket ban on AI explanations. Every hypothesis needs usable photo evidence and uncertainty; references resolve to fixed diagnostic background sources. Independently evaluated condition screening and regionally approved treatment guidance remain separate and disabled. No confirmed diagnosis or worldwide accuracy is claimed.
+Language preference is stored on the device. Photos, answers, country, results and translations stay in the open tab and disappear on refresh or close. The server processes images in memory, removes image metadata and does not persist case content to a database, disk or logs. Submitted content is sent to Gemini for processing. Downloaded reports remain on the user's device.
 
-Lint, type checks, 88 deterministic tests and the remote production build passed. Two final public cases completed actual preliminary, final and translation requests. The mostly green leaf received a tentative physical or insect feeding damage explanation; the spotted leaf received tentative leaf spot and rust explanations. All English and draft Tok Pisin PDF pages were rendered and inspected. Region changes preserved the cause explanation; native 200 and 400 percent browser zoom reflowed without horizontal overflow and was restored. No simulator, emulator, further credit purchase or local production build was used. See [the evidence and remaining limits](docs/validation/useful-reports-2026-10-15.md). Agricultural accuracy evaluation, fluent translation review, physical phone validation and the reviewed follow up bank remain pending.
+- JPEG, PNG or WebP, up to two originals, each at most 10 MiB and 40 megapixels.
+- Browser preparation produces JPEG copies up to 1600 pixels on the long edge and 2 MiB each. The server independently validates images and enforces a 6 MiB streaming body limit.
+- Temporary session quotas and request limits control use. They reset on server restart and do not guarantee a spending cutoff.
+- The deployment is configured for at most one Cloud Run instance. The approved MVP allowance is USD 20 total, with an initial USD 5 Gemini credit purchase. This is not a statement of current balance or measured operating cost. Automatic reload is off.
 
-Result and report readability, 15 October 2026: revision coffee-health-demo-00016-ltz uses simpler farmer headings and cause labels, a short report overview, real bold PDF headings and labels, hanging bullet points and compact record details. Lint, type checks, 89 deterministic tests and the remote production build passed. A fresh public journey and every page of both language PDFs were checked. See [the verification record](docs/validation/plain-report-checks-2026-10-15.md). Agricultural accuracy, fluent translation and physical phone validation remain pending.
+## Verification status
+
+As of **16 October 2026**:
+
+| Area | Evidence and remaining limits |
+|---|---|
+| Software checks | 127 deterministic tests across 17 files, lint and type checks passed. Remote production build passed. Mocked tests are software evidence only. |
+| Real AI journey | Permitted BRACOL cases completed real public Gemini requests, country changes and report downloads. |
+| Result and PDF layout | Real English and Tok Pisin PDFs were rendered and checked page by page. Desktop keyboard, zoom and recovery checks are documented. |
+| Language | Fixed Tok Pisin wording and generated sample reports reviewed, team confirmed. Future generated translations remain automatic. |
+| Agricultural accuracy | Independent specialist review and labelled accuracy evaluation remain pending. No accuracy percentage is claimed. |
+| Farmer experience | Actual farmer feedback, physical phone camera validation and complete accessibility coverage remain pending. |
+
+Evidence: [desktop checks](docs/validation/desktop-checks-2026-10-15.md), [useful report checks](docs/validation/useful-reports-2026-10-15.md), [current release records](docs/scope/scope.md) and [language review](docs/content-review/tok-pisin-language-review.md). Real AI requests and controlled software fixtures are recorded separately.
+
+## Deployment and project documents
+
+The public app uses Firebase Hosting to route to the existing Cloud Run service. The Docker image runs as a nonroot user. Credentials come from scoped Secret Manager references; source uploads exclude local secrets and generated reports. Firebase Analytics is disabled.
+
+- [Hosting configuration](deploy/preview-link/README.md)
+- [Approved MVP plan](docs/specs/0001-coffee-mvp/index.md)
+- [AI care and chemical label design](docs/specs/0004-ai-care-and-label-based-treatment.md)
+- [Four country care design](docs/specs/0005-four-country-care.md)
+- [Reviewer instructions](docs/validation/reviewer-guide.md) and [feedback form](docs/validation/feedback-template.md)
+- [Pitch deck and submission preparation](docs/submission/pitch/README.md)
+- [Archived development log](docs/history/readme-development-log-through-2026-10-16.md), historical entries may be superseded
+
+The pitch deck is a working draft. The demo video and final submission checks remain pending. Public deployment does not establish production readiness or competition acceptance.
+
+## Sources and attribution
+
+**BRACOL:** Renato A. Krohling, Guilherme J. M. Esgario and José A. Ventura, *A Brazilian Arabica Coffee Leaf Images Dataset to Identification and Quantification of Coffee Diseases and Pests*, version 1. [Dataset and DOI 10.17632/yy2k5y8mxg.1](https://data.mendeley.com/datasets/yy2k5y8mxg/1), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Demonstration images are resized and reencoded for screening and reports. No dataset image is bundled in the public app. See the [provenance record](docs/data-sources/bracol.md). Keep attribution with shared sample reports, deck images and demo material.
+
+Regional care entries retain their own source and applicability records in [the care catalogue](src/content/care-actions.ts). Published source material does not imply independent approval of this app.
+
+Reports embed [Noto Sans](https://github.com/notofonts/noto-fonts/tree/main/hinted/ttf/NotoSans), under the [SIL Open Font License](public/fonts/OFL.txt). Dependencies retain their own licences and notices. Source authors and organisations do not endorse this app; Google service use does not imply endorsement.
