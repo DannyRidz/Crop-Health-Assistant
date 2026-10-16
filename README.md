@@ -4,7 +4,7 @@ A globally accessible coffee leaf screening assistant that helps farmers underst
 
 **[Open the app](https://coffee-leaf-check.web.app)** · [Reviewer guide](docs/validation/reviewer-guide.md) · [Project scope](docs/scope/scope.md)
 
-Built by **J2D** for the AI Builder Cup, under **Sustainability & Social Impact**. Team leader: **Jeremiah Ewande**. PNG coffee farmers are our first planned validation group. Agricultural and farmer validation are still pending; we do not claim worldwide agricultural validation.
+Built by **J2D** for the AI Builder Cup, under **Sustainability & Social Impact**. Team members: **Jeremiah Ewande**, team leader and resource coordination, and **Daniel Ridzwan Bin Mohamad**, app development. PNG coffee farmers are our first planned validation group. Agricultural and farmer validation are still pending; we do not claim worldwide agricultural validation.
 
 ## What you can do
 
