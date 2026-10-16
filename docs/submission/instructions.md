@@ -71,3 +71,12 @@ The session at 13:13 to 14:57 discusses direct AI Studio calls but also describe
 - [FAQ](https://aibuildercup.com/Faqs.html), inspected 16 October 2026.
 
 - [Expert session and timestamped notes](expert-session-notes.md), full auto generated English transcript reviewed 16 October 2026.
+
+## Team credits
+
+Use these confirmed names consistently in the deck, demo video credits and submission form:
+
+- Jeremiah Ewande: team leader and resource coordination.
+- Daniel Ridzwan Bin Mohamad: app development.
+
+Registered team: J2D. This is a preparation record, not a submitted form or completed video.
