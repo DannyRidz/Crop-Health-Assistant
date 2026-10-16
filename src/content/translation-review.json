@@ -14,7 +14,16 @@
       "fixed_interface_and_report_wording",
       "ai_generated_sample_reports"
     ],
-    "futureGeneratedReports": "automatic_translation_not_individually_reviewed"
+    "futureGeneratedReports": "automatic_translation_not_individually_reviewed",
+    "pendingWordingUpdates": {
+      "date": "2026-10-16",
+      "keys": [
+        "assessment.causeIntro",
+        "assessment.causeUncertainty",
+        "assessment.possibleCauseLabel"
+      ],
+      "status": "pending_fluent_review"
+    }
   },
   "agriculturalReview": {
     "status": "pending",

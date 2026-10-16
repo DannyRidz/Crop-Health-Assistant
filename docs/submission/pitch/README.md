@@ -62,3 +62,7 @@ Team credit update, 16 October 2026: Daniel Ridzwan Bin Mohamad is named as app 
 ## Demo video preparation
 
 The [English narration](../video/script.md) and [recording checklist](../video/recording-checklist.md) are prepared. They include both team credits, BRACOL attribution, genuine result handling and an optional timing extension. No video has been recorded or uploaded. Final duration remains subject to organiser clarification.
+
+Language follow up: three later Tok Pisin cause wording edits on 16 October are marked pending fluent review. The earlier fixed wording and sample report review remains complete for its recorded scope. Reflect this exception in final narration and deck language claims if it remains unresolved at submission.
+
+Deck language exception update, 16 October 2026: verification slide 10 now separates the completed Tok Pisin wording and sample review from three recent edits awaiting review. Roadmap slide 11 includes that small follow up instead of claiming all current wording has completed review. The native deck and both exports were refreshed. Both changed slides were rendered and visually inspected, with no clipped or overlapping text; the deck retains 13 slides.

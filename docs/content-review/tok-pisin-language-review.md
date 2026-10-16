@@ -19,3 +19,17 @@ Metadata: `src/content/translation-review.json`, per key status in `src/content/
 ## Software verification
 
 On 16 October 2026, lint, type checks and all 127 tests passed. A temporary PDF source copy from an earlier layout comparison caused the first type check to fail; that generated copy was removed and the checks rerun successfully. Controlled report exports verified absence of the obsolete draft notice while retaining agricultural limitations. They are software fixtures, not a new language review or real AI case. The live deployment is revision `coffee-health-demo-00031-tqh`, maximum one instance. Public Tok Pisin labels and About text were checked with no browser errors.
+
+## Cause wording update, 16 October 2026
+
+After the completed review, the user requested wording consistent with the positive English cause cards. Three fixed keys changed: `assessment.causeIntro`, `assessment.causeUncertainty` and `assessment.possibleCauseLabel`. Their per key status is `pending_review`, and `translation-review.json` lists the exception under `pendingWordingUpdates`. This does not reopen review of unchanged wording or remove the prior sample report review.
+
+Suggested phrases for the fluent reviewer:
+
+| English meaning | Updated Tok Pisin |
+|---|---|
+| Possible causes are based on photos and answers; checking the plant can distinguish them | AI i yusim ol poto na bekim bilong yu long soim ol samting i ken kamapim dispela hevi. Sekim diwai inap helpim yu long painim wanem as i stret. |
+| What needs checking | Wanem samting i nidim sek |
+| Possible cause | Samting i ken kamapim hevi |
+
+Software checks and rendered PDF layout checks pass. These are not a new fluent language review. Agricultural decisions, evidence and treatment eligibility are unchanged.

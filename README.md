@@ -13,7 +13,7 @@ Built by **J2D** for the AI Builder Cup, under **Sustainability & Social Impact*
 3. **Read your result.** See visible changes, possible causes, what to check next and available care steps.
 4. **Save your report.** Download an A4 PDF with photos, findings, country, sources and limitations.
 
-English and Tok Pisin are supported. Fixed Tok Pisin wording and AI generated sample reports have completed language review, as confirmed by the team on 16 October 2026. Future generated text is automatically translated and is not individually human reviewed. See the [review scope](docs/content-review/tok-pisin-language-review.md).
+English and Tok Pisin are supported. Fixed Tok Pisin wording and AI generated sample reports have completed language review, as confirmed by the team on 16 October 2026. Three later cause wording edits await a fluent check; the rest of that review remains complete. Future generated text is automatically translated and is not individually human reviewed. See the [review scope](docs/content-review/tok-pisin-language-review.md).
 
 ## Care coverage and limits
 

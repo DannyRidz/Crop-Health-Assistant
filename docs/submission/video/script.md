@@ -30,7 +30,7 @@ If no possible cause is returned, show the real outcome and say: “For this pho
 
 Switch to Tok Pisin, briefly show the same case, then prepare and download the PDF. Show its summary, photo findings and one care/source section. Keep the same case reference and country.
 
-> Farmers can read in English or Tok Pisin. Fixed Tok Pisin wording and sample AI reports have completed language review; new case text is still automatically translated. The downloadable PDF brings the photos, findings, possible causes, care steps, sources and limitations together. The farmer can keep it or share it for follow up.
+> Farmers can read in English or Tok Pisin. Tok Pisin wording and sample AI reports have been reviewed, with three recent wording edits awaiting a final language check. New case text is automatically translated. The downloadable PDF brings the photos, findings, possible causes, care steps, sources and limitations together. The farmer can keep it or share it for follow up.
 
 ## 5. Explain the build and evidence, about 35 seconds
 
