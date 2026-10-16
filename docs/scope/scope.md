@@ -170,6 +170,8 @@ Result and report presentation polish, 16 October 2026: Step 3 keeps regional ca
 
 ### 9. Evaluation and submission, planned
 
+The user supplied mandatory submission instructions and the official deck template on 16 October 2026. Read [the recorded instructions](../submission/instructions.md) before preparing the deck, video, description or form. It records the required template sections, ongoing public availability requirement and unresolved video duration and Firestore wording.
+
 Record actual outcomes, deploy the final prototype and prepare an honest submission package.
 
 **Done when:** acceptance criteria pass, permissions and limitations are recorded, submitted links work and submission confirmation is retained, AC-16 through AC-18.
