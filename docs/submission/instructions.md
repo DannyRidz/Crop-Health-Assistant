@@ -39,15 +39,19 @@ The user supplied screenshot states:
 
 Keep final submission prose, documentation, presentation and narration in English. Describe Tok Pisin as a product feature with its draft review status. Do not claim completed farmer or agricultural validation, measured yield improvements or accuracy scores without evidence.
 
-## Two discrepancies to resolve
+## Discrepancies to resolve
 
 ### Video duration
 
-The screenshot says 3 to 4 minutes. The inspected template's links slide says 3 minutes. The public FAQ says under 3 minutes, while the themes page says 3 minutes. These are conflicting instructions, not a verified single limit. Prepare a concise script around three minutes, preserve an editable recording and confirm the final portal rule or obtain organiser clarification before locking the duration. Do not claim one duration complies with all versions.
+The screenshot and session host at 4:41 to 4:50 say 3 to 4 minutes. The inspected template's links slide says 3 minutes. The public FAQ says under 3 minutes, while the themes page says 3 minutes. These are conflicting instructions, not a verified single limit. Prepare a concise script around three minutes, preserve an editable recording and confirm the final portal rule or obtain organiser clarification before locking the duration. Do not claim one duration complies with all versions.
 
 ### Firestore
 
 The screenshot names Firebase, Firestore, Cloud Run and Gemini and asks for all mentioned technology. Our deployed app uses Firebase Hosting, Cloud Run and Gemini. It does not currently use Firestore. Do not describe Firebase Hosting as Firestore or imply a database exists. Confirm whether Firestore is mandatory or whether the description should cover only services actually used. Any new Firestore feature needs a defined purpose, data handling decision and implementation scope; this record does not authorise adding one.
+
+### Agent Platform
+
+The session at 13:13 to 14:57 discusses direct AI Studio calls but also describes an Agent Platform capability as required. This is stronger wording than the public page allowing Google models or agentic platforms. Our current implementation uses the official Gemini SDK, without ADK or Agent Platform runtime, memory or session services. Confirm whether this is sufficient before marking all competition requirements met. See [the timestamped session notes](expert-session-notes.md), including other conflicts on prior work and service availability. Do not add services or claim compliance based on ambiguous auto generated captions.
 
 ## Current evidence and outstanding work
 
@@ -65,3 +69,5 @@ The screenshot names Firebase, Firestore, Cloud Run and Gemini and asks for all 
 - Submission Instruction screenshot supplied by the user in this conversation on 16 October 2026.
 - [Themes and requirements](https://aibuildercup.com/themes.html), inspected 16 October 2026.
 - [FAQ](https://aibuildercup.com/Faqs.html), inspected 16 October 2026.
+
+- [Expert session and timestamped notes](expert-session-notes.md), full auto generated English transcript reviewed 16 October 2026.

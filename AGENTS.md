@@ -92,3 +92,5 @@ Specification [0005](docs/specs/0005-four-country-care.md) expands sourced care 
 Result keeps regional care before supporting photo details. Report keeps summary, country, download and optional full preview; show the additional care panel when treatment confirmation or stale guidance recovery requires it. Preserve full content in the preview and PDF even when the report screen is shorter.
 
 Submission preparation must follow [the recorded organiser instructions and prescribed template](docs/submission/instructions.md). Resolve the conflicting video durations and whether Firestore is mandatory before finalising the package. The current app does not use Firestore; do not claim otherwise or add it without a defined authorised scope.
+
+[Expert session notes](docs/submission/expert-session-notes.md) record timestamped clarification questions. Agent Platform or ADK use is an additional unresolved requirement; direct Gemini SDK use must not be described as an Agent Platform integration. Session captions also conflict with written rules on video length and prior work.
