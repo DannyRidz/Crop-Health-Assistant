@@ -175,11 +175,11 @@ Recommended values for the hackathon demo:
 | Model output | Target ceiling 2048 output tokens and 32 KiB received JSON; small arrays and strings |
 | Time | 45 second model deadline, 55 second app deadline, 60 second Cloud Run request timeout |
 | Questions | Four starter questions, at most two follow ups in one round; at most one optional country or broad region context field when guidance depends on it, no extra AI round or precise location requirement |
-| Guidance requests | At most 20 lightweight guidance reselections per session per hour; no AI charge and same signature, concurrency and origin controls |
-| Attempts | At most six assess attempts and two translation attempts per anonymous session per hour, failed dispatches count |
+| Guidance requests | At most 60 lightweight guidance reselections per session per 10 minute allowance window; no AI charge and same signature, concurrency and origin controls |
+| Attempts | 17 October testing adjustment: at most 12 assess attempts (normally six complete checks) and 12 translation attempts per anonymous session per 10 minute allowance window; failed dispatches count. Allowance renewal preserves the one hour signed session and case. |
 | Concurrency | One request per session; maximum two Gemini requests at once per instance |
 | Demo capacity | Cloud Run minimum zero, maximum one instance; memory 512 MiB and one CPU as initial measurements, not a performance guarantee |
-| Extra limiter | Short lived counters per session and trusted ingress address hash, 10 requests per 10 minutes per address, allow tuning for shared networks |
+| Extra limiter | Short lived counters per session and trusted ingress address hash, 60 model requests and 30 new sessions per 10 minutes per bucket. With TRUST_PROXY=false, this is explicitly a shared deployment bucket, not a farmer specific address. Forwarded header trust is unchanged. |
 | Retry | No automatic endless retries; user initiated retry counts against limits; preserve data; respect retry delay |
 
 Limit stream bytes even when Content-Length is absent or false. Do not trust MIME headers or file extensions. Decode using resource limits, reject corrupt files and decompression bombs, apply orientation then reencode and strip metadata before Gemini and report embedding. Original photos stay on the farmer's device. Reports contain the processed photos, labelled as resized copies.

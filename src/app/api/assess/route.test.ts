@@ -10,6 +10,8 @@ import { UNKNOWN_REGION, SCHEMA_VERSION, type AssessResponse } from "@/lib/contr
 
 const { createInteraction } = vi.hoisted(() => ({ createInteraction: vi.fn() }));
 vi.mock("@google/genai", () => ({ GoogleGenAI: class { interactions = { create: createInteraction }; } }));
+import { ASSESS_CAP } from "@/lib/server/session";
+
 const origin = "http://localhost:3000";
 let sequence = 0, jpeg: Buffer;
 beforeEach(async () => {
@@ -179,7 +181,7 @@ describe("M2 route boundaries with mocked SDK, AC-2, AC-3, AC-7 and AC-8", () =>
   });
   it("counts rejected dispatches and returns quota without another provider request", async () => {
     const cookie = await session(), id = crypto.randomUUID();
-    for (let index = 0; index < 6; index++) {
+    for (let index = 0; index < ASSESS_CAP; index++) {
       const response = await assessRoute(request("preliminary", cookie, id, null, { unexpected: true }));
       expect(response.status).toBe(422);
     }
@@ -204,7 +206,7 @@ describe("M2 route boundaries with mocked SDK, AC-2, AC-3, AC-7 and AC-8", () =>
     expect((await assessRoute(request("preliminary", cookie, id))).status).toBe(503);
     const retry = await assessRoute(request("preliminary", cookie, id));
     expect(retry.status).toBe(200);
-    expect((await retry.json()).remaining).toBe(4);
+    expect((await retry.json()).remaining).toBe(ASSESS_CAP - 2);
     expect(createInteraction).toHaveBeenCalledTimes(2);
   });
 });

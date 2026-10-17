@@ -107,7 +107,7 @@ Language preference is stored on the device. Photos, answers, country, results a
 
 - JPEG, PNG or WebP, up to two originals, each at most 10 MiB and 40 megapixels.
 - Browser preparation produces JPEG copies up to 1600 pixels on the long edge and 2 MiB each. The server independently validates images and enforces a 6 MiB streaming body limit.
-- Temporary session quotas and request limits control use. They reset on server restart and do not guarantee a spending cutoff.
+- Each session permits 12 screening requests (normally six complete checks), 12 translation requests and 60 guidance updates per 10 minute window. A one hour session can renew its allowance without clearing the case. The current deployment also shares a 60 model request safety bucket and 30 new sessions per 10 minutes across visitors, because forwarded client addresses are not trusted. Failed dispatches count. Concurrency limits remain. These counters reset on server restart and do not guarantee a spending cutoff.
 - The deployment is configured for at most one Cloud Run instance. The approved MVP allowance is USD 20 total, with an initial USD 5 Gemini credit purchase. This is not a statement of current balance or measured operating cost. Automatic reload is off.
 
 ## Verification status

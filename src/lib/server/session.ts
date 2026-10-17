@@ -7,7 +7,14 @@ export const SESSION_MS = 60 * 60 * 1000;
 export const ENVELOPE_MS = 30 * 60 * 1000;
 type Kind = "session" | "preliminary" | "result" | "guidance";
 type Token = { kind: Kind; sid: string; expiresAt: number; data: unknown };
-type Counter = { expiresAt: number; assess: number; translate: number; guidance: number; busy: boolean };
+// Short testing windows are separate from the signed session lifetime.
+export const ALLOWANCE_MS = 10 * 60 * 1000;
+export const ASSESS_CAP = 12;
+export const TRANSLATE_CAP = 12;
+export const GUIDANCE_CAP = 60;
+const SHARED_MODEL_CAP = 60;
+const SESSION_ISSUE_CAP = 30;
+type Counter = { windowEndsAt: number; expiresAt: number; assess: number; translate: number; guidance: number; busy: boolean };
 type Bucket = { expiresAt: number; count: number };
 const globalState = globalThis as typeof globalThis & { cropQuota?: { sessions: Map<string, Counter>; addresses: Map<string, Bucket>; active: number } };
 const state = globalState.cropQuota ??= { sessions: new Map(), addresses: new Map(), active: 0 };
@@ -46,7 +53,7 @@ function addressLimit(request: Request, purpose: string) {
   const address = process.env.TRUST_PROXY === "true" ? request.headers.get("x-forwarded-for")?.split(",").at(-1)?.trim() ?? "unknown" : "local";
   const key = `${purpose}:${createHmac("sha256", secret()).update(address).digest("hex")}`;
   const bucket = state.addresses.get(key) ?? { count: 0, expiresAt: Date.now() + 600000 };
-  if (bucket.count >= 10) throw new ApiError(429, "quota", true, Math.ceil((bucket.expiresAt - Date.now()) / 1000));
+  if (bucket.count >= (purpose === "model" ? SHARED_MODEL_CAP : SESSION_ISSUE_CAP)) throw new ApiError(429, "quota", true, Math.ceil((bucket.expiresAt - Date.now()) / 1000));
   bucket.count++;
   state.addresses.set(key, bucket);
 }
@@ -56,13 +63,16 @@ export function issueSession(request: NextRequest): { sid: string; cookie: strin
     try {
       const data = verify<{ sid: string }>(existing, "session");
       const counter = state.sessions.get(data.sid);
-      if (counter && counter.expiresAt > Date.now()) return { sid: data.sid, cookie: existing, remaining: 6 - counter.assess };
+      if (counter && counter.expiresAt > Date.now()) {
+        renewAllowance(counter);
+        return { sid: data.sid, cookie: existing, remaining: ASSESS_CAP - counter.assess };
+      }
     } catch (error) { if (error instanceof ApiError && error.status === 503) throw error; }
   }
   addressLimit(request, "issue");
   const sid = randomUUID();
-  state.sessions.set(sid, { expiresAt: Date.now() + SESSION_MS, assess: 0, translate: 0, guidance: 0, busy: false });
-  return { sid, cookie: sign("session", sid, { sid }, SESSION_MS), remaining: 6 };
+  state.sessions.set(sid, { windowEndsAt: Date.now() + ALLOWANCE_MS, expiresAt: Date.now() + SESSION_MS, assess: 0, translate: 0, guidance: 0, busy: false });
+  return { sid, cookie: sign("session", sid, { sid }, SESSION_MS), remaining: ASSESS_CAP };
 }
 export function getSession(request: NextRequest): string {
   const cookie = request.cookies.get(COOKIE_NAME)?.value;
@@ -72,12 +82,19 @@ export function getSession(request: NextRequest): string {
   if (!counter || counter.expiresAt <= Date.now()) throw new ApiError(409, "expired", true);
   return sid;
 }
+function renewAllowance(counter: Counter) {
+  if (!counter.busy && counter.windowEndsAt <= Date.now()) {
+    counter.windowEndsAt = Date.now() + ALLOWANCE_MS;
+    counter.assess = 0; counter.translate = 0; counter.guidance = 0;
+  }
+}
 export function acquire(request: Request, sid: string, kind: "assess" | "translate" | "guidance"): { remaining: number; release: () => void } {
   const counter = state.sessions.get(sid);
-  if (!counter) throw new ApiError(409, "expired", true);
-  const cap = kind === "assess" ? 6 : kind === "translate" ? 2 : 20;
+  if (!counter || counter.expiresAt <= Date.now()) throw new ApiError(409, "expired", true);
+  renewAllowance(counter);
+  const cap = kind === "assess" ? ASSESS_CAP : kind === "translate" ? TRANSLATE_CAP : GUIDANCE_CAP;
   if (counter.busy) throw new ApiError(409, "busy", true, 2);
-  if (counter[kind] >= cap) throw new ApiError(429, "quota", true, Math.ceil((counter.expiresAt - Date.now()) / 1000));
+  if (counter[kind] >= cap) throw new ApiError(429, "quota", true, Math.ceil((Math.min(counter.windowEndsAt, counter.expiresAt) - Date.now()) / 1000));
   if (kind !== "guidance") {
     if (state.active >= 2) throw new ApiError(429, "busy", true, 5);
     addressLimit(request, "model");

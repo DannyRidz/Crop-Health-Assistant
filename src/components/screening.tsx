@@ -335,7 +335,7 @@ export function Screening({ screeningAvailable, serviceTier }: Props) {
       </div>}
       <ol className={styles.progress} aria-label={text.journeyTitle}>{steps.map((step, index) => <li key={step} aria-current={state.stage === step ? "step" : undefined}><span>{index + 1}</span>{t[step]}</li>)}</ol>
       <div className={styles.title}><p>{t.step} {steps.indexOf(state.stage) + 1} {t.of} 4</p><h1 ref={heading} tabIndex={-1}>{titles[state.stage]}</h1></div>
-      {error && <div id="assessment-error" className={styles.error} role="alert" ref={errorPanel} tabIndex={-1}><p>{errorMessage}</p>{error.requestId && <p className={styles.small}>{t.reference}: {error.requestId}</p>}{cooldown > 0 && <p>{cooldown}s</p>}</div>}
+      {error && <div id="assessment-error" className={styles.error} role="alert" ref={errorPanel} tabIndex={-1}><p>{errorMessage}</p>{error.requestId && <p className={styles.small}>{t.reference}: {error.requestId}</p>}{cooldown > 0 && <p>{cooldown >= 60 ? `${Math.ceil(cooldown / 60)} min` : `${cooldown}s`}</p>}</div>}
       {busy && <div className={styles.note} role="status"><p>{busy === "photos" ? t.checkingPhotos : busy === "result" ? t.checkingResult : busy === "guidance" ? t.regionUpdating : busy === "translation" ? t.translationLoading : busy === "export" ? t.downloading : t.processing}</p>{slow && <p>{t.slow}</p>}</div>}
       {state.stage === "photos" && <div className={styles.section}>
         <section className={styles.section}>
