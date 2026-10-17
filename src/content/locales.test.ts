@@ -34,9 +34,9 @@ describe("translation collection, AC-12 foundation", () => {
       return Object.entries(value as object).flatMap(([key, item]) => paths(item, prefix ? `${prefix}.${key}` : key));
     }
     expect(Object.keys(keyReview).sort()).toEqual(paths(english).sort());
-    const pending = Object.entries(keyReview).filter(([, value]) => value.tpi !== "reviewed");
-    expect(pending.map(([key]) => key).sort()).toEqual([...review.tpi.pendingWordingUpdates.keys].sort());
-    expect(pending.every(([, value]) => value.tpi === "pending_review")).toBe(true);
+    expect(Object.values(keyReview).every((value) => value.tpi === "reviewed")).toBe(true);
+    expect(review.tpi.reviewedWordingUpdates.status).toBe("reviewed");
+    expect(review.tpi.reviewedWordingUpdates.confirmedBy).toBe("user");
     expect(Object.values(keyReview).every((value) => value.en === "authored")).toBe(true);
   });
 });

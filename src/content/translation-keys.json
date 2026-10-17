@@ -965,7 +965,7 @@
   },
   "assessment.causeIntro": {
     "en": "authored",
-    "tpi": "pending_review"
+    "tpi": "reviewed"
   },
   "assessment.whyFits": {
     "en": "authored",
@@ -973,7 +973,7 @@
   },
   "assessment.causeUncertainty": {
     "en": "authored",
-    "tpi": "pending_review"
+    "tpi": "reviewed"
   },
   "assessment.nextCheck": {
     "en": "authored",
@@ -1005,7 +1005,7 @@
   },
   "assessment.possibleCauseLabel": {
     "en": "authored",
-    "tpi": "pending_review"
+    "tpi": "reviewed"
   },
   "assessment.reportReady": {
     "en": "authored",

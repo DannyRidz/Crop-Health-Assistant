@@ -19,7 +19,7 @@ Give the participant the link and ask them to check a coffee leaf and save a rep
 3. Answer the questions using what they actually know. Not sure is a valid answer. Do not invent history for a dataset photo.
 4. Choose their actual country if known, or use Not sure or Skip for now. No exact location is needed.
 5. Read the result and download the PDF.
-6. If they use Tok Pisin, explain that it is a draft awaiting fluent review. Record unfamiliar or misleading wording.
+6. If they use Tok Pisin, explain that fixed wording and sample reports have been reviewed, including the three recent cause wording edits, as confirmed by the user on 17 October 2026. New case text remains automatic translation. Record unfamiliar or misleading wording.
 
 Ask these questions without suggesting an answer:
 
@@ -41,7 +41,7 @@ If proposing guidance, identify its source, country or region, limits and review
 
 ## Fluent Tok Pisin review
 
-Compare English and Tok Pisin side by side, including fixed instructions, questions, uncertainty, privacy and generated report text. Record the exact wording, intended meaning, suggested correction and whether a farmer would understand it. Reviewing one report does not approve every generated translation or all fixed text. Keep drafts labelled until the applicable review record is complete.
+Compare English and Tok Pisin side by side, including fixed instructions, questions, uncertainty, privacy and generated report text. Record the exact wording, intended meaning, suggested correction and whether a farmer would understand it. Reviewing one report does not approve every generated translation or all fixed text. The earlier completed review remains recorded for unchanged wording and sampled reports. The three later edits are also confirmed reviewed in the [language review record](../content-review/tok-pisin-language-review.md); do not treat that as approval of every future generated report.
 
 ## Send feedback to the team
 

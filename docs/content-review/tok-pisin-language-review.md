@@ -33,3 +33,7 @@ Suggested phrases for the fluent reviewer:
 | Possible cause | Samting i ken kamapim hevi |
 
 Software checks and rendered PDF layout checks pass. These are not a new fluent language review. Agricultural decisions, evidence and treatment eligibility are unchanged.
+
+## Follow up review confirmed complete, 17 October 2026
+
+The user confirmed that Tok Pisin has been checked and verified, resolving the pending status of the three latest cause wording edits. Their per key statuses are now reviewed, with the completion confirmation recorded under `reviewedWordingUpdates`. This supersedes the pending statements in the dated history above. Reviewer identity and actual review date remain unspecified; 17 October is the user confirmation date. No wording changed in this update. Future generated cases remain automatic translations and agricultural validation remains separate.

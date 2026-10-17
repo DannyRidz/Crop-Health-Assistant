@@ -15,14 +15,18 @@
       "ai_generated_sample_reports"
     ],
     "futureGeneratedReports": "automatic_translation_not_individually_reviewed",
-    "pendingWordingUpdates": {
+    "reviewedWordingUpdates": {
       "date": "2026-10-16",
       "keys": [
         "assessment.causeIntro",
         "assessment.causeUncertainty",
         "assessment.possibleCauseLabel"
       ],
-      "status": "pending_fluent_review"
+      "status": "reviewed",
+      "confirmedBy": "user",
+      "confirmationDate": "2026-10-17",
+      "reviewer": null,
+      "reviewDate": null
     }
   },
   "agriculturalReview": {

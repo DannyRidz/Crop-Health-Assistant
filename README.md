@@ -2,7 +2,7 @@
 
 A globally accessible coffee leaf screening assistant that helps farmers understand visible leaf problems, explore possible causes and find practical next steps.
 
-**[Open the app](https://coffee-leaf-check.web.app)** · [Reviewer guide](docs/validation/reviewer-guide.md) · [Project scope](docs/scope/scope.md)
+**[Open the app](https://coffee-leaf-check.web.app)** · **[Judge quick start and sample photo](docs/demo/README.md)** · [Reviewer guide](docs/validation/reviewer-guide.md) · [Project scope](docs/scope/scope.md)
 
 Built by **J2D** for the AI Builder Cup, under **Sustainability & Social Impact**. Team members: **Jeremiah Ewande**, team leader and resource coordination, and **Daniel Ridzwan Bin Mohamad**, app development. PNG coffee farmers are our first planned validation group. Agricultural and farmer validation are still pending; we do not claim worldwide agricultural validation.
 
@@ -13,7 +13,7 @@ Built by **J2D** for the AI Builder Cup, under **Sustainability & Social Impact*
 3. **Read your result.** See visible changes, possible causes, what to check next and available care steps.
 4. **Save your report.** Download an A4 PDF with photos, findings, country, sources and limitations.
 
-English and Tok Pisin are supported. Fixed Tok Pisin wording and AI generated sample reports have completed language review, as confirmed by the team on 16 October 2026. Three later cause wording edits await a fluent check; the rest of that review remains complete. Future generated text is automatically translated and is not individually human reviewed. See the [review scope](docs/content-review/tok-pisin-language-review.md).
+English and Tok Pisin are supported. Fixed Tok Pisin wording and AI generated sample reports have completed language review, as confirmed by the team on 16 October 2026. The user confirmed the three later cause wording edits are also verified on 17 October 2026. Future generated text is automatically translated and is not individually human reviewed. See the [review scope](docs/content-review/tok-pisin-language-review.md).
 
 ## Care coverage and limits
 
@@ -112,14 +112,14 @@ Language preference is stored on the device. Photos, answers, country, results a
 
 ## Verification status
 
-As of **16 October 2026**:
+As of **17 October 2026**:
 
 | Area | Evidence and remaining limits |
 |---|---|
-| Software checks | 127 deterministic tests across 17 files, lint and type checks passed. Remote production build passed. Mocked tests are software evidence only. |
+| Software checks | 129 deterministic tests across 17 files, lint and type checks passed. Remote production build passed. Mocked tests are software evidence only. |
 | Real AI journey | Permitted BRACOL cases completed real public Gemini requests, country changes and report downloads. |
 | Result and PDF layout | Real English and Tok Pisin PDFs were rendered and checked page by page. Desktop keyboard, zoom and recovery checks are documented. |
-| Language | Fixed Tok Pisin wording and generated sample reports reviewed, team confirmed. Future generated translations remain automatic. |
+| Language | Fixed Tok Pisin wording and generated sample reports reviewed, team confirmed. Recent wording edits also verified, user confirmed 17 October. Future generated translations remain automatic. |
 | Agricultural accuracy | Independent specialist review and labelled accuracy evaluation remain pending. No accuracy percentage is claimed. |
 | Farmer experience | Actual farmer feedback, physical phone camera validation and complete accessibility coverage remain pending. |
 
@@ -138,11 +138,11 @@ The public app uses Firebase Hosting to route to the existing Cloud Run service.
 - [Demo narration](docs/submission/video/script.md) and [recording checklist](docs/submission/video/recording-checklist.md)
 - [Archived development log](docs/history/readme-development-log-through-2026-10-16.md), historical entries may be superseded
 
-The pitch deck is a working draft. The demo video and final submission checks remain pending. Public deployment does not establish production readiness or competition acceptance.
+The pitch deck is a working draft. Jeremiah is preparing the demo video, which must be strictly under three minutes. The video link, farmer and specialist feedback, and final submission checks remain pending. Public deployment does not establish production readiness or competition acceptance.
 
 ## Sources and attribution
 
-**BRACOL:** Renato A. Krohling, Guilherme J. M. Esgario and José A. Ventura, *A Brazilian Arabica Coffee Leaf Images Dataset to Identification and Quantification of Coffee Diseases and Pests*, version 1. [Dataset and DOI 10.17632/yy2k5y8mxg.1](https://data.mendeley.com/datasets/yy2k5y8mxg/1), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Demonstration images are resized and reencoded for screening and reports. No dataset image is bundled in the public app. See the [provenance record](docs/data-sources/bracol.md). Keep attribution with shared sample reports, deck images and demo material.
+**BRACOL:** Renato A. Krohling, Guilherme J. M. Esgario and José A. Ventura, *A Brazilian Arabica Coffee Leaf Images Dataset to Identification and Quantification of Coffee Diseases and Pests*, version 1. [Dataset and DOI 10.17632/yy2k5y8mxg.1](https://data.mendeley.com/datasets/yy2k5y8mxg/1), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Demonstration images are resized and reencoded for screening and reports. One unchanged permitted sample is included in [repository documentation](docs/demo/README.md); no dataset image is bundled in the public app. See the [provenance record](docs/data-sources/bracol.md). Keep attribution with shared sample reports, deck images and demo material.
 
 Regional care entries retain their own source and applicability records in [the care catalogue](src/content/care-actions.ts). Published source material does not imply independent approval of this app.
 
