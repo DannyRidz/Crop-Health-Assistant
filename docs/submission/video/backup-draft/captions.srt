@@ -16,7 +16,7 @@ Add an underside photo if useful.
 4
 00:00:24,000 --> 00:00:30,000
 2. Answer four short questions
-Country optional. “Not sure” OK.
+Choose a country, or “Not sure”.
 
 5
 00:00:32,000 --> 00:00:38,000
@@ -30,8 +30,8 @@ Understand why a cause may fit.
 
 7
 00:00:48,000 --> 00:00:54,000
-Follow the suggested next check
-Photo suggestions need checking.
+Possible causes from your photos
+Follow the suggested next check.
 
 8
 00:00:56,000 --> 00:01:02,000
@@ -46,12 +46,12 @@ No chemical products or doses.
 10
 00:01:12,000 --> 00:01:18,000
 Switch to Tok Pisin
-Same screening evidence.
+New text translates automatically.
 
 11
 00:01:20,000 --> 00:01:26,000
-Wording and samples reviewed
-New text uses auto-translation.
+Tok Pisin wording reviewed
+Sample reports reviewed too.
 
 12
 00:01:28,000 --> 00:01:34,000
@@ -71,7 +71,7 @@ Gemini SDK • Secret Manager
 15
 00:01:50,000 --> 00:01:58,000
 Real Gemini journeys checked
-Field accuracy not yet measured.
+Disease accuracy not yet measured.
 
 16
 00:01:58,000 --> 00:02:06,000

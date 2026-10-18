@@ -6,7 +6,7 @@ Revision 12 shortens the introduction, numbers the four farmer steps, puts care 
 
 Editable draft: https://21st.dev/community/video/editor/fb3f6776-5b51-452c-989f-28ad21358e9c
 
-Revision 13 enables both 16:9 and 9:16 export sizes. The vertical result preview was inspected in playback: captions fit, but the existing landscape screenshots are too small for reading detailed evidence in portrait. This is a vertical layout preview, not a finished vertical demo. Replace desktop screenshots with genuine mobile-layout footage for the final 9:16 video. Export remains blocked by the existing 30-second limit.
+Revision 14 returns to 16:9 only, as requested by the user. Captions now explicitly name Tok Pisin review and unmeasured disease accuracy, describe possible causes as photo-based, and simplify the country instruction. The prior vertical preview was rejected because desktop screenshots became too small. The runtime remains 2:18. Saved captions and landscape selection were verified in the editor. The embedded player failed to load the latest preview, so revision 14 visual playback remains unverified. Export remains blocked by the existing 30-second limit.
 
 This is an edited walkthrough using four genuine app/PDF sample screens. It is not a continuous screen recording, and the screens may show different checks. The opening and captions disclose this. Do not describe it as a recorded end-to-end journey or agricultural validation.
 
