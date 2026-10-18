@@ -1,89 +1,84 @@
 1
 00:00:00,000 --> 00:00:06,000
 Crop Health Assistant
-Edited sample screens • Team J2D
+Team J2D • Real app walkthrough
 
 2
-00:00:08,000 --> 00:00:14,000
+00:00:06,000 --> 00:00:12,000
 1. Add a coffee leaf photo
-Clear light. Whole leaf visible.
+Licensed BRACOL sample, Brazil
 
 3
-00:00:16,000 --> 00:00:22,000
-Give permission to analyse it
-Add an underside photo if useful.
+00:00:13,000 --> 00:00:20,000
+Give permission for analysis
+Photos are prepared on device.
 
 4
-00:00:24,000 --> 00:00:30,000
-2. Answer four short questions
-Choose a country, or “Not sure”.
+00:00:22,000 --> 00:00:29,000
+Gemini checks the photo
+Real processing time shown.
 
 5
-00:00:32,000 --> 00:00:38,000
-3. Read the visible findings
-Each finding links to a photo.
+00:00:33,000 --> 00:00:40,000
+2. Answer four short questions
+Choose “Not sure” when needed.
 
 6
-00:00:40,000 --> 00:00:46,000
-See possible causes and evidence
-Understand why a cause may fit.
+00:00:45,000 --> 00:00:51,000
+Growing history is unknown
+We choose “Not sure”.
 
 7
-00:00:48,000 --> 00:00:54,000
-Possible causes from your photos
-Follow the suggested next check.
+00:00:52,000 --> 00:00:57,000
+Country: Brazil
+The image source country.
 
 8
-00:00:56,000 --> 00:01:02,000
-Published care for your country
-PNG • Indonesia • Kenya • Brazil
+00:01:02,000 --> 00:01:09,000
+3. Read the visible findings
+Signs are linked to the photo.
 
 9
-00:01:04,000 --> 00:01:10,000
-Practical nonchemical next steps
-No chemical products or doses.
+00:01:12,000 --> 00:01:19,000
+Possible causes and next checks
+AI suggestions, not a diagnosis.
 
 10
-00:01:12,000 --> 00:01:18,000
-Switch to Tok Pisin
-New text translates automatically.
+00:01:22,000 --> 00:01:29,000
+Care from published sources
+Brazil • review pending
 
 11
-00:01:20,000 --> 00:01:26,000
-Tok Pisin wording reviewed
-Sample reports reviewed too.
+00:01:32,000 --> 00:01:39,000
+4. Download the PDF report
+Keep or share the check.
 
 12
-00:01:28,000 --> 00:01:34,000
-4. Download the PDF report
+00:01:42,000 --> 00:01:49,000
+Report from this same case
 Findings, care and sources.
 
 13
-00:01:36,000 --> 00:01:42,000
-Share it for follow-up
-Screens may show different cases.
-
-14
-00:01:42,000 --> 00:01:50,000
+00:01:52,000 --> 00:02:00,000
 Firebase Hosting → Cloud Run
 Gemini SDK • Secret Manager
 
-15
-00:01:50,000 --> 00:01:58,000
+14
+00:02:00,000 --> 00:02:08,000
 Real Gemini journeys checked
 Disease accuracy not yet measured.
 
-16
-00:01:58,000 --> 00:02:06,000
+15
+00:02:08,000 --> 00:02:16,000
 Jeremiah Ewande • Team J2D
 Daniel Ridzwan Bin Mohamad
 
-17
-00:02:06,000 --> 00:02:12,000
+16
+00:02:16,000 --> 00:02:22,000
 BRACOL • CC BY 4.0
 Krohling, Esgario & Ventura
 
-18
-00:02:12,000 --> 00:02:18,000
+17
+00:02:22,000 --> 00:02:28,000
 Dataset attribution
 doi.org/10.17632/yy2k5y8mxg.1
