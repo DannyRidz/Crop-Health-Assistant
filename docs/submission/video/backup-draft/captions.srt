@@ -1,105 +1,89 @@
 1
-00:00:00,000 --> 00:00:08,000
-Team J2D
-Edited walkthrough • real screens
+00:00:00,000 --> 00:00:06,000
+Crop Health Assistant
+Edited sample screens • Team J2D
 
 2
-00:00:08,000 --> 00:00:16,000
-Coffee farmers worldwide
-A clearer starting point
+00:00:08,000 --> 00:00:14,000
+1. Add a coffee leaf photo
+Clear light. Whole leaf visible.
 
 3
-00:00:16,000 --> 00:00:24,000
-Add a clear coffee leaf photo
-Give permission for analysis
+00:00:16,000 --> 00:00:22,000
+Give permission to analyse it
+Add an underside photo if useful.
 
 4
-00:00:24,000 --> 00:00:32,000
-Four short questions add context
-“Not sure” is available
+00:00:24,000 --> 00:00:30,000
+2. Answer four short questions
+Country optional. “Not sure” OK.
 
 5
-00:00:32,000 --> 00:00:40,000
-Choose a country, or skip
-No exact location is needed
+00:00:32,000 --> 00:00:38,000
+3. Read the visible findings
+Each finding links to a photo.
 
 6
-00:00:40,000 --> 00:00:48,000
-Gemini describes visible changes
-Findings link to the photo
+00:00:40,000 --> 00:00:46,000
+See possible causes and evidence
+Understand why a cause may fit.
 
 7
-00:00:48,000 --> 00:00:56,000
-Possible causes explain the signs
-See why each cause may fit
+00:00:48,000 --> 00:00:54,000
+Follow the suggested next check
+Photo suggestions need checking.
 
 8
-00:00:56,000 --> 00:01:04,000
-Suggestions, not a diagnosis
-Checking the plant adds evidence
-
-9
-00:01:04,000 --> 00:01:12,000
-Next checks guide observation
-Gather useful clues
-
-10
-00:01:12,000 --> 00:01:20,000
-English and Tok Pisin
-Same screening evidence
-
-11
-00:01:20,000 --> 00:01:28,000
-Language review completed
-Fixed text and sample reports
-
-12
-00:01:28,000 --> 00:01:36,000
-Download a PDF report
-Keep or share your findings
-
-13
-00:01:36,000 --> 00:01:44,000
-Genuine sample-check screens
-Screens may show different cases
-
-14
-00:01:44,000 --> 00:01:52,000
-Care matched to your country
+00:00:56,000 --> 00:01:02,000
+Published care for your country
 PNG • Indonesia • Kenya • Brazil
 
+9
+00:01:04,000 --> 00:01:10,000
+Practical nonchemical next steps
+No chemical products or doses.
+
+10
+00:01:12,000 --> 00:01:18,000
+Switch to Tok Pisin
+Same screening evidence.
+
+11
+00:01:20,000 --> 00:01:26,000
+Wording and samples reviewed
+New text uses auto-translation.
+
+12
+00:01:28,000 --> 00:01:34,000
+4. Download the PDF report
+Findings, care and sources.
+
+13
+00:01:36,000 --> 00:01:42,000
+Share it for follow-up
+Screens may show different cases.
+
+14
+00:01:42,000 --> 00:01:50,000
+Firebase Hosting → Cloud Run
+Gemini SDK • Secret Manager
+
 15
-00:01:52,000 --> 00:02:00,000
-Nonchemical care suggestions
-No chemical products or doses
+00:01:50,000 --> 00:01:58,000
+Real Gemini journeys checked
+Field accuracy not yet measured.
 
 16
-00:02:00,000 --> 00:02:08,000
-Firebase Hosting → Cloud Run
-Gemini • Secret Manager
-
-17
-00:02:08,000 --> 00:02:16,000
-Cases are temporary
-No Firestore database needed
-
-18
-00:02:16,000 --> 00:02:24,000
-Field validation is next
-Accuracy evaluation is pending
-
-19
-00:02:24,000 --> 00:02:32,000
+00:01:58,000 --> 00:02:06,000
 Jeremiah Ewande • Team J2D
 Daniel Ridzwan Bin Mohamad
 
-20
-00:02:32,000 --> 00:02:40,000
+17
+00:02:06,000 --> 00:02:12,000
 BRACOL • CC BY 4.0
 Krohling, Esgario & Ventura
 
-21
-00:02:40,000 --> 00:02:48,000
-BRACOL dataset source
+18
+00:02:12,000 --> 00:02:18,000
+Dataset attribution
 doi.org/10.17632/yy2k5y8mxg.1
-
