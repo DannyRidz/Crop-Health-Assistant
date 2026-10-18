@@ -1,5 +1,7 @@
 # J2D pitch deck working draft
 
+Current evidence update, 18 October 2026: Jeremiah supplied the [2:56 demo video](https://www.youtube.com/watch?v=ayTe-1-lcMc). The user confirms Richard is a genuine coffee farmer giving his own feedback. Visual review includes PNG selection, results and an opened PDF; see the [farmer feedback record](../../validation/farmer-feedback-2026-10-18.md). This supersedes earlier no-video and no-farmer-feedback statements below. The native deck and exported files still need this video link and the recorded qualitative feedback reflected in their final revision. Signed-out video access and complete audio/playback verification remain pending. No specialist approval or disease accuracy measurement is inferred.
+
 Prepared and visually verified on 16 October 2026. Team J2D consists of Jeremiah Ewande (team leader and resource coordination) and Daniel Ridzwan Bin Mohamad (app development), as confirmed by the user. The organiser reply has been supplied by the user. Video duration and deadline are confirmed; Firestore nonuse can be explained. Agent Platform and ADK remain unresolved.
 
 ## Deliverables

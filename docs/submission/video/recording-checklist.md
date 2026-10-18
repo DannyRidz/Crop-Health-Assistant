@@ -1,5 +1,9 @@
 # Demo recording checklist
 
+## Received team video, 18 October 2026
+
+Jeremiah's uploaded candidate is https://www.youtube.com/watch?v=ayTe-1-lcMc (2:56, shown as Unlisted). The user confirms Richard is a real coffee farmer providing genuine feedback. The recording shows gallery photos, questions, PNG selection, results and an opened PDF. See the [review and feedback record](../../validation/farmer-feedback-2026-10-18.md). This supersedes earlier no-video and no-farmer-feedback statements for the received evidence. The instructions below remain the backup recording guide, not a claim that Jeremiah used the BRACOL example. Signed-out access and a complete audio/playback check remain pending; no submission has been made.
+
 This prepares a real screen recording. It does not certify a finished video. No simulator, emulator, local production build or additional credit purchase is needed.
 
 ## Before recording
