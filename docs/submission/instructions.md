@@ -2,6 +2,12 @@
 
 Recorded on 16 October 2026 from the user supplied submission screenshot and the official template read through Google Drive. These supplement the public requirements and must be checked against the final submission form before delivery.
 
+## Current final check, 18 October 2026
+
+The [final submission record](final-check-2026-10-18.md) supersedes older pending video, public repository and farmer feedback statements below. Jeremiah’s video and Richard’s genuine farmer feedback have been received. The native deck and final exports include them. Anonymous app health, public repository access and YouTube watch-page playability were checked. No disease accuracy or specialist approval is inferred.
+
+The live portal still labels the video as 3 to 4 minutes. The official FAQ was checked again on 18 October and explicitly says under 3 minutes, matching the organiser email supplied by the user. Keep the existing under three minute video. This is a recorded source conflict, not a reason to claim all eligibility questions are resolved.
+
 ## Required template
 
 [Submission Template | AI Builder Cup](https://docs.google.com/presentation/d/13rg7vW43mEH6DkpuusAE6fdoEylSFz8waNpE4RLzoUg/edit)

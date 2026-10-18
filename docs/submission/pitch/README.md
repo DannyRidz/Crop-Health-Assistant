@@ -1,14 +1,14 @@
 # J2D pitch deck working draft
 
-Current evidence update, 18 October 2026: Jeremiah supplied the [2:56 demo video](https://www.youtube.com/watch?v=ayTe-1-lcMc). The user confirms Richard is a genuine coffee farmer giving his own feedback. Visual review includes PNG selection, results and an opened PDF; see the [farmer feedback record](../../validation/farmer-feedback-2026-10-18.md). This supersedes earlier no-video and no-farmer-feedback statements below. The native deck and exported files still need this video link and the recorded qualitative feedback reflected in their final revision. Signed-out video access and complete audio/playback verification remain pending. No specialist approval or disease accuracy measurement is inferred.
+Current evidence update, 18 October 2026: the native 13 slide deck now includes Jeremiah’s [demo video](https://www.youtube.com/watch?v=ayTe-1-lcMc), Richard’s genuine farmer feedback and the resulting next steps. This supersedes the historical video and farmer feedback placeholders below. The final PDF and PowerPoint exports were refreshed and all 13 PDF pages visually inspected. Anonymous app, repository and YouTube availability checks pass. See the [farmer feedback record](../../validation/farmer-feedback-2026-10-18.md) and [final submission record](../final-check-2026-10-18.md) for evidence and the confirmed Submitted portal status. No specialist approval or disease accuracy measurement is inferred.
 
 Prepared and visually verified on 16 October 2026. Team J2D consists of Jeremiah Ewande (team leader and resource coordination) and Daniel Ridzwan Bin Mohamad (app development), as confirmed by the user. The organiser reply has been supplied by the user. Video duration and deadline are confirmed; Firestore nonuse can be explained. Agent Platform and ADK remain unresolved.
 
 ## Deliverables
 
 - [Editable Google Slides draft](https://docs.google.com/presentation/d/1yDtFQGKbZr5J8b2HUHDgrX1xq2nOT-mc6lEZvD7TdB0/edit), private to the connected account, in its ChatGPT folder. Public sharing was not enabled.
-- PDF: `output/pdf/pitch-deck/J2D-Crop-Health-Assistant-Pitch-Draft.pdf`.
-- PowerPoint: `output/presentations/J2D-Crop-Health-Assistant-Pitch-Draft.pptx`.
+- Final PDF: `output/pdf/pitch-deck/J2D-Crop-Health-Assistant-Pitch-Final.pdf`.
+- Final PowerPoint: `output/presentations/J2D-Crop-Health-Assistant-Pitch-Final.pptx`.
 
 The deck follows a copy of the prescribed [organiser template](https://docs.google.com/presentation/d/13rg7vW43mEH6DkpuusAE6fdoEylSFz8waNpE4RLzoUg/edit). Original branding and section order are retained. The download instruction, unused optional wireframe and blank slide were omitted. The optional cost slide is included. The closing thank you slide is retained. The organiser original was not edited.
 
@@ -25,7 +25,7 @@ The deck follows a copy of the prescribed [organiser template](https://docs.goog
 9. Real app and PDF screenshots.
 10. Software verification and unmeasured agricultural performance.
 11. Validation and expansion roadmap.
-12. Product and repository links, pending demo recording.
+12. Product, public repository and genuine farmer demo links.
 13. Original branded thank you slide.
 
 ## Evidence and limits
@@ -74,3 +74,5 @@ Organiser reply update, 16 October 2026: the technology slide now explains that 
 Tok Pisin completion confirmed, 17 October 2026: the user reports the current wording is checked and verified, including the three later edits. This supersedes the pending language exception notes above. Slides 10 and 11 and the narration now reflect completion. The test count is updated to 129 and dated 17 October. The native deck and both exports were refreshed; both changed slides were visually inspected, the PowerPoint passed integrity and text checks, and the PDF retains 13 slides.
 
 Chemical scope check, 18 October 2026: the user keeps products and doses outside this submission MVP. Current features remain photo screening, tentative causes, country-matched care and reports. Slide 11 explicitly places chemical options in future work requiring local registrations, labels and testing. The native deck and PDF and PowerPoint exports were refreshed; the updated slide was visually checked, export integrity checked and 13 slides retained. No new app feature or cloud deployment was made.
+
+Final submission update, 18 October 2026: the verified PDF, app link, public repository, Jeremiah’s video and brief description were submitted through the portal. The dashboard explicitly shows Submitted. This supersedes the historical draft and not submitted notes above. The native deck is still private; only the exported PDF was uploaded. See the final submission record for checks and the unresolved eligibility interpretation.

@@ -2,9 +2,9 @@
 
 A globally accessible coffee leaf screening assistant that helps farmers understand visible leaf problems, explore possible causes and find practical next steps.
 
-**[Open the app](https://coffee-leaf-check.web.app)** · **[Judge quick start and sample photo](docs/demo/README.md)** · [Reviewer guide](docs/validation/reviewer-guide.md) · [Project scope](docs/scope/scope.md)
+**[Open the app](https://coffee-leaf-check.web.app)** · **[Watch the farmer demo](https://www.youtube.com/watch?v=ayTe-1-lcMc)** · **[Judge quick start and sample photo](docs/demo/README.md)** · [Reviewer guide](docs/validation/reviewer-guide.md) · [Project scope](docs/scope/scope.md)
 
-Built by **J2D** for the AI Builder Cup, under **Sustainability & Social Impact**. Team members: **Jeremiah Ewande**, team leader and resource coordination, and **Daniel Ridzwan Bin Mohamad**, app development. PNG coffee farmers are our first planned validation group. Agricultural and farmer validation are still pending; we do not claim worldwide agricultural validation.
+Built by **J2D** for the AI Builder Cup, under **Sustainability & Social Impact**. Team members: **Jeremiah Ewande**, team leader and resource coordination, and **Daniel Ridzwan Bin Mohamad**, app development. PNG coffee farmers are our first validation group. One genuine farmer walkthrough and positive usability feedback have been received. Broader usability testing and agricultural accuracy evaluation remain pending; we do not claim worldwide agricultural validation.
 
 ## What you can do
 
@@ -112,7 +112,7 @@ Language preference is stored on the device. Photos, answers, country, results a
 
 ## Verification status
 
-As of **17 October 2026**:
+As of **18 October 2026** (software checks dated 17 October):
 
 | Area | Evidence and remaining limits |
 |---|---|
@@ -121,9 +121,9 @@ As of **17 October 2026**:
 | Result and PDF layout | Real English and Tok Pisin PDFs were rendered and checked page by page. Desktop keyboard, zoom and recovery checks are documented. |
 | Language | Fixed Tok Pisin wording and generated sample reports reviewed, team confirmed. Recent wording edits also verified, user confirmed 17 October. Future generated translations remain automatic. |
 | Agricultural accuracy | Independent specialist review and labelled accuracy evaluation remain pending. No accuracy percentage is claimed. |
-| Farmer experience | Actual farmer feedback, physical phone camera validation and complete accessibility coverage remain pending. |
+| Farmer experience | Richard, a coffee farmer, completed a genuine recorded phone walkthrough and described the app as “very user friendly and helpful”. This is one qualitative example; broader usability testing, physical phone camera validation and complete accessibility coverage remain pending. |
 
-Evidence: [desktop checks](docs/validation/desktop-checks-2026-10-15.md), [useful report checks](docs/validation/useful-reports-2026-10-15.md), [current release records](docs/scope/scope.md) and [language review](docs/content-review/tok-pisin-language-review.md). Real AI requests and controlled software fixtures are recorded separately.
+Evidence: [desktop checks](docs/validation/desktop-checks-2026-10-15.md), [useful report checks](docs/validation/useful-reports-2026-10-15.md), [current release records](docs/scope/scope.md) and [language review](docs/content-review/tok-pisin-language-review.md). Real AI requests and controlled software fixtures are recorded separately. See the [recorded farmer walkthrough and feedback](docs/validation/farmer-feedback-2026-10-18.md).
 
 ## Deployment and project documents
 
@@ -138,7 +138,7 @@ The public app uses Firebase Hosting to route to the existing Cloud Run service.
 - [Demo narration](docs/submission/video/script.md) and [recording checklist](docs/submission/video/recording-checklist.md)
 - [Archived development log](docs/history/readme-development-log-through-2026-10-16.md), historical entries may be superseded
 
-The pitch deck is a working draft. Jeremiah is preparing the demo video, which must be strictly under three minutes. The video link, farmer and specialist feedback, and final submission checks remain pending. Public deployment does not establish production readiness or competition acceptance.
+Jeremiah’s [demo video](https://www.youtube.com/watch?v=ayTe-1-lcMc) shows a real phone journey, results, an opened PDF and Richard’s genuine farmer feedback. It is under three minutes. The prescribed pitch deck has been updated with this evidence. Specialist review and agricultural accuracy evaluation remain pending. Public deployment does not establish production readiness or competition acceptance.
 
 ## Sources and attribution
 

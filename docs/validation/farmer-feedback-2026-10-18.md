@@ -6,7 +6,7 @@ Recorded on 18 October 2026 from the video supplied by the user. This records ev
 - Title: Crop Health Assistant App - Coffee.
 - Uploaded by Jeremiah, according to the user. The displayed channel is Ugly Waves Records.
 - Player duration: 2:56, below the organiser's strict three-minute maximum.
-- Visibility shown: Unlisted. Playback opened in the connected browser; signed-out playback has not yet been checked.
+- Visibility shown: Unlisted. Playback opened in the connected browser. An anonymous watch-page request on 18 October returned HTTP 200, playability OK and isPrivate false. YouTube metadata reports 177 seconds, while the player displays 2:56; both are below 180 seconds. This is anonymous service evidence, not a completed private-window viewing.
 - Participant: Richard. The user explicitly confirmed he is an actual coffee farmer and that this is genuine feedback from using the app. No surname, credentials or precise farm location are recorded here.
 
 ## Evidence observed
@@ -28,8 +28,8 @@ Keep the exact country, language and report reference consistent when making mor
 
 ## Submission recommendation and remaining checks
 
-Prefer Jeremiah's video as the submission candidate because it includes genuine farmer participation and an actual PDF view; retain the authored 21st edit as backup. The user has supplied the link, but no final submission has been performed and no external pitch-deck link has been changed by this record.
+Prefer Jeremiah's video as the submission candidate because it includes genuine farmer participation and an actual PDF view; retain the authored 21st edit as backup. The user supplied the link. The native pitch deck and final PDF and PowerPoint exports were updated on 18 October with this video and the recorded feedback. See the final submission record for portal status.
 
-Before final submission, check playback without signing in, listen to the complete video with audio and verify readability at full viewing size. The phone recording is narrow within the landscape frame; enlarged phone footage would improve readability if an edit is feasible without losing the farmer feedback or exceeding 180 seconds. The four-second duration margin must be preserved. Do not add time without trimming elsewhere.
+Anonymous watch-page availability is verified. A complete listening and full-size readability review is still distinct from the transcript and visual sampling recorded here. The phone recording is narrow within the landscape frame; enlarged phone footage would improve readability if an edit is feasible without losing the farmer feedback or exceeding 180 seconds. The remaining duration margin is about three seconds and must be preserved. Do not add time without trimming elsewhere.
 
 The genuine video link and this feedback should replace video-pending and no-farmer-feedback placeholders in the final pitch materials. Broader farmer testing and agricultural accuracy evaluation remain separate work.

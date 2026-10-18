@@ -1,3 +1,5 @@
+Current submission update, 18 October 2026: Jeremiah’s genuine farmer demo was used in the submitted package. The public watch page is anonymously playable and metadata runtime is 177 seconds, below three minutes. The portal dashboard confirms Submitted. See the [final submission record](../final-check-2026-10-18.md). Earlier recording instructions below are retained as preparation history.
+
 # Demo recording checklist
 
 ## Received team video, 18 October 2026
