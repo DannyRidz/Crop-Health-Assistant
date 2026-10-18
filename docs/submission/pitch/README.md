@@ -6,7 +6,7 @@ Prepared and visually verified on 16 October 2026. Team J2D consists of Jeremiah
 
 ## Deliverables
 
-- [Editable Google Slides draft](https://docs.google.com/presentation/d/1yDtFQGKbZr5J8b2HUHDgrX1xq2nOT-mc6lEZvD7TdB0/edit), private to the connected account, in its ChatGPT folder. Public sharing was not enabled.
+- [Editable Google Slides draft](https://docs.google.com/presentation/d/1yDtFQGKbZr5J8b2HUHDgrX1xq2nOT-mc6lEZvD7TdB0/edit), private to the connected account. Public sharing was not enabled.
 - Final PDF: `output/pdf/pitch-deck/J2D-Crop-Health-Assistant-Pitch-Final.pdf`.
 - Final PowerPoint: `output/presentations/J2D-Crop-Health-Assistant-Pitch-Final.pptx`.
 
