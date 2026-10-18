@@ -45,8 +45,8 @@ AI suggestions, not a diagnosis.
 
 10
 00:01:22,000 --> 00:01:29,000
-Care from published sources
-Brazil • review pending
+Care based on published sources
+Matched to the selected country
 
 11
 00:01:32,000 --> 00:01:39,000
@@ -59,26 +59,41 @@ Report from this same case
 Findings, care and sources.
 
 13
-00:01:52,000 --> 00:02:00,000
+00:01:52,000 --> 00:01:58,000
+Your downloaded PDF
+Summary and findings
+
+14
+00:01:58,000 --> 00:02:04,000
+Care and its sources
+From the same coffee leaf check
+
+15
+00:02:04,000 --> 00:02:10,000
+Photos and farmer answers
+Kept together in your report
+
+16
+00:02:10,000 --> 00:02:18,000
 Firebase Hosting → Cloud Run
 Gemini SDK • Secret Manager
 
-14
-00:02:00,000 --> 00:02:08,000
-Real Gemini journeys checked
-Disease accuracy not yet measured.
+17
+00:02:18,000 --> 00:02:26,000
+Clear findings and next checks
+Useful reports to keep and share
 
-15
-00:02:08,000 --> 00:02:16,000
+18
+00:02:26,000 --> 00:02:34,000
 Jeremiah Ewande • Team J2D
 Daniel Ridzwan Bin Mohamad
 
-16
-00:02:16,000 --> 00:02:22,000
+19
+00:02:34,000 --> 00:02:40,000
 BRACOL • CC BY 4.0
 Krohling, Esgario & Ventura
 
-17
-00:02:22,000 --> 00:02:28,000
+20
+00:02:40,000 --> 00:02:46,000
 Dataset attribution
 doi.org/10.17632/yy2k5y8mxg.1
