@@ -22,7 +22,7 @@ The app is publicly accessible worldwide. Its country selector currently offers 
 - Possible causes are tentative AI explanations, not confirmed diagnoses. Photos cannot establish that a plant is healthy or determine every cause.
 - Practical care steps are selected from a fixed catalogue with published sources and explicit country applicability. Independent agricultural review of this app remains pending.
 - When the country is unknown or matching care is unavailable, the app retains supported observations, explains the gap and recommends local agricultural review.
-- Chemical product and spray dose checks are implemented, but **no live chemical products or doses are available**. The verified local registration and label catalogue is currently empty.
+- **Chemical products and spray doses are outside this submission MVP.** Current advice consists of country-matched care suggestions from published sources. Future chemical options require verified local registrations, matching product labels and testing. The live chemical catalogue is empty.
 - Coffee leaves are the only supported crop and plant part. Other crops, languages and additional regional guidance belong on the roadmap.
 
 The app uses Gemini for screening and explanation. BRACOL images support permitted demonstrations and software evaluation; this project does not train a custom model on the dataset or claim measured disease accuracy.

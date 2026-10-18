@@ -86,3 +86,7 @@ Use these confirmed names consistently in the deck, demo video credits and submi
 - Daniel Ridzwan Bin Mohamad: app development.
 
 Registered team: J2D. This is a preparation record, not a submitted form or completed video.
+
+## Final MVP chemical scope, 18 October 2026
+
+The user agreed to keep chemical products and spray doses on the expansion roadmap rather than implement them for this submission. Describe the current feature as country-matched care suggestions from published sources. Do not promise chemical treatment recommendations. Existing label checking groundwork is not a live product or dose feature; the chemical catalogue is empty. Any future release needs current local registration, matching labels and testing. The app and PDF may retain their brief explanation that verified chemical options are unavailable. Do not remove uncertainty or regional limits.

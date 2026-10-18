@@ -39,7 +39,7 @@ Record the complete original interaction. You can divide it into short clips and
 - The organiser confirmed strictly under three minutes. Target 2:45 total and measure the exported runtime, including introduction, credits and source cards. It must be below 180 seconds. Omit the former optional extension. Script timings are rehearsal estimates.
 - Watch the entire exported video once with audio, checking readable text, cursor actions, speech pacing and abrupt cuts.
 - Confirm the same case reference, country and selected language remain consistent between result and PDF.
-- Keep the key limitation visible or audible: tentative causes, pending agricultural validation, and regional applicability. No claim of guaranteed diagnosis, worldwide validation or live chemical doses.
+- Describe the current feature as country-matched care suggestions. Chemical products and doses remain on the roadmap, requiring verified local registrations, labels and testing. Keep tentative causes, pending agricultural validation and regional applicability clear; do not claim guaranteed diagnosis or worldwide validation.
 - Show both names exactly: Jeremiah Ewande and Daniel Ridzwan Bin Mohamad.
 - Check every frame for credentials, private messages, billing details and unrelated personal information. Avoid recording cloud consoles entirely.
 - Retain original clips and the editable project. No upload or public sharing has been performed by this checklist.

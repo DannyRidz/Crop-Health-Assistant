@@ -16,7 +16,7 @@ Changing the country updates regional care and the report without rerunning the 
 ## What to expect
 
 - Useful visible findings can be returned without a supported possible cause. A mostly green leaf is not proof that the plant is healthy.
-- Care suggestions come from published, country scoped sources. They have not received independent agricultural approval of this app. The live chemical label catalogue is empty, so no chemical products or spray doses are offered.
+- Care suggestions come from published, country scoped sources. They have not received independent agricultural approval of this app. Chemical products and spray doses are outside this submission MVP. The live catalogue is empty; any future release requires verified local registrations, matching labels and testing.
 - Keep the tab open. Refreshing or closing clears the temporary case. PDF files remain on your device.
 - A normal full check uses two screening requests. The current session allowance is 12 screening requests per ten minute window, subject to shared capacity, service availability and funded quota. Translation has its own allowance. A busy or quota response includes a retry delay and retains inputs.
 - Do not submit faces, private personal details or photos you lack permission to share. Content is sent to the app and Google for processing after consent.

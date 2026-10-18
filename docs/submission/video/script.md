@@ -22,7 +22,7 @@ During the actual request, show a short section of the existing architecture sli
 
 Show the actual returned findings, one possible cause, its supporting evidence and next check. Read the output before narration. Do not promise that a particular disease will appear.
 
-> The result shows visible changes, possible causes, why each may fit and what needs checking. The next check helps the farmer gather useful evidence. Suggestions are based on the photos and answers, rather than a confirmed diagnosis. Published care sources match the selected country: PNG, Indonesia, Kenya or Brazil. When suitable regional guidance is missing, the app explains that gap. Chemical products and doses are not currently available.
+> The result shows visible changes, possible causes, why each may fit and what needs checking. The next check helps the farmer gather useful evidence. Suggestions are based on the photos and answers, rather than a confirmed diagnosis. Country-matched care suggestions use published sources for PNG, Indonesia, Kenya or Brazil. When suitable regional guidance is missing, the app explains that gap. Chemical products and doses are not currently available.
 
 If no possible cause is returned, show the real outcome and say: “For this photo, the app could describe visible signs but could not support a possible cause.” Replace the first two sentences accordingly. Never overlay an invented result.
 
